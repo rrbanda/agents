@@ -35,8 +35,8 @@ const slideDefinitions = [
   { number: 18, id: 'slide-18-persona-examples', title: 'Agent Loop by Role' },
   
   // Part 4: Building Effectively (Slides 19-26) - Added Linux MCP Demo
-  { number: 19, id: 'slide-19-context-engineering', title: 'Context Engineering' },
-  { number: 20, id: 'slide-20-prompt-engineering', title: 'Prompt Engineering Basics' },
+  { number: 19, id: 'slide-19-prompt-engineering', title: 'Prompt Engineering Basics' },
+  { number: 20, id: 'slide-20-context-engineering', title: 'Context Engineering' },
   { number: 21, id: 'slide-21-tool-design', title: 'Tool Design & MCP' },
   { number: 22, id: 'slide-22-linux-mcp', title: 'Using RHEL MCP: Talk to Your Linux System' },  // Live demo
   { number: 23, id: 'slide-23-agent-loop-practice', title: 'Agent Loop in Practice' },

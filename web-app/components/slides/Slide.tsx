@@ -124,10 +124,11 @@ export default function Slide({
       
       // Part 4: Building Effectively (Slides 19-26)
       case 19:
-        return <ContextEngineeringSlide />;
-      case 20:
-        // NEW: Prompt Engineering Basics
+        // Prompt Engineering first (foundational skill)
         return <PromptEngineeringSlide />;
+      case 20:
+        // Context Engineering second (builds on prompting)
+        return <ContextEngineeringSlide />;
       case 21:
         return <ToolDesignSlide />;
       case 22:

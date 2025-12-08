@@ -4,7 +4,7 @@
 
 This directory contains slide definitions for the Agentic AI 101 presentation.
 
-**Total Slides**: 33  
+**Total Slides**: 34  
 **Duration**: ~60 minutes  
 **Format**: Rich interactive React components
 
@@ -39,29 +39,30 @@ This directory contains slide definitions for the Agentic AI 101 presentation.
 17. **The Agent Loop** - Gather → Act → Verify → Repeat
 18. **Agent Loop by Role** - Persona-specific examples with time savings
 
-### Part 4: Building Effectively (Slides 19-25)
+### Part 4: Building Effectively (Slides 19-26)
 
-19. **Context Engineering** - Progressive disclosure pattern
-20. **Prompt Engineering Basics** - 🆕 6 techniques for effective prompting
+19. **Prompt Engineering Basics** - 🆕 6 techniques for effective prompting (foundational)
+20. **Context Engineering** - Progressive disclosure pattern (builds on prompting)
 21. **Tool Design & MCP** - Tool patterns and Model Context Protocol
-22. **Agent Loop in Practice** - Interactive persona-based demos
-23. **Best Practices** - Common patterns and guidelines
-24. **When to Use Agents** - Decision framework
-25. **Current Limitations** - Honest assessment with mitigations
+22. **Using RHEL MCP** - 🆕 Talk to Your Linux System (live demo)
+23. **Agent Loop in Practice** - Interactive persona-based demos
+24. **Best Practices** - Common patterns and guidelines
+25. **When to Use Agents** - Decision framework
+26. **Current Limitations** - Honest assessment with mitigations
 
-### Part 5: Advanced Topics (Slides 26-28)
+### Part 5: Advanced Topics (Slides 27-29)
 
-26. **Multi-Agent Systems** - Hub-and-spoke collaboration
-27. **Long-Running Agents** - Challenges and solutions for persistence
-28. **Real-World Applications** - Applications by persona
+27. **Multi-Agent Systems** - Orchestrator, Pipeline, Collaborative patterns
+28. **Long-Running Agents** - Challenges and solutions for persistence
+29. **Real-World Applications** - Applications by persona
 
-### Part 6: Closing (Slides 29-33)
+### Part 6: Closing (Slides 30-34)
 
-29. **AI Fluency: The 4Ds** - 🆕 Delegation, Description, Discernment, Diligence
-30. **Your Journey Begins** - Actionable next steps
-31. **Key Takeaways** - Core principles summary
-32. **Questions?** - Q&A slide
-33. **Thank You** - Closing slide with resources
+30. **AI Fluency: The 4Ds** - 🆕 Delegation, Description, Discernment, Diligence
+31. **Your Journey Begins** - Actionable next steps
+32. **Key Takeaways** - Core principles summary
+33. **Questions?** - Q&A slide
+34. **Thank You** - Closing slide with resources
 
 ---
 
@@ -72,12 +73,17 @@ This directory contains slide definitions for the Agentic AI 101 presentation.
 - **Topics**: Three pillars (Algorithms, Data, Computing), Pre-training → Fine-tuning → Deployment, Capabilities vs Limitations
 - **Why Added**: Foundational knowledge before diving into evolution
 
-### Slide 20: Prompt Engineering Basics  
+### Slide 19: Prompt Engineering Basics  
 - **Content Source**: `_content-draft/14-effective-prompt-engineering-techniques.md`
 - **Topics**: 6 techniques (Context, Examples, Constraints, Steps, Think-First, Role), Before/after examples
-- **Why Added**: Practical skill needed for working with any AI, especially agents
+- **Why Added**: Foundational skill needed for working with any AI, especially agents
 
-### Slide 29: AI Fluency (The 4Ds)
+### Slide 22: Using RHEL MCP - Talk to Your Linux System
+- **Content Source**: Fedora Magazine blog post on linux-mcp-server
+- **Topics**: Three use cases (System Slow, Disk Full, Upgrade Ready), MCP tools, Architecture diagram
+- **Why Added**: Real-world MCP demo for RHEL sysadmin persona
+
+### Slide 30: AI Fluency (The 4Ds)
 - **Content Source**: `_content-draft/11-ai-fluency-framework.md`
 - **Topics**: Delegation, Description, Discernment, Diligence framework, Human-AI interaction modes
 - **Why Added**: Mental model for responsible and effective AI use
@@ -91,18 +97,18 @@ This directory contains slide definitions for the Agentic AI 101 presentation.
 **Foundation**: Slide 5
 **Evolution Story**: Slides 6-11
 **Agent Definition**: Slides 12-13
-**Real Examples**: Slides 14-16, 18
-**Patterns**: Slides 17, 19-23
-**Decision Making**: Slides 24-25
-**Advanced**: Slides 26-28
-**Fluency & Responsibility**: Slide 29
-**Closing**: Slides 30-33
+**Real Examples**: Slides 14-16, 18, 22
+**Patterns**: Slides 17, 19-24
+**Decision Making**: Slides 25-26
+**Advanced**: Slides 27-29
+**Fluency & Responsibility**: Slide 30
+**Closing**: Slides 31-34
 
 ### By Learning Level
 
-**101 (Fundamentals)**: Slides 1-18, 29-33
-**201 (Intermediate)**: Slides 19-25
-**301 (Advanced)**: Slides 26-28
+**101 (Fundamentals)**: Slides 1-18, 30-34
+**201 (Intermediate)**: Slides 19-26
+**301 (Advanced)**: Slides 27-29
 
 ---
 
@@ -115,18 +121,19 @@ All content is sourced from verified materials:
 | 5 | `13-understanding-generative-ai.md` |
 | 6-11 | `01-agentic-ai-introduction.md` |
 | 12-18 | `01-agentic-ai-introduction.md`, `04-agent-architecture-patterns.md` |
-| 19 | `05-context-engineering.md` |
-| 20 | `14-effective-prompt-engineering-techniques.md` |
+| 19 | `14-effective-prompt-engineering-techniques.md` |
+| 20 | `05-context-engineering.md` |
 | 21 | `06-writing-effective-tools.md` |
-| 22-25 | `09-building-effective-agents.md` |
-| 26-28 | `02-long-running-agents-and-tool-use.md`, `07-multi-agent-research-systems.md` |
-| 29 | `11-ai-fluency-framework.md` |
+| 22 | Fedora Magazine: linux-mcp-server blog post |
+| 23-26 | `09-building-effective-agents.md` |
+| 27-29 | `02-long-running-agents-and-tool-use.md`, `07-multi-agent-research-systems.md` |
+| 30 | `11-ai-fluency-framework.md` |
 
 ---
 
 ## Technical Implementation
 
-All 33 slides use custom React components with:
+All 34 slides use custom React components with:
 - Framer Motion animations
 - Interactive tabs and expandable sections
 - Responsive design
