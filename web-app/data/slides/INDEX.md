@@ -2,70 +2,85 @@
 
 ## Overview
 
-This directory contains 30 individual slide files, one per slide, for easy updating and reference.
+This directory contains slide definitions for the Agentic AI 101 presentation.
 
-**Total Slides**: 30  
-**Duration**: 60 minutes  
-**Format**: One markdown file per slide
+**Total Slides**: 33  
+**Duration**: ~60 minutes  
+**Format**: Rich interactive React components
 
 ---
 
 ## Slide List
 
-### Part 1: Opening (10 minutes)
+### Part 1: Opening (Slides 1-4)
 
-1. **[slide-01-title.md](slide-01-title.md)** - Title Slide
-2. **[slide-02-frustration.md](slide-02-frustration.md)** - The Frustration (Persona-Specific Opening)
-3. **[slide-03-promise.md](slide-03-promise.md)** - The Promise
-4. **[slide-04-journey.md](slide-04-journey.md)** - Today's Journey
+1. **Title Slide** - Agentic AI 101: From Automation to Autonomy
+2. **The Frustration** - Persona-Specific Opening (pain points)
+3. **What If You Had Superpowers?** - The Promise (vision)
+4. **Today's Journey** - Roadmap of the presentation
 
-### Part 2: The Evolution (15 minutes)
+### Part 2: Foundation & Evolution (Slides 5-11)
 
-5. **[slide-05-cold-open.md](slide-05-cold-open.md)** - The Cold Open
-6. **[slide-06-age-of-words.md](slide-06-age-of-words.md)** - The Age of Words
-7. **[slide-07-rise-of-assistants.md](slide-07-rise-of-assistants.md)** - The Rise of Assistants
-8. **[slide-08-awakening.md](slide-08-awakening.md)** - The Awakening
-9. **[slide-09-enter-agents.md](slide-09-enter-agents.md)** - Enter the Agents
-10. **[slide-10-evolution-timeline.md](slide-10-evolution-timeline.md)** - The Evolution Timeline
+5. **What is Generative AI?** - 🆕 Three pillars, how it works, capabilities vs limitations
+6. **The Cold Open** - Historical context (machines learned to see, speak, reason)
+7. **Large Language Models** - Stage 1: The Age of Words (Since 2018)
+8. **AI Assistants** - Stage 2: The Rise of Assistants (Since 2020)
+9. **Reasoning & Self-Correction** - Stage 3: The Awakening (Since 2022)
+10. **Enter the Agents** - Stage 4: Memory + Tools + Goals (Since 2023)
+11. **The Evolution** - Timeline summary of all stages
 
-### Part 3: Understanding Agents (15 minutes)
+### Part 3: Understanding Agents (Slides 12-18)
 
-11. **[slide-11-what-is-agent.md](slide-11-what-is-agent.md)** - What is an Agent?
-12. **[slide-12-anatomy.md](slide-12-anatomy.md)** - Anatomy of an Agent
-13. **[slide-13-solar-scout-problem.md](slide-13-solar-scout-problem.md)** - Solar Scout: The Problem
-14. **[slide-14-solar-scout-solution.md](slide-14-solar-scout-solution.md)** - Solar Scout: The Solution
-15. **[slide-15-solar-scout-impact.md](slide-15-solar-scout-impact.md)** - Solar Scout: The Impact
-16. **[slide-16-agent-loop.md](slide-16-agent-loop.md)** - The Agent Loop Pattern
-17. **[slide-17-persona-examples.md](slide-17-persona-examples.md)** - Persona-Specific Examples
+12. **What is an Agent?** - Clear definition with comparison
+13. **Anatomy of an Agent** - Progressive step-by-step build-up
+14. **Challenges We All Share** - Real-world organizational challenges
+15. **The AI-Powered Solution** - How agents help the whole team
+16. **The Impact** - Before/after metrics
+17. **The Agent Loop** - Gather → Act → Verify → Repeat
+18. **Agent Loop by Role** - Persona-specific examples with time savings
 
-### Part 4: Building Effectively (15 minutes)
+### Part 4: Building Effectively (Slides 19-25)
 
-18. **[slide-18-context-engineering.md](slide-18-context-engineering.md)** - Context Engineering
-19. **[slide-19-tool-design.md](slide-19-tool-design.md)** - Tool Design
-20. **[slide-20-agent-loop-practice.md](slide-20-agent-loop-practice.md)** - The Agent Loop in Practice
-21. **[slide-21-common-patterns.md](slide-21-common-patterns.md)** - Common Patterns
-22. **[slide-22-when-to-use.md](slide-22-when-to-use.md)** - When to Use Agents
-23. **[slide-23-limitations.md](slide-23-limitations.md)** - Current Limitations
+19. **Context Engineering** - Progressive disclosure pattern
+20. **Prompt Engineering Basics** - 🆕 6 techniques for effective prompting
+21. **Tool Design & MCP** - Tool patterns and Model Context Protocol
+22. **Agent Loop in Practice** - Interactive persona-based demos
+23. **Best Practices** - Common patterns and guidelines
+24. **When to Use Agents** - Decision framework
+25. **Current Limitations** - Honest assessment with mitigations
 
-### Part 5: The Future (5 minutes)
+### Part 5: Advanced Topics (Slides 26-28)
 
-24. **[slide-24-multi-agent.md](slide-24-multi-agent.md)** - Multi-Agent Systems
-25. **[slide-25-long-running.md](slide-25-long-running.md)** - Long-Running Agents
-26. **[slide-26-applications.md](slide-26-applications.md)** - Real-World Applications
-27. **[slide-27-journey-begins.md](slide-27-journey-begins.md)** - Your Journey Begins
-28. **[slide-28-takeaways.md](slide-28-takeaways.md)** - Key Takeaways
-29. **[slide-29-questions.md](slide-29-questions.md)** - Questions?
-30. **[slide-30-thank-you.md](slide-30-thank-you.md)** - Thank You
+26. **Multi-Agent Systems** - Hub-and-spoke collaboration
+27. **Long-Running Agents** - Challenges and solutions for persistence
+28. **Real-World Applications** - Applications by persona
+
+### Part 6: Closing (Slides 29-33)
+
+29. **AI Fluency: The 4Ds** - 🆕 Delegation, Description, Discernment, Diligence
+30. **Your Journey Begins** - Actionable next steps
+31. **Key Takeaways** - Core principles summary
+32. **Questions?** - Q&A slide
+33. **Thank You** - Closing slide with resources
 
 ---
 
-## File Structure
+## New Slides Added (101 Completion)
 
-Each slide file contains:
+### Slide 5: What is Generative AI?
+- **Content Source**: `_content-draft/13-understanding-generative-ai.md`
+- **Topics**: Three pillars (Algorithms, Data, Computing), Pre-training → Fine-tuning → Deployment, Capabilities vs Limitations
+- **Why Added**: Foundational knowledge before diving into evolution
 
-1. **Slide Content** - The actual content for the slide
-2. **Speaker Notes** - Detailed notes for delivery
-3. **Visual Description** - Description of visuals/diagrams needed
+### Slide 20: Prompt Engineering Basics  
+- **Content Source**: `_content-draft/14-effective-prompt-engineering-techniques.md`
+- **Topics**: 6 techniques (Context, Examples, Constraints, Steps, Think-First, Role), Before/after examples
+- **Why Added**: Practical skill needed for working with any AI, especially agents
+
+### Slide 29: AI Fluency (The 4Ds)
+- **Content Source**: `_content-draft/11-ai-fluency-framework.md`
+- **Topics**: Delegation, Description, Discernment, Diligence framework, Human-AI interaction modes
+- **Why Added**: Mental model for responsible and effective AI use
 
 ---
 
@@ -73,55 +88,57 @@ Each slide file contains:
 
 ### By Topic
 
-**Evolution Story**: Slides 5-10
-**Agent Definition**: Slides 11-12
-**Examples**: Slides 13-15, 17
-**Patterns**: Slides 16, 18-21
-**Decision Making**: Slides 22-23
-**Future**: Slides 24-26
+**Foundation**: Slide 5
+**Evolution Story**: Slides 6-11
+**Agent Definition**: Slides 12-13
+**Real Examples**: Slides 14-16, 18
+**Patterns**: Slides 17, 19-23
+**Decision Making**: Slides 24-25
+**Advanced**: Slides 26-28
+**Fluency & Responsibility**: Slide 29
+**Closing**: Slides 30-33
 
-### By Persona Focus
+### By Learning Level
 
-**Universal**: Most slides
-**SysAdmin Examples**: Slides 2, 17, 19, 20, 26
-**DevOps Examples**: Slides 2, 17, 19, 20, 26
-**Developer Examples**: Slides 2, 17, 19, 20, 26
-
----
-
-## Usage
-
-### To Update a Slide
-1. Open the specific slide file (e.g., `slide-16-agent-loop.md`)
-2. Edit the content
-3. Save the file
-
-### To Reference a Slide
-1. Use the index above to find the slide number
-2. Open the corresponding file
-3. Each file is self-contained with all information
-
-### To Create Presentation
-1. Convert each markdown file to slide format
-2. Use visual descriptions to create diagrams
-3. Add speaker notes to presentation software
+**101 (Fundamentals)**: Slides 1-18, 29-33
+**201 (Intermediate)**: Slides 19-25
+**301 (Advanced)**: Slides 26-28
 
 ---
 
-## Content Verification
+## Content Sources
 
-All slides use content from collected drafts:
-- ✅ No hallucination
-- ✅ All examples from source material
-- ✅ Persona examples adapted from universal patterns
-- ✅ See `../CONTENT_VERIFICATION.md` for detailed mapping
+All content is sourced from verified materials:
+
+| Slide | Primary Source |
+|-------|----------------|
+| 5 | `13-understanding-generative-ai.md` |
+| 6-11 | `01-agentic-ai-introduction.md` |
+| 12-18 | `01-agentic-ai-introduction.md`, `04-agent-architecture-patterns.md` |
+| 19 | `05-context-engineering.md` |
+| 20 | `14-effective-prompt-engineering-techniques.md` |
+| 21 | `06-writing-effective-tools.md` |
+| 22-25 | `09-building-effective-agents.md` |
+| 26-28 | `02-long-running-agents-and-tool-use.md`, `07-multi-agent-research-systems.md` |
+| 29 | `11-ai-fluency-framework.md` |
+
+---
+
+## Technical Implementation
+
+All 33 slides use custom React components with:
+- Framer Motion animations
+- Interactive tabs and expandable sections
+- Responsive design
+- Consistent visual language
+
+Component files: `web-app/components/slides/special/`
 
 ---
 
 ## Notes
 
-- Each slide is independent and can be updated separately
-- Speaker notes are included in each file
-- Visual descriptions help with creating diagrams
-- All content verified against source drafts
-
+- Each slide has a dedicated React component for rich interactivity
+- Slide data (metadata) is loaded from `lib/slides.ts`
+- Navigation supports keyboard (← →) and click
+- Total duration estimate: ~60 minutes at normal pace

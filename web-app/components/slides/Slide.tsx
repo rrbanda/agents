@@ -6,18 +6,14 @@ import TextReveal from '../animations/TextReveal';
 import SlideContent from './SlideContent';
 import SectionHeader from './SectionHeader';
 import { getSectionForSlide } from '@/lib/sections';
-import PresenterPanel from '../ui/PresenterPanel';
-import { presenterNotes } from '@/data/presenterNotes';
 import TitleSlide from './special/TitleSlide';
 import ColdOpenSlide from './special/ColdOpenSlide';
 import WhatIsAgentSlide from './special/WhatIsAgentSlide';
 import FrustrationSlide from './special/FrustrationSlide';
-import SolarScoutProblemSlide from './special/SolarScoutProblemSlide';
 import SolarScoutImpactSlide from './special/SolarScoutImpactSlide';
 import RealWorldProblemSlide from './special/RealWorldProblemSlide';
 import RealWorldSolutionSlide from './special/RealWorldSolutionSlide';
 import AgentLoopSlide from './special/AgentLoopSlide';
-import AnatomySlide from './special/AnatomySlide';
 import AnatomyProgressiveSlide from './special/AnatomyProgressiveSlide';
 import EvolutionSlide from './special/EvolutionSlide';
 import LanguageModelsSlide from './special/LanguageModelsSlide';
@@ -40,10 +36,12 @@ import JourneyBeginsSlide from './special/JourneyBeginsSlide';
 import TakeawaysSlide from './special/TakeawaysSlide';
 import QuestionsSlide from './special/QuestionsSlide';
 import ThankYouSlide from './special/ThankYouSlide';
-import AgentAnatomy from '../diagrams/AgentAnatomy';
-import AgentLoop from '../diagrams/AgentLoop';
-import EvolutionTimeline from '../diagrams/EvolutionTimeline';
-import SolarScoutWorkflow from '../diagrams/SolarScoutWorkflow';
+// New 101 slides
+import GenerativeAISlide from './special/GenerativeAISlide';
+import PromptEngineeringSlide from './special/PromptEngineeringSlide';
+import AIFluencySlide from './special/AIFluencySlide';
+// Persona-specific deep dives
+import LinuxMCPSlide from './special/LinuxMCPSlide';
 
 interface SlideProps {
   slide: SlideType;
@@ -77,103 +75,98 @@ export default function Slide({
     }
   };
 
-  return (
-    <motion.div
-      variants={slideVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      className="h-screen bg-gray-900 text-gray-100 p-8 md:p-12 flex flex-col justify-center overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center overflow-hidden">
-        {/* Special slides with custom formatting */}
-        {slide.number === 1 ? (
-          <TitleSlide />
-        ) : slide.number === 2 ? (
-          <FrustrationSlide />
-        ) : slide.number === 3 ? (
-          <WhatIfSlide />
-        ) : slide.number === 4 ? (
-          <WhatWellCoverSlide />
-        ) : slide.number === 5 ? (
-          <ColdOpenSlide />
-        ) : slide.number === 6 ? (
-          // Slide 6: Language Models (focused)
-          <LanguageModelsSlide />
-        ) : slide.number === 7 ? (
-          // Slide 7: Assistants (focused)
-          <AssistantsSlide />
-        ) : slide.number === 8 ? (
-          // Slide 8: Reasoning (focused)
-          <ReasoningSlide />
-        ) : slide.number === 9 ? (
-          // Slide 9: Convergence
-          <ConvergenceSlide />
-        ) : slide.number === 10 ? (
-          // Slide 10: All stages together
-          <EvolutionSlide />
-        ) : slide.number === 11 ? (
-          // Slide 11: What is an Agent
-          <WhatIsAgentSlide />
-        ) : slide.number === 12 ? (
-          // Slide 12: Anatomy of an Agent (Progressive Step-by-Step)
-          <AnatomyProgressiveSlide />
-        ) : slide.number === 13 ? (
-          // Slide 13: Real-World Problem (persona-specific with tabs)
-          <RealWorldProblemSlide />
-        ) : slide.number === 14 ? (
-          // Slide 14: Real-World Solution (persona-specific with tabs)
-          <RealWorldSolutionSlide />
-        ) : slide.number === 15 ? (
-          <SolarScoutImpactSlide />
-        ) : slide.number === 16 ? (
-          <AgentLoopSlide persona={persona} />
-        ) : slide.number === 17 ? (
-          // Slide 17: Persona-Specific Examples
-          <PersonaExamplesSlide />
-        ) : slide.number === 18 ? (
-          // Slide 18: Context Engineering
-          <ContextEngineeringSlide />
-        ) : slide.number === 19 ? (
-          // Slide 19: Tool Design
-          <ToolDesignSlide />
-        ) : slide.number === 20 ? (
-          // Slide 20: Agent Loop in Practice
-          <AgentLoopPracticeSlide />
-        ) : slide.number === 21 ? (
-          // Slide 21: Common Patterns
-          <CommonPatternsSlide />
-        ) : slide.number === 22 ? (
-          // Slide 22: When to Use Agents
-          <WhenToUseSlide />
-        ) : slide.number === 23 ? (
-          // Slide 23: Limitations
-          <LimitationsSlide />
-        ) : slide.number === 24 ? (
-          // Slide 24: Multi-Agent Systems
-          <MultiAgentSlide />
-        ) : slide.number === 25 ? (
-          // Slide 25: Long-Running Agents
-          <LongRunningSlide />
-        ) : slide.number === 26 ? (
-          // Slide 26: Applications
-          <ApplicationsSlide />
-        ) : slide.number === 27 ? (
-          // Slide 27: Journey Begins
-          <JourneyBeginsSlide />
-        ) : slide.number === 28 ? (
-          // Slide 28: Key Takeaways
-          <TakeawaysSlide />
-        ) : slide.number === 29 ? (
-          // Slide 29: Questions
-          <QuestionsSlide />
-        ) : slide.number === 30 ? (
-          // Slide 30: Thank You
-          <ThankYouSlide />
-        ) : (
-          // Regular content slides - Show section header and title nicely at top
+  // Render the appropriate slide component based on slide number
+  // New structure: 34 slides total (added Linux MCP demo after Tool Design)
+  const renderSlideContent = () => {
+    switch (slide.number) {
+      // Part 1: Opening (Slides 1-4)
+      case 1:
+        return <TitleSlide />;
+      case 2:
+        return <FrustrationSlide />;
+      case 3:
+        return <WhatIfSlide />;
+      case 4:
+        return <WhatWellCoverSlide />;
+      
+      // Part 2: Foundation & Evolution (Slides 5-11)
+      case 5:
+        // NEW: What is Generative AI? (foundational)
+        return <GenerativeAISlide />;
+      case 6:
+        return <ColdOpenSlide />;
+      case 7:
+        return <LanguageModelsSlide />;
+      case 8:
+        return <AssistantsSlide />;
+      case 9:
+        return <ReasoningSlide />;
+      case 10:
+        return <ConvergenceSlide />;
+      case 11:
+        return <EvolutionSlide />;
+      
+      // Part 3: Understanding Agents (Slides 12-18)
+      case 12:
+        return <WhatIsAgentSlide />;
+      case 13:
+        return <AnatomyProgressiveSlide />;
+      case 14:
+        return <RealWorldProblemSlide />;
+      case 15:
+        return <RealWorldSolutionSlide />;
+      case 16:
+        return <SolarScoutImpactSlide />;
+      case 17:
+        return <AgentLoopSlide persona={persona} />;
+      case 18:
+        return <PersonaExamplesSlide />;
+      
+      // Part 4: Building Effectively (Slides 19-26)
+      case 19:
+        return <ContextEngineeringSlide />;
+      case 20:
+        // NEW: Prompt Engineering Basics
+        return <PromptEngineeringSlide />;
+      case 21:
+        return <ToolDesignSlide />;
+      case 22:
+        // NEW: MCP in Action - Linux Sysadmin Demo (after Tool Design)
+        return <LinuxMCPSlide />;
+      case 23:
+        return <AgentLoopPracticeSlide />;
+      case 24:
+        return <CommonPatternsSlide />;
+      case 25:
+        return <WhenToUseSlide />;
+      case 26:
+        return <LimitationsSlide />;
+      
+      // Part 5: Advanced Topics (Slides 27-29)
+      case 27:
+        return <MultiAgentSlide />;
+      case 28:
+        return <LongRunningSlide />;
+      case 29:
+        return <ApplicationsSlide />;
+      
+      // Part 6: Closing (Slides 30-34)
+      case 30:
+        // NEW: AI Fluency (The 4Ds)
+        return <AIFluencySlide />;
+      case 31:
+        return <JourneyBeginsSlide />;
+      case 32:
+        return <TakeawaysSlide />;
+      case 33:
+        return <QuestionsSlide />;
+      case 34:
+        return <ThankYouSlide />;
+      
+      // Fallback for any other slides - render generic content
+      default:
+        return (
           <div className="flex-1 overflow-y-auto">
-            {/* Show section header if this slide is the first in a section */}
             {(() => {
               const section = getSectionForSlide(slide.number);
               const prevSection = slide.number > 1 ? getSectionForSlide(slide.number - 1) : null;
@@ -184,7 +177,6 @@ export default function Slide({
               ) : null;
             })()}
             
-            {/* Display title nicely at top if it exists */}
             {slide.content.title && slide.content.title.trim() && (
               <TextReveal delay={0.1}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-10 text-white leading-tight pb-6 border-b border-gray-700/50">
@@ -194,10 +186,21 @@ export default function Slide({
             )}
             <SlideContent content={slide.content.content} />
           </div>
-        )}
+        );
+    }
+  };
 
+  return (
+    <motion.div
+      variants={slideVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="h-screen bg-gray-900 text-gray-100 p-8 md:p-12 flex flex-col justify-center overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center overflow-hidden">
+        {renderSlideContent()}
       </div>
     </motion.div>
   );
 }
-

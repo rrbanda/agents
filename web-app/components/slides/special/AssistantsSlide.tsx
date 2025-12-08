@@ -13,7 +13,7 @@ export default function AssistantsSlide() {
         className="mb-4"
       >
         <span className="text-xs font-mono text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
-          STAGE 2 • Since 2020
+          STAGE 2 • Since 2022
         </span>
       </motion.div>
 

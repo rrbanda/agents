@@ -16,7 +16,7 @@ const stages = [
   },
   {
     id: 'assistants',
-    period: 'Since 2020',
+    period: 'Since 2022',
     title: 'Assistants',
     tagline: 'Machines that remember',
     color: '#3b82f6',
@@ -36,7 +36,7 @@ const stages = [
   },
   {
     id: 'agents',
-    period: 'Since 2024',
+    period: 'Since 2023',
     title: 'Agents',
     tagline: 'Machines that act',
     color: '#f59e0b',

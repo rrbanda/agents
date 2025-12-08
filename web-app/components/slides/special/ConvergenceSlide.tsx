@@ -40,7 +40,7 @@ export default function ConvergenceSlide() {
         className="mb-4"
       >
         <span className="text-xs font-mono text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
-          STAGE 4 • Since 2024
+          STAGE 4 • Since 2023
         </span>
       </motion.div>
 

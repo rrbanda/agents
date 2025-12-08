@@ -230,7 +230,7 @@ export default function WhatIfSlide() {
         transition={{ delay: 1.3 }}
       >
         <p className="text-green-400 text-xl md:text-2xl font-medium">
-          <span className="font-bold">Agentic AI</span> — augmenting YOU to be 10x more effective
+          This is <span className="font-bold">Agentic AI</span> — so you can focus on what matters most
         </p>
       </motion.div>
     </div>
