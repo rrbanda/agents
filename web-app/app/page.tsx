@@ -12,13 +12,10 @@ export default function PresentationPage() {
   const [slides, setSlides] = useState<Slide[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [persona, setPersona] = useState<Persona>('all');
-  const [showNotes, setShowNotes] = useState(false);
-  const [showReferences, setShowReferences] = useState(false);
-  const [presenterMode, setPresenterMode] = useState(false); // Controls visibility of controls
+  const [presenterMode, setPresenterMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load slides from API
     const loadSlides = async () => {
       try {
         const loadedSlides = await getAllSlidesClient();
@@ -34,7 +31,6 @@ export default function PresentationPage() {
   }, []);
 
   useEffect(() => {
-    // Keyboard navigation
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -44,7 +40,6 @@ export default function PresentationPage() {
         handleNext();
       } else if (e.key === 'p' || e.key === 'P') {
         e.preventDefault();
-        // Toggle presenter mode (hide/show controls)
         setPresenterMode(!presenterMode);
       }
     };
@@ -55,24 +50,20 @@ export default function PresentationPage() {
 
   const handleNext = () => {
     if (currentSlideIndex < slides.length - 1) {
-      const newIndex = currentSlideIndex + 1;
-      setCurrentSlideIndex(newIndex);
+      setCurrentSlideIndex(currentSlideIndex + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentSlideIndex > 0) {
-      const newIndex = currentSlideIndex - 1;
-      setCurrentSlideIndex(newIndex);
+      setCurrentSlideIndex(currentSlideIndex - 1);
     }
   };
 
-  // Sync slide number to localStorage for presenter page
   useEffect(() => {
     if (slides.length > 0 && currentSlideIndex >= 0) {
       const slideNumber = (currentSlideIndex + 1).toString();
       localStorage.setItem('currentSlide', slideNumber);
-      // Trigger custom event for same-tab sync (storage event only fires cross-tab)
       window.dispatchEvent(new CustomEvent('localStorageChange', { detail: { key: 'currentSlide', value: slideNumber } }));
     }
   }, [currentSlideIndex, slides.length]);
@@ -98,58 +89,19 @@ export default function PresentationPage() {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Presenter Mode Controls - Only visible when presenterMode is true */}
+      {/* Presenter Controls - Only visible when presenterMode is true */}
       {presenterMode && (
-        <>
-          <PersonaSelector selectedPersona={persona} onSelect={setPersona} />
-          
-          {/* Toggle Buttons - Presenter Only */}
-          <div className="fixed top-4 left-4 z-50 flex gap-2">
-            <button
-              onClick={() => setShowNotes(!showNotes)}
-              className={`px-4 py-2 rounded-lg text-sm transition-colors ${
-                showNotes
-                  ? 'bg-yellow-600 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-              title="Toggle Speaker Notes (N)"
-            >
-              Notes {showNotes ? 'ON' : 'OFF'}
-            </button>
-            <button
-              onClick={() => setShowReferences(!showReferences)}
-              className={`px-4 py-2 rounded-lg text-sm transition-colors ${
-                showReferences
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-              title="Toggle References (R)"
-            >
-              Refs {showReferences ? 'ON' : 'OFF'}
-            </button>
-          </div>
-        </>
+        <PersonaSelector selectedPersona={persona} onSelect={setPersona} />
       )}
 
       {/* Presenter Mode Toggle - Small, unobtrusive */}
-      <div className="fixed top-2 right-2 z-50 flex gap-2">
-        <a
-          href="/presenter"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-3 py-1 text-xs bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors font-semibold"
-          title="Open Presenter Notes in New Tab (Not Shared)"
-        >
-          📝 Notes
-        </a>
-        <button
-          onClick={() => setPresenterMode(!presenterMode)}
-          className="px-2 py-1 text-xs bg-gray-900/80 text-gray-400 hover:text-white rounded opacity-50 hover:opacity-100 transition-opacity"
-          title="Toggle Presenter Mode (P) - Shows/hides controls"
-        >
-          {presenterMode ? '👁️' : '👤'}
-        </button>
-      </div>
+      <button
+        onClick={() => setPresenterMode(!presenterMode)}
+        className="fixed top-2 right-2 z-50 px-2 py-1 text-xs bg-gray-900/80 text-gray-400 hover:text-white rounded opacity-50 hover:opacity-100 transition-opacity"
+        title="Toggle Presenter Mode (P)"
+      >
+        {presenterMode ? '👁️' : '👤'}
+      </button>
 
       <div className="h-full overflow-hidden">
         <AnimatePresence mode="wait">
@@ -157,8 +109,8 @@ export default function PresentationPage() {
             key={currentSlide.id}
             slide={currentSlide}
             persona={persona}
-            showNotes={false} // Never show notes on main slide (use presenter page)
-            showReferences={false} // Never show references on main slide
+            showNotes={false}
+            showReferences={false}
           />
         </AnimatePresence>
       </div>

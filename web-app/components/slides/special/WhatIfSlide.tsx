@@ -1,186 +1,238 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-const personaBenefits = [
+const transformations = [
   {
-    persona: 'System Administrator',
-    color: '#3b82f6',
-    colorLight: '#3b82f6',
-    colorDark: '#1e40af',
-    benefits: [
-      'Analyze logs across all servers automatically',
-      'Document incidents as they happen',
-      'Remember what worked last time',
-      'Proactively monitor system health',
-      'Generate incident reports instantly',
-      'Learn from past resolutions',
-    ],
+    before: { icon: '😵‍💫', text: 'Drowning in tabs' },
+    after: { icon: '🎯', text: 'You focus, AI fetches' },
   },
   {
-    persona: 'DevOps Engineer',
-    color: '#10b981',
-    colorLight: '#10b981',
-    colorDark: '#047857',
-    benefits: [
-      'Trace failures across microservices instantly',
-      'Deploy with confidence and rollback automatically',
-      'Learn from every deployment',
-      'Monitor pipeline health continuously',
-      'Optimize infrastructure costs dynamically',
-      'Predict failures before they happen',
-    ],
+    before: { icon: '🔄', text: 'Copy-paste between systems' },
+    after: { icon: '⚡', text: 'You decide, AI executes' },
   },
   {
-    persona: 'Software Developer',
-    color: '#f59e0b',
-    colorLight: '#f59e0b',
-    colorDark: '#d97706',
-    benefits: [
-      'Navigate any codebase instantly',
-      'Write code that matches your style',
-      'Remember your architecture decisions',
-      'Suggest improvements based on patterns',
-      'Answer questions about legacy code',
-      'Generate tests automatically',
-    ],
+    before: { icon: '📚', text: 'Hours reading docs' },
+    after: { icon: '💬', text: 'You ask, AI summarizes' },
   },
   {
-    persona: 'Platform Engineer',
-    color: '#8b5cf6',
-    colorLight: '#8b5cf6',
-    colorDark: '#6d28d9',
-    benefits: [
-      'Manage infrastructure as code automatically',
-      'Ensure compliance across all environments',
-      'Learn from infrastructure patterns',
-      'Detect configuration drift instantly',
-      'Enforce security policies consistently',
-      'Optimize resource allocation',
-    ],
+    before: { icon: '⏰', text: 'Repetitive grunt work' },
+    after: { icon: '🚀', text: 'You strategize, AI handles details' },
   },
 ];
 
+const capabilities = [
+  { icon: '🧠', text: 'Extending your memory', color: '#3b82f6' },
+  { icon: '🔧', text: 'Amplifying your reach', color: '#10b981' },
+  { icon: '⚡', text: 'Accelerating your execution', color: '#f59e0b' },
+  { icon: '👤', text: 'While you stay in control', color: '#8b5cf6' },
+];
+
 export default function WhatIfSlide() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeTransform, setActiveTransform] = useState(0);
+  const [showAfter, setShowAfter] = useState(false);
+
+  useEffect(() => {
+    // Cycle through transformations
+    const cycleInterval = setInterval(() => {
+      setShowAfter(false);
+      setTimeout(() => {
+        setActiveTransform((prev) => (prev + 1) % transformations.length);
+        setTimeout(() => setShowAfter(true), 500);
+      }, 300);
+    }, 3500);
+
+    // Initial show
+    const initialTimer = setTimeout(() => setShowAfter(true), 800);
+
+    return () => {
+      clearInterval(cycleInterval);
+      clearTimeout(initialTimer);
+    };
+  }, []);
+
+  const current = transformations[activeTransform];
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-8 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950">
-      {/* Title - Perfectly centered */}
+    <div className="h-full w-full flex flex-col items-center justify-center p-8 overflow-hidden relative">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="w-full text-center mb-8 flex-shrink-0"
+        transition={{ duration: 0.6 }}
+        className="text-center mb-10 z-10"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
-          What if you had a teammate that could...
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+          What If <span className="text-blue-400">You</span> Had Superpowers?
         </h2>
+        <p className="text-gray-400 text-lg">
+          AI that augments your capabilities — so you can do more of what matters
+        </p>
       </motion.div>
 
-      {/* Cards Grid - Perfectly centered */}
-      <div className="w-full flex-1 flex items-center justify-center min-h-0 overflow-hidden px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] w-full justify-items-center">
-          {personaBenefits.map((persona, index) => (
-            <motion.div
-              key={persona.persona}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                delay: 0.2 + index * 0.15,
-                duration: 0.6,
-                ease: [0.4, 0, 0.2, 1]
-              }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
-              className="relative rounded-xl overflow-hidden flex flex-col shadow-2xl transition-all duration-300 w-full max-w-[320px]"
+      {/* Central Transformation Showcase */}
+      <div className="w-full max-w-4xl flex items-center justify-center gap-8 md:gap-16 mb-12 z-10">
+        {/* Before State */}
+        <motion.div
+          className="flex-1 max-w-[280px]"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-wider text-gray-500 mb-3">Today</div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`before-${activeTransform}`}
+                className="bg-gray-800/80 rounded-2xl p-8 border border-gray-600/50"
+                style={{ boxShadow: '0 0 30px rgba(239, 68, 68, 0.1)' }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-6xl mb-4">{current.before.icon}</div>
+                <p className="text-gray-300 text-lg font-medium">{current.before.text}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        {/* Arrow */}
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <motion.div
+            className="flex items-center gap-1"
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <div className="w-12 h-1 bg-gradient-to-r from-gray-600 to-blue-500 rounded-full" />
+            <div 
+              className="w-0 h-0" 
               style={{
-                background: `linear-gradient(135deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%)`,
-                borderLeft: `6px solid ${persona.color}`,
-                transform: hoveredIndex === index ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
-                boxShadow: hoveredIndex === index 
-                  ? `0 20px 40px -10px ${persona.color}40, 0 0 0 1px ${persona.color}20`
-                  : `0 10px 30px -5px rgba(0, 0, 0, 0.5)`,
-                aspectRatio: '1',
-                minHeight: '0',
+                borderTop: '8px solid transparent',
+                borderBottom: '8px solid transparent',
+                borderLeft: '12px solid #3b82f6',
+              }}
+            />
+          </motion.div>
+          <span className="text-blue-400 text-sm font-semibold">AI Augmented</span>
+        </motion.div>
+
+        {/* After State */}
+        <motion.div
+          className="flex-1 max-w-[280px]"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-wider text-gray-500 mb-3">Tomorrow</div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`after-${activeTransform}`}
+                className="bg-gradient-to-br from-blue-900/50 to-purple-900/50 rounded-2xl p-8 border border-blue-500/30"
+                style={{ boxShadow: showAfter ? '0 0 40px rgba(59, 130, 246, 0.3)' : 'none' }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ 
+                  opacity: showAfter ? 1 : 0.5, 
+                  scale: showAfter ? 1 : 0.95,
+                }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-6xl mb-4">{current.after.icon}</div>
+                <p className="text-white text-lg font-medium">{current.after.text}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Progress dots */}
+      <motion.div 
+        className="flex gap-2 mb-8 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+      >
+        {transformations.map((_, index) => (
+          <motion.div
+            key={index}
+            className="w-2 h-2 rounded-full"
+            style={{
+              backgroundColor: index === activeTransform ? '#3b82f6' : '#4b5563',
+            }}
+            animate={{
+              scale: index === activeTransform ? 1.3 : 1,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Capabilities Row */}
+      <motion.div
+        className="w-full max-w-4xl z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        <div className="text-center mb-6">
+          <p className="text-gray-400 text-sm uppercase tracking-wider">AI that augments you by</p>
+        </div>
+        <div className="flex justify-center gap-4 md:gap-8 flex-wrap">
+          {capabilities.map((cap, index) => (
+            <motion.div
+              key={index}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/60 border border-gray-700/50"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 + index * 0.1 }}
+              whileHover={{ 
+                scale: 1.05, 
+                borderColor: cap.color,
+                boxShadow: `0 0 20px ${cap.color}30`,
               }}
             >
-              {/* Animated gradient overlay on hover */}
-              <motion.div
-                className="absolute inset-0 opacity-0"
-                animate={{
-                  opacity: hoveredIndex === index ? 0.1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  background: `linear-gradient(135deg, ${persona.color}20 0%, transparent 100%)`,
-                }}
-              />
-              
-              {/* Content - Left aligned within card */}
-              <div className="relative z-10 p-5 flex flex-col h-full">
-                <motion.h3
-                  className="text-base md:text-lg font-bold mb-3 flex-shrink-0 tracking-tight text-left"
-                  style={{ color: persona.color }}
-                  animate={{
-                    scale: hoveredIndex === index ? 1.05 : 1,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {persona.persona}
-                </motion.h3>
-                
-                <ul className="space-y-2.5 flex-1 overflow-hidden text-left">
-                  {persona.benefits.map((benefit, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        delay: 0.4 + index * 0.15 + i * 0.08,
-                        duration: 0.5,
-                        ease: [0.4, 0, 0.2, 1]
-                      }}
-                      className="text-xs md:text-sm text-gray-200 flex items-start gap-2.5 leading-relaxed group"
-                    >
-                      <motion.span
-                        className="mt-0.5 flex-shrink-0 text-lg font-bold"
-                        style={{ color: persona.color }}
-                        animate={{
-                          scale: hoveredIndex === index ? [1, 1.3, 1] : 1,
-                        }}
-                        transition={{ 
-                          delay: hoveredIndex === index ? 0 : 0,
-                          duration: 0.3
-                        }}
-                      >
-                        •
-                      </motion.span>
-                      <span className="group-hover:text-white transition-colors duration-200 flex-1">
-                        {benefit}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Shine effect on hover */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                initial={{ x: '-100%' }}
-                animate={{
-                  x: hoveredIndex === index ? '100%' : '-100%',
-                }}
-                transition={{ duration: 0.6, ease: 'easeInOut' }}
-                style={{
-                  background: `linear-gradient(90deg, transparent 0%, ${persona.color}20 50%, transparent 100%)`,
-                }}
-              />
+              <span className="text-xl">{cap.icon}</span>
+              <span className="text-gray-200 text-sm font-medium">{cap.text}</span>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Teaser */}
+      <motion.div
+        className="mt-8 text-center z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3 }}
+      >
+        <p className="text-green-400 text-xl md:text-2xl font-medium">
+          <span className="font-bold">Agentic AI</span> — augmenting YOU to be 10x more effective
+        </p>
+      </motion.div>
     </div>
   );
 }

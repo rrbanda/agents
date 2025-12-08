@@ -1,195 +1,197 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const frustrations = [
-  {
-    persona: 'System Administrator',
-    color: '#3b82f6',
-    colorLight: '#60a5fa',
-    items: [
-      'Every morning. 2 hours analyzing logs across 50 servers.',
-      '1 hour documenting incidents.',
-      'Repetitive troubleshooting tasks.',
-      'No time for proactive improvements.',
-      'Context switching between multiple tools.',
-      'Manual correlation of events.',
-    ],
-    quote: '"There has to be a better way..."',
-  },
-  {
-    persona: 'DevOps Engineer',
-    color: '#10b981',
-    colorLight: '#34d399',
-    items: [
-      '2am page. Deployment failed.',
-      '15 microservices to trace.',
-      'Logs scattered across 3 systems.',
-      'No single source of truth.',
-      'Rollback decisions under pressure.',
-      'Post-mortems reveal same issues.',
-    ],
-    quote: '"Too many moving parts..."',
-  },
-  {
-    persona: 'Software Developer',
-    color: '#f59e0b',
-    colorLight: '#fbbf24',
-    items: [
-      'New codebase. 200K lines.',
-      '"Where do I start?"',
-      'Days to understand architecture.',
-      'Documentation is outdated.',
-      'No one knows the full picture.',
-      'Fear of breaking things.',
-    ],
-    quote: '"I need a guide..."',
-  },
-  {
-    persona: 'Platform Engineer',
-    color: '#8b5cf6',
-    colorLight: '#a78bfa',
-    items: [
-      'Infrastructure as code sprawl.',
-      'Multiple cloud providers to manage.',
-      'Compliance and security audits.',
-      'Configuration drift everywhere.',
-      'Manual policy enforcement.',
-      'Cost optimization is reactive.',
-    ],
-    quote: '"Need better automation..."',
-  },
+// Universal pain points that resonate across all technical roles
+const painPoints = [
+  { icon: '📊', text: 'Scattered across 5+ dashboards', delay: 0 },
+  { icon: '📝', text: '47 browser tabs open', delay: 0.5 },
+  { icon: '🔄', text: 'Context switching every 3 minutes', delay: 1 },
+  { icon: '📋', text: 'Copy-paste between systems', delay: 1.5 },
+  { icon: '🔍', text: 'Searching through old Slack threads', delay: 2 },
+  { icon: '⏰', text: 'Meetings about meetings', delay: 2.5 },
+];
+
+const stats = [
+  { value: '2.5', unit: 'hrs', label: 'Lost daily to context switching', color: '#ef4444' },
+  { value: '23', unit: 'min', label: 'To refocus after interruption', color: '#f59e0b' },
+  { value: '60%', unit: '', label: 'Time on repetitive tasks', color: '#8b5cf6' },
 ];
 
 export default function FrustrationSlide() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showStats, setShowStats] = useState(false);
+
+  useEffect(() => {
+    // Cycle through pain points
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % painPoints.length);
+    }, 2000);
+
+    // Show stats after initial animation
+    const statsTimer = setTimeout(() => setShowStats(true), 1500);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(statsTimer);
+    };
+  }, []);
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-8 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950">
-      {/* Title - Perfectly centered */}
+    <div className="h-full w-full flex flex-col items-center justify-center p-8 overflow-hidden relative">
+      {/* Animated background chaos effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-red-500/10"
+            initial={{ 
+              x: Math.random() * 100 + '%', 
+              y: Math.random() * 100 + '%',
+              scale: 0 
+            }}
+            animate={{ 
+              x: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              y: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              scale: [0.5, 1, 0.5],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="w-full text-center mb-8 flex-shrink-0"
+        transition={{ duration: 0.6 }}
+        className="text-center mb-8 z-10"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
-          The Daily Reality
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+          Sound Familiar?
         </h2>
+        <p className="text-gray-400 text-lg">
+          The modern technical professional&apos;s daily struggle
+        </p>
       </motion.div>
 
-      {/* Cards Grid - Perfectly centered */}
-      <div className="w-full flex-1 flex items-center justify-center min-h-0 overflow-hidden px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] w-full justify-items-center">
-          {frustrations.map((frustration, index) => (
+      {/* Central Chaos Visualization */}
+      <div className="relative w-full max-w-4xl flex-1 flex items-center justify-center min-h-[300px]">
+        {/* Central overwhelmed figure */}
+        <motion.div
+          className="absolute z-20 flex flex-col items-center"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+        >
+          <div className="text-7xl md:text-8xl mb-4">😵‍💫</div>
+          <motion.div
+            className="px-6 py-3 bg-gray-800/90 rounded-xl border border-gray-600 shadow-2xl"
+            animate={{
+              boxShadow: [
+                '0 0 20px rgba(239, 68, 68, 0.2)',
+                '0 0 40px rgba(239, 68, 68, 0.4)',
+                '0 0 20px rgba(239, 68, 68, 0.2)',
+              ],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <span className="text-white font-semibold text-lg">You, every day</span>
+          </motion.div>
+        </motion.div>
+
+        {/* Orbiting pain points */}
+        {painPoints.map((point, index) => {
+          const angle = (index / painPoints.length) * 2 * Math.PI - Math.PI / 2;
+          const radius = 180;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          
+          return (
             <motion.div
-              key={frustration.persona}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                delay: 0.2 + index * 0.15,
-                duration: 0.6,
-                ease: [0.4, 0, 0.2, 1]
-              }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
-              className="relative rounded-xl overflow-hidden flex flex-col shadow-2xl transition-all duration-300 border border-gray-700/50 w-full max-w-[320px]"
+              key={index}
+              className="absolute z-10 flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap"
               style={{
-                background: `linear-gradient(135deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%)`,
-                borderLeft: `6px solid ${frustration.color}`,
-                transform: hoveredIndex === index ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
-                boxShadow: hoveredIndex === index 
-                  ? `0 20px 40px -10px ${frustration.color}40, 0 0 0 1px ${frustration.color}20`
-                  : `0 10px 30px -5px rgba(0, 0, 0, 0.5)`,
-                aspectRatio: '1',
-                minHeight: '0',
+                backgroundColor: activeIndex === index ? 'rgba(239, 68, 68, 0.2)' : 'rgba(55, 65, 81, 0.8)',
+                border: activeIndex === index ? '2px solid #ef4444' : '1px solid rgba(75, 85, 99, 0.5)',
+                boxShadow: activeIndex === index ? '0 0 20px rgba(239, 68, 68, 0.3)' : 'none',
+              }}
+              initial={{ opacity: 0, x: 0, y: 0 }}
+              animate={{ 
+                opacity: 1,
+                x,
+                y,
+                scale: activeIndex === index ? 1.1 : 1,
+              }}
+              transition={{ 
+                delay: point.delay * 0.3,
+                duration: 0.5,
+                scale: { duration: 0.3 }
               }}
             >
-              {/* Animated gradient overlay on hover */}
-              <motion.div
-                className="absolute inset-0 opacity-0"
-                animate={{
-                  opacity: hoveredIndex === index ? 0.1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  background: `linear-gradient(135deg, ${frustration.color}20 0%, transparent 100%)`,
-                }}
-              />
-              
-              {/* Content - Left aligned within card */}
-              <div className="relative z-10 p-5 flex flex-col h-full">
-                <motion.h3
-                  className="text-base md:text-lg font-bold mb-3 flex-shrink-0 tracking-tight text-left"
-                  style={{ color: frustration.color }}
-                  animate={{
-                    scale: hoveredIndex === index ? 1.05 : 1,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {frustration.persona}
-                </motion.h3>
-                
-                <div className="space-y-2.5 flex-1 mb-3 overflow-y-auto text-left">
-                  {frustration.items.map((item, i) => (
-                    <motion.p
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        delay: 0.4 + index * 0.15 + i * 0.08,
-                        duration: 0.5,
-                        ease: [0.4, 0, 0.2, 1]
-                      }}
-                      className="text-xs md:text-sm text-gray-300 leading-relaxed group"
-                    >
-                      <span className="group-hover:text-white transition-colors duration-200">
-                        {item}
-                      </span>
-                    </motion.p>
-                  ))}
-                </div>
-
-                {/* Quote with special styling - Left aligned */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: 0.7 + index * 0.15,
-                    duration: 0.5
-                  }}
-                  className="mt-auto pt-3 border-t border-gray-700/50 flex-shrink-0 text-left"
-                >
-                  <motion.p
-                    className="text-sm md:text-base text-yellow-400 italic font-medium leading-relaxed"
-                    animate={{
-                      color: hoveredIndex === index ? '#fbbf24' : '#facc15',
-                      scale: hoveredIndex === index ? 1.02 : 1,
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {frustration.quote}
-                  </motion.p>
-                </motion.div>
-              </div>
-
-              {/* Shine effect on hover */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                initial={{ x: '-100%' }}
-                animate={{
-                  x: hoveredIndex === index ? '100%' : '-100%',
-                }}
-                transition={{ duration: 0.6, ease: 'easeInOut' }}
-                style={{
-                  background: `linear-gradient(90deg, transparent 0%, ${frustration.color}20 50%, transparent 100%)`,
-                }}
-              />
+              <span className="text-xl">{point.icon}</span>
+              <span className={`text-sm font-medium ${activeIndex === index ? 'text-red-300' : 'text-gray-300'}`}>
+                {point.text}
+              </span>
             </motion.div>
-          ))}
-        </div>
+          );
+        })}
       </div>
+
+      {/* Statistics Row */}
+      <motion.div
+        className="w-full max-w-4xl flex justify-center gap-8 md:gap-16 mt-8 z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: showStats ? 1 : 0, y: showStats ? 0 : 30 }}
+        transition={{ duration: 0.6 }}
+      >
+        {stats.map((stat, index) => (
+          <motion.div
+            key={index}
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: showStats ? 1 : 0, y: showStats ? 0 : 20 }}
+            transition={{ delay: index * 0.15, duration: 0.5 }}
+          >
+            <div className="flex items-baseline justify-center gap-1">
+              <span 
+                className="text-4xl md:text-5xl font-bold"
+                style={{ color: stat.color }}
+              >
+                {stat.value}
+              </span>
+              <span className="text-xl md:text-2xl text-gray-400">{stat.unit}</span>
+            </div>
+            <p className="text-gray-400 text-sm mt-1">{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Bottom quote */}
+      <motion.div
+        className="mt-8 text-center z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+      >
+        <p className="text-yellow-400 text-xl md:text-2xl font-medium italic">
+          &ldquo;There has to be a better way...&rdquo;
+        </p>
+      </motion.div>
     </div>
   );
 }

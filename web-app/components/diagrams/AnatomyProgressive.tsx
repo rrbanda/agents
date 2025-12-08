@@ -19,7 +19,7 @@ const steps = [
   {
     id: 3,
     title: 'Step 3: Add MCP Architecture',
-    description: 'Tools connect to external services via MCP',
+    description: 'Tools connect via Model Context Protocol (Anthropic standard)',
     components: ['userPrompt', 'llm', 'response', 'knowledge', 'tools', 'mcp'],
   },
   {
@@ -436,20 +436,26 @@ export default function AnatomyProgressive() {
                           transition={{ delay: 1.2 }}
                           className="mt-4 pt-4 border-t border-gray-300"
                         >
-                          <div className="space-y-2">
-                            <div className="bg-gray-900 text-white text-xs px-3 py-1.5 rounded text-center">
-                              MCP Client
+                          <div className="text-xs text-purple-600 font-bold mb-2 text-center">
+                            🔌 MCP Protocol
+                          </div>
+                          <div className="space-y-1.5">
+                            <div className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded text-center">
+                              Agent (Client)
                             </div>
-                            <div className="flex items-center justify-center py-1">
-                              <div className="text-xs">⏳</div>
+                            <div className="flex items-center justify-center">
+                              <div className="text-purple-500 text-xs">↕</div>
                             </div>
-                            <div className="bg-gray-900 text-white text-xs px-3 py-1.5 rounded text-center">
-                              MCP Server
+                            <div className="bg-purple-600 text-white text-xs px-2 py-1 rounded text-center">
+                              MCP Servers
                             </div>
                             <div className="flex gap-1 justify-center pt-1">
-                              <div className="w-2 h-2 bg-red-500 rounded-full" />
-                              <div className="w-2 h-2 bg-red-500 rounded-full" />
-                              <div className="w-2 h-2 bg-red-500 rounded-full" />
+                              <div className="text-xs" title="GitHub">🐙</div>
+                              <div className="text-xs" title="Slack">💬</div>
+                              <div className="text-xs" title="Database">🗄️</div>
+                            </div>
+                            <div className="text-center text-gray-500 text-xs mt-1">
+                              Anthropic Standard
                             </div>
                           </div>
                         </motion.div>

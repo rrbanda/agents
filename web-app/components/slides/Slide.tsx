@@ -6,12 +6,16 @@ import TextReveal from '../animations/TextReveal';
 import SlideContent from './SlideContent';
 import SectionHeader from './SectionHeader';
 import { getSectionForSlide } from '@/lib/sections';
+import PresenterPanel from '../ui/PresenterPanel';
+import { presenterNotes } from '@/data/presenterNotes';
 import TitleSlide from './special/TitleSlide';
 import ColdOpenSlide from './special/ColdOpenSlide';
 import WhatIsAgentSlide from './special/WhatIsAgentSlide';
 import FrustrationSlide from './special/FrustrationSlide';
 import SolarScoutProblemSlide from './special/SolarScoutProblemSlide';
 import SolarScoutImpactSlide from './special/SolarScoutImpactSlide';
+import RealWorldProblemSlide from './special/RealWorldProblemSlide';
+import RealWorldSolutionSlide from './special/RealWorldSolutionSlide';
 import AgentLoopSlide from './special/AgentLoopSlide';
 import AnatomySlide from './special/AnatomySlide';
 import AnatomyProgressiveSlide from './special/AnatomyProgressiveSlide';
@@ -115,7 +119,11 @@ export default function Slide({
           // Slide 12: Anatomy of an Agent (Progressive Step-by-Step)
           <AnatomyProgressiveSlide />
         ) : slide.number === 13 ? (
-          <SolarScoutProblemSlide />
+          // Slide 13: Real-World Problem (persona-specific with tabs)
+          <RealWorldProblemSlide />
+        ) : slide.number === 14 ? (
+          // Slide 14: Real-World Solution (persona-specific with tabs)
+          <RealWorldSolutionSlide />
         ) : slide.number === 15 ? (
           <SolarScoutImpactSlide />
         ) : slide.number === 16 ? (
@@ -162,18 +170,6 @@ export default function Slide({
         ) : slide.number === 30 ? (
           // Slide 30: Thank You
           <ThankYouSlide />
-        ) : (slide.number === 14 || slide.id === 'slide-14-solar-scout-solution') ? (
-          // Slide 14: Solar Scout Workflow
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8">
-            <div className="w-full max-w-5xl flex-shrink-0">
-              <SolarScoutWorkflow />
-            </div>
-            {slide.content.content && slide.content.content.trim() && (
-              <div className="w-full max-w-4xl">
-                <SlideContent content={slide.content.content} />
-              </div>
-            )}
-          </div>
         ) : (
           // Regular content slides - Show section header and title nicely at top
           <div className="flex-1 overflow-y-auto">
