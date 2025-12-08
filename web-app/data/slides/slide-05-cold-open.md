@@ -2,7 +2,7 @@
 
 ## Slide Content
 
-### The Story So Far
+### The AI Evolution
 
 **Ten years ago**, machines learned to see.
 

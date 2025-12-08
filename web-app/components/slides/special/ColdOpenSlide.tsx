@@ -34,10 +34,10 @@ export default function ColdOpenSlide() {
       <div className="text-center mb-8">
         <LineReveal delay={0.1}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            The Story So Far
+            The AI <span className="text-blue-400">Evolution</span>
           </h2>
           <p className="text-gray-400">
-            A quick look at how AI evolved
+            How we got here — a decade of breakthroughs
           </p>
         </LineReveal>
       </div>
