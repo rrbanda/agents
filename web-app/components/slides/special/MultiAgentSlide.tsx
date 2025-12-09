@@ -229,50 +229,47 @@ export default function MultiAgentSlide() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="relative w-full h-full flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center gap-2 w-full"
               >
                 {/* User Input at Top */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute top-2 left-1/2 -translate-x-1/2"
                 >
-                  <div className="px-4 py-2 rounded-xl bg-gray-700/50 border border-gray-600/50 backdrop-blur-sm">
-                    <span className="text-xs text-gray-300">👤 User Request</span>
+                  <div className="px-5 py-2.5 rounded-xl bg-gray-700/50 border border-gray-600/50 backdrop-blur-sm">
+                    <span className="text-sm text-gray-300">👤 User Request</span>
                   </div>
                 </motion.div>
 
                 {/* Arrow from User to Supervisor */}
-                <svg className="absolute top-12 left-1/2 -translate-x-1/2 w-4 h-8">
-                  <motion.path
-                    d="M8 0 L8 24 M4 20 L8 28 L12 20"
-                    stroke="#6b7280"
-                    strokeWidth="2"
-                    fill="none"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </svg>
+                <motion.div
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  animate={{ opacity: 1, scaleY: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex flex-col items-center"
+                >
+                  <div className="w-0.5 h-8 bg-gradient-to-b from-gray-500 to-purple-500" />
+                  <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-purple-500" />
+                </motion.div>
 
                 {/* Center Supervisor */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-                  className="relative z-10 mt-8"
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
+                  className="relative z-10"
                 >
                   <div 
-                    className="w-28 h-20 rounded-2xl flex flex-col items-center justify-center relative"
+                    className="w-32 h-24 rounded-2xl flex flex-col items-center justify-center relative"
                     style={{
                       background: 'linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 100%)',
                       border: '2px solid rgba(139,92,246,0.5)',
                       boxShadow: '0 0 40px rgba(139,92,246,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
                     }}
                   >
-                    <span className="text-xl">🎯</span>
-                    <span className="text-white text-xs font-bold">Supervisor</span>
-                    <span className="text-[9px] text-purple-300">routes tasks</span>
+                    <span className="text-2xl">🎯</span>
+                    <span className="text-white text-sm font-bold">Supervisor</span>
+                    <span className="text-[10px] text-purple-300">routes tasks</span>
                     
                     {/* Pulse effect */}
                     <motion.div
@@ -283,89 +280,70 @@ export default function MultiAgentSlide() {
                   </div>
                 </motion.div>
 
-                {/* Route lines and Agents */}
-                <div className="relative w-full flex justify-center items-start mt-4" style={{ height: '140px' }}>
-                  {/* SVG for route lines */}
-                  <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-                    {supervisorAgents.map((agent, index) => {
-                      const totalAgents = supervisorAgents.length;
-                      const spacing = 100;
-                      const startX = 200;
-                      const agentX = startX + (index - (totalAgents - 1) / 2) * spacing;
-                      const isActive = activeAgent === agent.id;
-                      
-                      return (
-                        <g key={agent.id}>
-                          {/* Route line */}
-                          <motion.path
-                            d={`M200 0 Q200 30 ${agentX} 60 L${agentX} 90`}
-                            stroke={isActive ? agent.color : '#4b5563'}
-                            strokeWidth={isActive ? 3 : 2}
-                            strokeDasharray={isActive ? "0" : "6 4"}
-                            fill="none"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                          />
-                          {/* Animated dot when active */}
-                          {isActive && (
-                            <motion.circle
-                              r="4"
-                              fill={agent.color}
-                              initial={{ opacity: 0 }}
-                              animate={{
-                                opacity: [0, 1, 1, 0],
-                                cx: [200, 200, agentX, agentX],
-                                cy: [0, 30, 60, 90],
-                              }}
-                              transition={{ duration: 1.5, repeat: Infinity }}
-                            />
-                          )}
-                          {/* "route" label */}
-                          <text
-                            x={(200 + agentX) / 2}
-                            y={35}
-                            fill="#6b7280"
-                            fontSize="9"
-                            textAnchor="middle"
-                          >
-                            route
-                          </text>
-                        </g>
-                      );
-                    })}
-                  </svg>
+                {/* Route lines - simple CSS version */}
+                <div className="flex items-start justify-center gap-0 -mt-1">
+                  {supervisorAgents.map((agent, index) => {
+                    const isActive = activeAgent === agent.id;
+                    // Calculate angle for each line
+                    const angles = [-35, -12, 12, 35];
+                    const angle = angles[index];
+                    
+                    return (
+                      <motion.div
+                        key={`line-${agent.id}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 + index * 0.1 }}
+                        className="flex flex-col items-center"
+                        style={{ width: '80px' }}
+                      >
+                        {/* Angled line */}
+                        <div 
+                          className="h-12 w-0.5 origin-top transition-all duration-300"
+                          style={{ 
+                            background: isActive 
+                              ? `linear-gradient(to bottom, ${agent.color}, ${agent.color})` 
+                              : 'linear-gradient(to bottom, #4b5563, #374151)',
+                            transform: `rotate(${angle}deg)`,
+                            boxShadow: isActive ? `0 0 8px ${agent.color}` : 'none',
+                          }}
+                        />
+                        {/* Route label */}
+                        <span className="text-[9px] text-gray-500 -mt-2">route</span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
 
-                  {/* Agent boxes */}
-                  <div className="absolute bottom-0 w-full flex justify-center gap-4">
-                    {supervisorAgents.map((agent, index) => {
-                      const isActive = activeAgent === agent.id;
-                      return (
-                        <motion.div
-                          key={agent.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.5 + index * 0.1 }}
-                          className={`relative transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+                {/* Agent boxes */}
+                <div className="flex justify-center gap-3 -mt-2">
+                  {supervisorAgents.map((agent, index) => {
+                    const isActive = activeAgent === agent.id;
+                    return (
+                      <motion.div
+                        key={agent.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                        className={`flex flex-col items-center transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+                      >
+                        <div
+                          className="w-16 h-16 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm transition-all duration-300"
+                          style={{
+                            background: isActive 
+                              ? `linear-gradient(135deg, ${agent.color}30 0%, ${agent.color}10 100%)`
+                              : 'rgba(255,255,255,0.05)',
+                            border: `2px solid ${isActive ? agent.color : 'rgba(255,255,255,0.1)'}`,
+                            boxShadow: isActive ? `0 0 20px ${agent.color}40` : 'none',
+                          }}
                         >
-                          <div
-                            className="w-16 h-16 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm"
-                            style={{
-                              background: isActive 
-                                ? `linear-gradient(135deg, ${agent.color}30 0%, ${agent.color}10 100%)`
-                                : 'rgba(255,255,255,0.05)',
-                              border: `2px solid ${isActive ? agent.color : 'rgba(255,255,255,0.1)'}`,
-                              boxShadow: isActive ? `0 0 20px ${agent.color}40` : 'none',
-                            }}
-                          >
-                            <span className="text-lg">{agent.icon}</span>
-                            <span className="text-[9px] text-gray-200 font-medium">{agent.name}</span>
-                          </div>
-                          <span className="block text-center text-[8px] text-gray-500 mt-1">{agent.task}</span>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                          <span className="text-lg">{agent.icon}</span>
+                          <span className="text-[9px] text-gray-200 font-medium">{agent.name}</span>
+                        </div>
+                        <span className="text-[8px] text-gray-500 mt-1">{agent.task}</span>
+                      </motion.div>
+                    );
+                  })}
                 </div>
 
                 {/* Legend */}
@@ -373,7 +351,7 @@ export default function MultiAgentSlide() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="absolute bottom-2 text-[10px] text-gray-500 flex items-center gap-3"
+                  className="flex items-center gap-4 text-[10px] text-gray-500 mt-2"
                 >
                   <span>↔ Bidirectional</span>
                   <span className="flex items-center gap-1">
