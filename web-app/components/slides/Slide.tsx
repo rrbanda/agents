@@ -25,7 +25,7 @@ import WhatWellCoverSlide from './special/WhatWellCoverSlide';
 import PersonaExamplesSlide from './special/PersonaExamplesSlide';
 import ContextEngineeringSlide from './special/ContextEngineeringSlide';
 import ToolDesignSlide from './special/ToolDesignSlide';
-import AgentLoopPracticeSlide from './special/AgentLoopPracticeSlide';
+// AgentLoopPracticeSlide removed - was redundant with slides 16-17
 import CommonPatternsSlide from './special/CommonPatternsSlide';
 import WhenToUseSlide from './special/WhenToUseSlide';
 import LimitationsSlide from './special/LimitationsSlide';
@@ -38,10 +38,6 @@ import QuestionsSlide from './special/QuestionsSlide';
 import ThankYouSlide from './special/ThankYouSlide';
 // New 101 slides
 import GenerativeAISlide from './special/GenerativeAISlide';
-import PromptEngineeringSlide from './special/PromptEngineeringSlide';
-import AIFluencySlide from './special/AIFluencySlide';
-// Persona-specific deep dives
-import LinuxMCPSlide from './special/LinuxMCPSlide';
 
 interface SlideProps {
   slide: SlideType;
@@ -76,7 +72,7 @@ export default function Slide({
   };
 
   // Render the appropriate slide component based on slide number
-  // New structure: 34 slides total (added Linux MCP demo after Tool Design)
+  // Current structure: 29 slides total
   const renderSlideContent = () => {
     switch (slide.number) {
       // Part 1: Opening (Slides 1-4)
@@ -122,46 +118,30 @@ export default function Slide({
       case 18:
         return <PersonaExamplesSlide />;
       
-      // Part 4: Building Effectively (Slides 19-26)
+      // Part 4: How They Work (Slides 19-25)
       case 19:
-        // Prompt Engineering first (foundational skill)
-        return <PromptEngineeringSlide />;
+        return <CommonPatternsSlide />;
       case 20:
-        // Context Engineering second (builds on prompting)
-        return <ContextEngineeringSlide />;
+        return <WhenToUseSlide />;
       case 21:
         return <ToolDesignSlide />;
       case 22:
-        // NEW: MCP in Action - Linux Sysadmin Demo (after Tool Design)
-        return <LinuxMCPSlide />;
-      case 23:
-        return <AgentLoopPracticeSlide />;
-      case 24:
-        return <CommonPatternsSlide />;
-      case 25:
-        return <WhenToUseSlide />;
-      case 26:
         return <LimitationsSlide />;
-      
-      // Part 5: Advanced Topics (Slides 27-29)
-      case 27:
+      case 23:
         return <MultiAgentSlide />;
-      case 28:
+      case 24:
         return <LongRunningSlide />;
-      case 29:
+      case 25:
         return <ApplicationsSlide />;
       
-      // Part 6: Closing (Slides 30-34)
-      case 30:
-        // NEW: AI Fluency (The 4Ds)
-        return <AIFluencySlide />;
-      case 31:
+      // Part 5: Closing (Slides 26-29)
+      case 26:
         return <JourneyBeginsSlide />;
-      case 32:
+      case 27:
         return <TakeawaysSlide />;
-      case 33:
+      case 28:
         return <QuestionsSlide />;
-      case 34:
+      case 29:
         return <ThankYouSlide />;
       
       // Fallback for any other slides - render generic content
