@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getAllSlidesClient } from '@/lib/slides-client';
@@ -10,7 +10,7 @@ import Navigation from '@/components/ui/Navigation';
 import PersonaSelector from '@/components/ui/PersonaSelector';
 import Link from 'next/link';
 
-export default function PresentationPage() {
+function PresentationContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [slides, setSlides] = useState<Slide[]>([]);
@@ -67,7 +67,7 @@ export default function PresentationPage() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentSlideIndex, presenterMode, slides.length]);
+  }, [currentSlideIndex, presenterMode, slides.length, router]);
 
   const handleNext = () => {
     if (currentSlideIndex < slides.length - 1) {
@@ -163,3 +163,14 @@ export default function PresentationPage() {
   );
 }
 
+export default function PresentationPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-white text-xl">Loading presentation...</div>
+      </div>
+    }>
+      <PresentationContent />
+    </Suspense>
+  );
+}
