@@ -229,7 +229,7 @@ export default function MultiAgentSlide() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="flex flex-col items-center justify-center gap-2 w-full"
+                className="flex flex-col items-center justify-start pt-4 w-full h-full"
               >
                 {/* User Input at Top */}
                 <motion.div
@@ -245,10 +245,10 @@ export default function MultiAgentSlide() {
                 <motion.div
                   initial={{ opacity: 0, scaleY: 0 }}
                   animate={{ opacity: 1, scaleY: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex flex-col items-center"
+                  transition={{ delay: 0.1 }}
+                  className="flex flex-col items-center my-1"
                 >
-                  <div className="w-0.5 h-8 bg-gradient-to-b from-gray-500 to-purple-500" />
+                  <div className="w-0.5 h-6 bg-gradient-to-b from-gray-500 to-purple-500" />
                   <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-purple-500" />
                 </motion.div>
 
@@ -256,18 +256,18 @@ export default function MultiAgentSlide() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
-                  className="relative z-10"
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                  className="relative"
                 >
                   <div 
-                    className="w-44 h-24 rounded-2xl flex flex-col items-center justify-center relative"
+                    className="w-44 h-20 rounded-2xl flex flex-col items-center justify-center relative"
                     style={{
                       background: 'linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 100%)',
                       border: '2px solid rgba(139,92,246,0.5)',
                       boxShadow: '0 0 40px rgba(139,92,246,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
                     }}
                   >
-                    <span className="text-2xl">🎯</span>
+                    <span className="text-xl">🎯</span>
                     <span className="text-white text-sm font-bold">Supervisor</span>
                     <span className="text-[10px] text-purple-300">routes tasks</span>
                     
@@ -280,43 +280,51 @@ export default function MultiAgentSlide() {
                   </div>
                 </motion.div>
 
-                {/* Route lines - simple CSS version */}
-                <div className="flex items-start justify-center gap-1 -mt-1">
-                  {supervisorAgents.map((agent, index) => {
-                    const isActive = activeAgent === agent.id;
-                    // Calculate angle for each line - spread wider
-                    const angles = [-40, -14, 14, 40];
-                    const angle = angles[index];
-                    
-                    return (
-                      <motion.div
-                        key={`line-${agent.id}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 + index * 0.1 }}
-                        className="flex flex-col items-center"
-                        style={{ width: '85px' }}
-                      >
-                        {/* Angled line */}
-                        <div 
-                          className="h-10 w-0.5 origin-top transition-all duration-300"
-                          style={{ 
-                            background: isActive 
-                              ? `linear-gradient(to bottom, ${agent.color}, ${agent.color})` 
-                              : 'linear-gradient(to bottom, #4b5563, #374151)',
-                            transform: `rotate(${angle}deg)`,
-                            boxShadow: isActive ? `0 0 8px ${agent.color}` : 'none',
-                          }}
-                        />
-                        {/* Route label */}
-                        <span className="text-[9px] text-gray-500 mt-0">route</span>
-                      </motion.div>
-                    );
-                  })}
+                {/* Connecting Lines Container */}
+                <div className="relative w-full flex justify-center" style={{ height: '60px' }}>
+                  {/* SVG for curved lines */}
+                  <svg 
+                    viewBox="0 0 400 60" 
+                    className="absolute top-0 left-1/2 -translate-x-1/2"
+                    style={{ width: '400px', height: '60px' }}
+                    preserveAspectRatio="xMidYMin meet"
+                  >
+                    {supervisorAgents.map((agent, index) => {
+                      const isActive = activeAgent === agent.id;
+                      // Start from center (200), end at agent positions
+                      const endX = [50, 133, 267, 350][index];
+                      const controlY = 25;
+                      
+                      return (
+                        <g key={`line-${agent.id}`}>
+                          <motion.path
+                            d={`M 200 0 Q 200 ${controlY} ${endX} 50`}
+                            stroke={isActive ? agent.color : '#4b5563'}
+                            strokeWidth={isActive ? 2.5 : 1.5}
+                            fill="none"
+                            strokeDasharray={isActive ? "0" : "4 3"}
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                            style={{ filter: isActive ? `drop-shadow(0 0 4px ${agent.color})` : 'none' }}
+                          />
+                          <text
+                            x={endX}
+                            y={35}
+                            fill="#6b7280"
+                            fontSize="8"
+                            textAnchor="middle"
+                          >
+                            route
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </svg>
                 </div>
 
                 {/* Agent boxes */}
-                <div className="flex justify-center gap-3 -mt-2">
+                <div className="flex justify-center gap-4 mt-1">
                   {supervisorAgents.map((agent, index) => {
                     const isActive = activeAgent === agent.id;
                     return (
@@ -351,7 +359,7 @@ export default function MultiAgentSlide() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="flex items-center gap-4 text-[10px] text-gray-500 mt-2"
+                  className="flex items-center gap-4 text-[10px] text-gray-500 mt-4"
                 >
                   <span>↔ Bidirectional</span>
                   <span className="flex items-center gap-1">
@@ -483,30 +491,36 @@ export default function MultiAgentSlide() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col items-center gap-3 w-full"
+                className="flex flex-col items-center w-full h-full justify-center"
               >
-                {/* Initiator */}
+                {/* Initiator at Top */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="px-6 py-3 rounded-xl backdrop-blur-sm"
+                  className="px-6 py-3 rounded-xl backdrop-blur-sm mb-2"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(139,92,246,0.2) 0%, rgba(59,130,246,0.2) 100%)',
-                    border: '2px solid rgba(139,92,246,0.4)',
+                    background: 'linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 100%)',
+                    border: '2px solid rgba(139,92,246,0.5)',
+                    boxShadow: '0 0 30px rgba(139,92,246,0.2)',
                   }}
                 >
                   <span className="text-sm text-white font-medium">🎯 Initiator & Collector</span>
                 </motion.div>
 
-                {/* Fan-out arrows */}
-                <div className="flex items-center justify-center gap-8 relative">
-                  <svg className="absolute -top-2 w-full h-8" style={{ overflow: 'visible' }}>
+                {/* Fan-out lines with SVG viewBox */}
+                <div className="relative w-full flex justify-center" style={{ height: '50px' }}>
+                  <svg 
+                    viewBox="0 0 300 50" 
+                    className="absolute top-0"
+                    style={{ width: '300px', height: '50px' }}
+                    preserveAspectRatio="xMidYMin meet"
+                  >
                     {concurrentAgents.map((agent, index) => {
-                      const xOffset = (index - 1) * 100;
+                      const endX = [50, 150, 250][index];
                       return (
                         <motion.path
-                          key={agent.id}
-                          d={`M150 0 Q150 15 ${150 + xOffset} 30`}
+                          key={`fan-out-${agent.id}`}
+                          d={`M 150 0 Q 150 20 ${endX} 45`}
                           stroke={agent.color}
                           strokeWidth="2"
                           strokeDasharray="4 2"
@@ -521,7 +535,7 @@ export default function MultiAgentSlide() {
                 </div>
 
                 {/* Parallel Agents */}
-                <div className="flex items-start gap-6 mt-4">
+                <div className="flex items-start gap-5">
                   {concurrentAgents.map((agent, index) => (
                     <motion.div
                       key={agent.id}
@@ -533,44 +547,63 @@ export default function MultiAgentSlide() {
                       <motion.div
                         animate={{ 
                           boxShadow: [
-                            `0 0 10px ${agent.color}20`,
-                            `0 0 25px ${agent.color}40`,
-                            `0 0 10px ${agent.color}20`,
+                            `0 0 10px ${agent.color}30`,
+                            `0 0 25px ${agent.color}50`,
+                            `0 0 10px ${agent.color}30`,
                           ]
                         }}
                         transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                        className="w-18 h-18 rounded-xl flex flex-col items-center justify-center p-3 backdrop-blur-sm"
+                        className="w-20 h-20 rounded-xl flex flex-col items-center justify-center p-2 backdrop-blur-sm relative"
                         style={{
-                          background: `linear-gradient(135deg, ${agent.color}20 0%, ${agent.color}05 100%)`,
+                          background: `linear-gradient(135deg, ${agent.color}25 0%, ${agent.color}10 100%)`,
                           border: `2px solid ${agent.color}`,
                         }}
                       >
+                        {/* Animated dot */}
+                        <motion.div
+                          className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
+                          style={{ background: agent.color }}
+                          animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+                          transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
+                        />
                         <span className="text-2xl">{agent.icon}</span>
-                        <span className="text-xs text-gray-200 font-medium">{agent.name}</span>
+                        <span className="text-xs text-gray-200 font-semibold">{agent.name}</span>
                         <span className="text-[8px] text-gray-400">{agent.task}</span>
                       </motion.div>
                       
                       {/* Processing indicator */}
                       <motion.div
-                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        animate={{ opacity: [0.4, 1, 0.4] }}
                         transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
-                        className="mt-2 text-[9px] text-gray-500"
+                        className="mt-2 text-[9px] flex items-center gap-1"
+                        style={{ color: agent.color }}
                       >
-                        ⚡ Processing...
+                        <motion.span
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        >
+                          ⚡
+                        </motion.span>
+                        Processing...
                       </motion.div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Fan-in arrows */}
-                <div className="flex items-center justify-center relative h-8">
-                  <svg className="w-full h-full" style={{ overflow: 'visible' }}>
+                {/* Fan-in lines with SVG viewBox */}
+                <div className="relative w-full flex justify-center" style={{ height: '50px' }}>
+                  <svg 
+                    viewBox="0 0 300 50" 
+                    className="absolute top-0"
+                    style={{ width: '300px', height: '50px' }}
+                    preserveAspectRatio="xMidYMax meet"
+                  >
                     {concurrentAgents.map((agent, index) => {
-                      const xOffset = (index - 1) * 100;
+                      const startX = [50, 150, 250][index];
                       return (
                         <motion.path
-                          key={agent.id}
-                          d={`M${150 + xOffset} 0 Q${150 + xOffset} 15 150 30`}
+                          key={`fan-in-${agent.id}`}
+                          d={`M ${startX} 5 Q ${startX} 25 150 45`}
                           stroke={agent.color}
                           strokeWidth="2"
                           fill="none"
@@ -588,15 +621,34 @@ export default function MultiAgentSlide() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
-                  className="px-6 py-3 rounded-xl backdrop-blur-sm"
+                  className="px-6 py-3 rounded-xl backdrop-blur-sm mt-1"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(5,150,105,0.2) 100%)',
-                    border: '2px solid rgba(16,185,129,0.5)',
-                    boxShadow: '0 0 30px rgba(16,185,129,0.2)',
+                    background: 'linear-gradient(135deg, rgba(16,185,129,0.25) 0%, rgba(5,150,105,0.25) 100%)',
+                    border: '2px solid rgba(16,185,129,0.6)',
+                    boxShadow: '0 0 35px rgba(16,185,129,0.25)',
                   }}
                 >
-                  <span className="text-sm text-green-300 font-medium">✨ Aggregated Results</span>
-                  <p className="text-[9px] text-green-400/70 mt-1">Combined • Compared • Selected</p>
+                  <div className="flex items-center gap-2">
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      ✨
+                    </motion.span>
+                    <span className="text-sm text-green-300 font-semibold">Aggregated Results</span>
+                  </div>
+                  <p className="text-[9px] text-green-400/80 mt-1 text-center">Combined • Compared • Selected</p>
+                </motion.div>
+
+                {/* Parallel execution indicator */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                  className="mt-3 text-[10px] text-gray-500 flex items-center gap-2"
+                >
+                  <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">⏱️ ~3x faster</span>
+                  <span>All agents work simultaneously</span>
                 </motion.div>
               </motion.div>
             )}

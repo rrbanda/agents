@@ -22,19 +22,19 @@ export default function WhenToUseSlide() {
   const [hoveredSide, setHoveredSide] = useState<'use' | 'dont' | null>(null);
 
   return (
-    <div className="h-full flex flex-col items-center justify-center p-6 overflow-hidden">
+    <div className="h-full flex flex-col items-center justify-start pt-4 p-6 overflow-hidden">
       {/* Title */}
       <LineReveal delay={0.1}>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-1 text-center">
           When to Use Agents
         </h2>
-        <p className="text-gray-400 text-center mb-8">
+        <p className="text-gray-400 text-center text-sm mb-4">
           A practical decision framework
         </p>
       </LineReveal>
 
       {/* Two Column Comparison */}
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 flex-1 min-h-0">
         {/* Use Agents */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -54,27 +54,27 @@ export default function WhenToUseSlide() {
           }}
         >
           {/* Header */}
-          <div className="p-4 bg-green-500/10 border-b border-green-500/20">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">✅</span>
-              <h3 className="text-green-400 font-bold text-xl">Use Agents When</h3>
+          <div className="p-3 bg-green-500/10 border-b border-green-500/20">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">✅</span>
+              <h3 className="text-green-400 font-bold text-base">Use Agents When</h3>
             </div>
           </div>
 
           {/* Items */}
-          <div className="p-4 space-y-3">
+          <div className="p-3 space-y-2">
             {useAgents.map((item, index) => (
               <motion.div
                 key={item.text}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="flex items-start gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/10"
+                className="flex items-start gap-2 p-2 rounded-lg bg-green-500/5 border border-green-500/10"
               >
-                <span className="text-green-400 mt-0.5">✓</span>
+                <span className="text-green-400 mt-0.5 text-sm">✓</span>
                 <div>
-                  <div className="text-white font-medium text-sm">{item.text}</div>
-                  <div className="text-gray-400 text-xs mt-1">{item.detail}</div>
+                  <div className="text-white font-medium text-xs">{item.text}</div>
+                  <div className="text-gray-400 text-[10px] mt-0.5">{item.detail}</div>
                 </div>
               </motion.div>
             ))}
@@ -100,27 +100,27 @@ export default function WhenToUseSlide() {
           }}
         >
           {/* Header */}
-          <div className="p-4 bg-red-500/10 border-b border-red-500/20">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">❌</span>
-              <h3 className="text-red-400 font-bold text-xl">Don&apos;t Use Agents When</h3>
+          <div className="p-3 bg-red-500/10 border-b border-red-500/20">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">❌</span>
+              <h3 className="text-red-400 font-bold text-base">Don&apos;t Use Agents When</h3>
             </div>
           </div>
 
           {/* Items */}
-          <div className="p-4 space-y-3">
+          <div className="p-3 space-y-2">
             {dontUseAgents.map((item, index) => (
               <motion.div
                 key={item.text}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="flex items-start gap-3 p-3 rounded-lg bg-red-500/5 border border-red-500/10"
+                className="flex items-start gap-2 p-2 rounded-lg bg-red-500/5 border border-red-500/10"
               >
-                <span className="text-red-400 mt-0.5">✗</span>
+                <span className="text-red-400 mt-0.5 text-sm">✗</span>
                 <div>
-                  <div className="text-white font-medium text-sm">{item.text}</div>
-                  <div className="text-gray-400 text-xs mt-1">{item.detail}</div>
+                  <div className="text-white font-medium text-xs">{item.text}</div>
+                  <div className="text-gray-400 text-[10px] mt-0.5">{item.detail}</div>
                 </div>
               </motion.div>
             ))}
@@ -133,15 +133,17 @@ export default function WhenToUseSlide() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-500/30 max-w-2xl"
+        className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-4 border border-blue-500/30 max-w-xl"
       >
         <div className="text-center">
-          <span className="text-2xl mb-2 block">🤔</span>
-          <h4 className="text-blue-400 font-bold text-lg mb-2">The Key Question</h4>
-          <p className="text-white text-xl font-semibold">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <span className="text-xl">🤔</span>
+            <h4 className="text-blue-400 font-bold text-sm">The Key Question</h4>
+          </div>
+          <p className="text-white text-base font-semibold">
             Does this task need flexibility and adaptation?
           </p>
-          <p className="text-gray-400 text-sm mt-2">
+          <p className="text-gray-400 text-xs mt-1">
             If yes → Agent. If no → Traditional automation.
           </p>
         </div>

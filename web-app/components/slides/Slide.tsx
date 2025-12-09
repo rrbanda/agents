@@ -6,38 +6,42 @@ import TextReveal from '../animations/TextReveal';
 import SlideContent from './SlideContent';
 import SectionHeader from './SectionHeader';
 import { getSectionForSlide } from '@/lib/sections';
+
+// Special slide components
 import TitleSlide from './special/TitleSlide';
-import ColdOpenSlide from './special/ColdOpenSlide';
-import WhatIsAgentSlide from './special/WhatIsAgentSlide';
 import FrustrationSlide from './special/FrustrationSlide';
-import SolarScoutImpactSlide from './special/SolarScoutImpactSlide';
-import RealWorldProblemSlide from './special/RealWorldProblemSlide';
-import RealWorldSolutionSlide from './special/RealWorldSolutionSlide';
-import AgentLoopSlide from './special/AgentLoopSlide';
-import AnatomyProgressiveSlide from './special/AnatomyProgressiveSlide';
-import EvolutionSlide from './special/EvolutionSlide';
+import WhatIfSlide from './special/WhatIfSlide';
+import WhatWellCoverSlide from './special/WhatWellCoverSlide';
+import GenerativeAISlide from './special/GenerativeAISlide';
+import ColdOpenSlide from './special/ColdOpenSlide';
 import LanguageModelsSlide from './special/LanguageModelsSlide';
 import AssistantsSlide from './special/AssistantsSlide';
 import ReasoningSlide from './special/ReasoningSlide';
 import ConvergenceSlide from './special/ConvergenceSlide';
-import WhatIfSlide from './special/WhatIfSlide';
-import WhatWellCoverSlide from './special/WhatWellCoverSlide';
+import EvolutionSlide from './special/EvolutionSlide';
+import WhatIsAgentSlide from './special/WhatIsAgentSlide';
+import AnatomyProgressiveSlide from './special/AnatomyProgressiveSlide';
+import RealWorldProblemSlide from './special/RealWorldProblemSlide';
+import RealWorldSolutionSlide from './special/RealWorldSolutionSlide';
+import SolarScoutImpactSlide from './special/SolarScoutImpactSlide';
+import AgentLoopSlide from './special/AgentLoopSlide';
 import PersonaExamplesSlide from './special/PersonaExamplesSlide';
+import PromptEngineeringSlide from './special/PromptEngineeringSlide';
 import ContextEngineeringSlide from './special/ContextEngineeringSlide';
 import ToolDesignSlide from './special/ToolDesignSlide';
-// AgentLoopPracticeSlide removed - was redundant with slides 16-17
+import LinuxMCPSlide from './special/LinuxMCPSlide';
+import AgentLoopPracticeSlide from './special/AgentLoopPracticeSlide';
 import CommonPatternsSlide from './special/CommonPatternsSlide';
 import WhenToUseSlide from './special/WhenToUseSlide';
 import LimitationsSlide from './special/LimitationsSlide';
 import MultiAgentSlide from './special/MultiAgentSlide';
 import LongRunningSlide from './special/LongRunningSlide';
 import ApplicationsSlide from './special/ApplicationsSlide';
+import AIFluencySlide from './special/AIFluencySlide';
 import JourneyBeginsSlide from './special/JourneyBeginsSlide';
 import TakeawaysSlide from './special/TakeawaysSlide';
 import QuestionsSlide from './special/QuestionsSlide';
 import ThankYouSlide from './special/ThankYouSlide';
-// New 101 slides
-import GenerativeAISlide from './special/GenerativeAISlide';
 
 interface SlideProps {
   slide: SlideType;
@@ -72,7 +76,7 @@ export default function Slide({
   };
 
   // Render the appropriate slide component based on slide number
-  // Current structure: 29 slides total
+  // Structure: 34 slides total (matching slides.ts)
   const renderSlideContent = () => {
     switch (slide.number) {
       // Part 1: Opening (Slides 1-4)
@@ -87,7 +91,6 @@ export default function Slide({
       
       // Part 2: Foundation & Evolution (Slides 5-11)
       case 5:
-        // NEW: What is Generative AI? (foundational)
         return <GenerativeAISlide />;
       case 6:
         return <ColdOpenSlide />;
@@ -118,30 +121,42 @@ export default function Slide({
       case 18:
         return <PersonaExamplesSlide />;
       
-      // Part 4: How They Work (Slides 19-25)
+      // Part 4: Building Effectively (Slides 19-26)
       case 19:
-        return <CommonPatternsSlide />;
+        return <PromptEngineeringSlide />;
       case 20:
-        return <WhenToUseSlide />;
+        return <ContextEngineeringSlide />;
       case 21:
         return <ToolDesignSlide />;
       case 22:
-        return <LimitationsSlide />;
+        return <LinuxMCPSlide />;
       case 23:
-        return <MultiAgentSlide />;
+        return <AgentLoopPracticeSlide />;
       case 24:
-        return <LongRunningSlide />;
+        return <CommonPatternsSlide />;
       case 25:
+        return <WhenToUseSlide />;
+      case 26:
+        return <LimitationsSlide />;
+      
+      // Part 5: Advanced Topics (Slides 27-29)
+      case 27:
+        return <MultiAgentSlide />;
+      case 28:
+        return <LongRunningSlide />;
+      case 29:
         return <ApplicationsSlide />;
       
-      // Part 5: Closing (Slides 26-29)
-      case 26:
+      // Part 6: Closing (Slides 30-34)
+      case 30:
+        return <AIFluencySlide />;
+      case 31:
         return <JourneyBeginsSlide />;
-      case 27:
+      case 32:
         return <TakeawaysSlide />;
-      case 28:
+      case 33:
         return <QuestionsSlide />;
-      case 29:
+      case 34:
         return <ThankYouSlide />;
       
       // Fallback for any other slides - render generic content

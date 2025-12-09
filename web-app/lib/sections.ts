@@ -1,5 +1,5 @@
 // Section mapping for slides
-// Updated for 33-slide structure
+// Updated for 34-slide structure
 
 export interface SectionInfo {
   title: string;
@@ -9,6 +9,12 @@ export interface SectionInfo {
 }
 
 export const sections: SectionInfo[] = [
+  {
+    title: 'Opening',
+    subtitle: 'Setting the stage',
+    startSlide: 1,
+    endSlide: 4,
+  },
   {
     title: 'Foundation',
     subtitle: 'Understanding Generative AI',
@@ -28,22 +34,22 @@ export const sections: SectionInfo[] = [
     endSlide: 18,
   },
   {
-    title: 'How They Work',
-    subtitle: 'The patterns and principles',
+    title: 'Building Effectively',
+    subtitle: 'Tools and techniques',
     startSlide: 19,
-    endSlide: 25,
+    endSlide: 26,
   },
   {
     title: 'Advanced Topics',
     subtitle: 'Scaling and coordination',
-    startSlide: 26,
-    endSlide: 28,
+    startSlide: 27,
+    endSlide: 29,
   },
   {
     title: 'Your Journey',
     subtitle: 'Where to go from here',
-    startSlide: 29,
-    endSlide: 29,
+    startSlide: 30,
+    endSlide: 34,
   },
 ];
 
