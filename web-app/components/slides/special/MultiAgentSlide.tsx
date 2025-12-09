@@ -260,7 +260,7 @@ export default function MultiAgentSlide() {
                   className="relative z-10"
                 >
                   <div 
-                    className="w-32 h-24 rounded-2xl flex flex-col items-center justify-center relative"
+                    className="w-44 h-24 rounded-2xl flex flex-col items-center justify-center relative"
                     style={{
                       background: 'linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 100%)',
                       border: '2px solid rgba(139,92,246,0.5)',
@@ -281,11 +281,11 @@ export default function MultiAgentSlide() {
                 </motion.div>
 
                 {/* Route lines - simple CSS version */}
-                <div className="flex items-start justify-center gap-0 -mt-1">
+                <div className="flex items-start justify-center gap-1 -mt-1">
                   {supervisorAgents.map((agent, index) => {
                     const isActive = activeAgent === agent.id;
-                    // Calculate angle for each line
-                    const angles = [-35, -12, 12, 35];
+                    // Calculate angle for each line - spread wider
+                    const angles = [-40, -14, 14, 40];
                     const angle = angles[index];
                     
                     return (
@@ -295,11 +295,11 @@ export default function MultiAgentSlide() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 + index * 0.1 }}
                         className="flex flex-col items-center"
-                        style={{ width: '80px' }}
+                        style={{ width: '85px' }}
                       >
                         {/* Angled line */}
                         <div 
-                          className="h-12 w-0.5 origin-top transition-all duration-300"
+                          className="h-10 w-0.5 origin-top transition-all duration-300"
                           style={{ 
                             background: isActive 
                               ? `linear-gradient(to bottom, ${agent.color}, ${agent.color})` 
@@ -309,7 +309,7 @@ export default function MultiAgentSlide() {
                           }}
                         />
                         {/* Route label */}
-                        <span className="text-[9px] text-gray-500 -mt-2">route</span>
+                        <span className="text-[9px] text-gray-500 mt-0">route</span>
                       </motion.div>
                     );
                   })}
