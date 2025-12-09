@@ -1,4 +1,4 @@
-# Agentic AI: From Automation to Autonomy
+# 
 ## A Professional Presentation for Technical Audiences
 
 **Duration**: 60 minutes  
@@ -621,7 +621,7 @@ Level 3: Deep dive (specific files)
 
 ## SLIDE 30: Thank You
 
-### Agentic AI: From Automation to Autonomy
+### 
 
 **Resources:**
 - Documentation: [links]

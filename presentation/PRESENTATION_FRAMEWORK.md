@@ -177,7 +177,7 @@
 **"Choose Your Adventure" - Persona-Specific Entry**
 
 **Slide 1: Title Slide**
-- "Agentic AI: From Automation to Autonomy"
+- ""
 - Subtitle: "What it means for [SysAdmins/DevOps/Developers]"
 
 **Slide 2: The Frustration (Persona-Specific)**

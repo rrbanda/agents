@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Agentic AI: From Automation to Autonomy",
+  title: "",
   description: "An interactive presentation explaining Agentic AI for technical professionals",
 };
 

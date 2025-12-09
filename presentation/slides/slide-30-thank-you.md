@@ -2,7 +2,7 @@
 
 ## Slide Content
 
-### Agentic AI: From Automation to Autonomy
+### 
 
 **Resources:**
 - Documentation: [links]

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import SiteNav from '@/components/ui/SiteNav';
 
 const demos = [
   {
@@ -48,16 +49,7 @@ export default function DemosPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 flex items-center justify-between px-8 py-6">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-            RB
-          </div>
-          <span className="text-white font-semibold text-lg tracking-tight group-hover:text-blue-400 transition-colors">
-            ← Back
-          </span>
-        </Link>
-      </nav>
+      <SiteNav />
 
       {/* Main Content */}
       <main className="relative z-10 px-8 pb-20">

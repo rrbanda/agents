@@ -40,7 +40,7 @@ export default function ThankYouSlide() {
           Thank You!
         </h2>
         <h3 className="text-xl md:text-2xl text-gray-400 mb-8 text-center">
-          Agentic AI: From Automation to Autonomy
+          
         </h3>
       </LineReveal>
 

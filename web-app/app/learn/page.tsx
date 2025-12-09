@@ -1,61 +1,114 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
+import SiteNav from '@/components/ui/SiteNav';
 
-const levels = [
+const formats = [
+  { id: 'all', label: 'All', icon: '✨' },
+  { id: 'slides', label: 'Slides', icon: '🎬' },
+  { id: 'podcast', label: 'Podcasts', icon: '🎙️' },
+  { id: 'article', label: 'Articles', icon: '📄' },
+  { id: 'video', label: 'Videos', icon: '🎥' },
+];
+
+const content = [
   {
-    id: '101',
-    title: 'Discover',
-    subtitle: 'Foundations',
-    description: 'What is Agentic AI? How did we get here? What can agents do?',
-    topics: ['GenAI Fundamentals', 'AI Evolution', 'Agent Anatomy', 'Prompt Engineering', 'AI Fluency'],
-    duration: '~45 min',
-    slides: 34,
-    color: 'blue',
-    gradient: 'from-blue-500 to-cyan-500',
+    id: 'ai-foundations',
+    title: 'AI Foundations',
+    description: 'What is AI? How did we get here? Start your journey with the fundamentals.',
+    format: 'slides',
+    level: '101',
+    duration: '45 min',
+    items: 34,
     available: true,
-    href: '/presentation',
+    href: '/learn/101',
+    gradient: 'from-blue-500 to-cyan-500',
+    featured: true,
   },
   {
-    id: '201',
-    title: 'Build',
-    subtitle: 'Patterns & Tools',
-    description: 'How to design agents? What tools do they need? Best practices.',
-    topics: ['Agent Skills Pattern', 'Tool Design', 'Context Engineering', 'Contextual Retrieval', 'Coding Patterns'],
-    duration: '~60 min',
-    slides: 40,
-    color: 'purple',
+    id: 'agent-patterns',
+    title: 'Agent Patterns & Tools',
+    description: 'How to design agents? What tools do they need? Best practices for building.',
+    format: 'slides',
+    level: '201',
+    duration: '60 min',
+    items: 40,
+    available: false,
+    href: '/learn/201',
     gradient: 'from-purple-500 to-pink-500',
-    available: false,
-    href: '/presentation/201',
   },
   {
-    id: '301',
-    title: 'Master',
-    subtitle: 'Production Systems',
+    id: 'production-systems',
+    title: 'Production AI Systems',
     description: 'Multi-agent orchestration, long-running agents, production reliability.',
-    topics: ['Multi-Agent Systems', 'Long-Running Agents', 'Production Patterns', 'Debugging', 'Scaling'],
-    duration: '~45 min',
-    slides: 30,
-    color: 'orange',
-    gradient: 'from-orange-500 to-red-500',
+    format: 'slides',
+    level: '301',
+    duration: '45 min',
+    items: 30,
     available: false,
-    href: '/presentation/301',
+    href: '/learn/301',
+    gradient: 'from-orange-500 to-red-500',
+  },
+  {
+    id: 'ai-explained-podcast',
+    title: 'AI Explained',
+    description: 'Weekly conversations about AI trends, tools, and transformations.',
+    format: 'podcast',
+    level: '101',
+    duration: '30 min/ep',
+    items: 12,
+    available: false,
+    href: '#',
+    gradient: 'from-green-500 to-emerald-500',
+  },
+  {
+    id: 'deep-dive-articles',
+    title: 'Deep Dive Articles',
+    description: 'In-depth explorations of AI concepts, patterns, and implementation guides.',
+    format: 'article',
+    level: '201',
+    duration: '10 min read',
+    items: 14,
+    available: false,
+    href: '#',
+    gradient: 'from-cyan-500 to-blue-500',
+  },
+  {
+    id: 'video-tutorials',
+    title: 'Video Tutorials',
+    description: 'Step-by-step video guides for hands-on learning and implementation.',
+    format: 'video',
+    level: '201',
+    duration: '15 min/ep',
+    items: 8,
+    available: false,
+    href: '#',
+    gradient: 'from-rose-500 to-pink-500',
   },
 ];
 
-const personas = [
-  { id: 'developer', label: 'Developer', icon: '👨‍💻' },
-  { id: 'platform', label: 'Platform', icon: '☁️' },
-  { id: 'operations', label: 'Operations', icon: '🖥️' },
-  { id: 'devops', label: 'DevOps', icon: '🔧' },
-];
+const levelColors: Record<string, string> = {
+  '101': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  '201': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  '301': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+};
+
+const formatIcons: Record<string, string> = {
+  slides: '🎬',
+  podcast: '🎙️',
+  article: '📄',
+  video: '🎥',
+};
 
 export default function LearnPage() {
-  const [selectedPersona, setSelectedPersona] = useState('developer');
-  const [hoveredLevel, setHoveredLevel] = useState<string | null>(null);
+  const [selectedFormat, setSelectedFormat] = useState('all');
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  const filteredContent = selectedFormat === 'all' 
+    ? content 
+    : content.filter(item => item.format === selectedFormat);
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] overflow-hidden relative">
@@ -64,8 +117,8 @@ export default function LearnPage() {
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)',
-            top: '10%',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)',
+            top: '-10%',
             left: '-10%',
           }}
           animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
@@ -74,7 +127,7 @@ export default function LearnPage() {
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)',
             bottom: '10%',
             right: '-5%',
           }}
@@ -84,203 +137,178 @@ export default function LearnPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 flex items-center justify-between px-8 py-6">
-        <Link href="/home" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-            RB
-          </div>
-          <span className="text-white font-semibold text-lg tracking-tight group-hover:text-blue-400 transition-colors">
-            ← Back
-          </span>
-        </Link>
-      </nav>
+      <SiteNav />
 
       {/* Main Content */}
-      <main className="relative z-10 px-8 pb-20">
+      <main className="relative z-10 px-6 md:px-12 pb-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="text-center max-w-2xl mx-auto mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Choose Your <span className="text-blue-400">Path</span>
+            Learn
           </h1>
           <p className="text-gray-400 text-lg">
-            From fundamentals to production-ready systems
+            Choose how you want to learn
           </p>
         </motion.div>
 
-        {/* Persona Selector */}
+        {/* Format Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="flex justify-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <span className="text-gray-500 text-sm px-3">I am a:</span>
-            {personas.map((persona) => (
+          <div className="inline-flex items-center gap-1 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+            {formats.map((format) => (
               <button
-                key={persona.id}
-                onClick={() => setSelectedPersona(persona.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 ${
-                  selectedPersona === persona.id
+                key={format.id}
+                onClick={() => setSelectedFormat(format.id)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
+                  selectedFormat === format.id
                     ? 'bg-white/10 text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    : 'text-gray-500 hover:text-gray-300 hover:bg-white/[0.03]'
                 }`}
               >
-                <span>{persona.icon}</span>
-                <span className="text-sm font-medium">{persona.label}</span>
+                <span className="text-base">{format.icon}</span>
+                <span className="text-sm font-medium">{format.label}</span>
               </button>
             ))}
           </div>
         </motion.div>
 
-        {/* Learning Path Visualization */}
-        <div className="max-w-6xl mx-auto mb-8">
-          <div className="flex items-center justify-center gap-4 mb-8">
-            {levels.map((level, index) => (
-              <div key={level.id} className="flex items-center">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
-                  level.available 
-                    ? `bg-gradient-to-r ${level.gradient} text-white` 
-                    : 'bg-gray-800 text-gray-500'
-                }`}>
-                  {level.id}
-                </div>
-                {index < levels.length - 1 && (
-                  <div className="w-20 h-0.5 bg-gradient-to-r from-gray-700 to-gray-800 mx-2" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Level Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {levels.map((level, index) => (
+        {/* Content Grid */}
+        <div className="max-w-5xl mx-auto">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={level.id}
-              initial={{ opacity: 0, y: 30 }}
+              key={selectedFormat}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              onMouseEnter={() => setHoveredLevel(level.id)}
-              onMouseLeave={() => setHoveredLevel(null)}
-              className={`relative rounded-3xl overflow-hidden ${!level.available && 'opacity-60'}`}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
-              {/* Glass Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl" />
-              <div className="absolute inset-0 rounded-3xl border border-white/10" />
-              
-              {/* Top color accent */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${level.gradient}`} />
-
-              {/* Hover glow */}
-              {level.available && (
+              {filteredContent.map((item, index) => (
                 <motion.div
-                  className="absolute inset-0 opacity-0 transition-opacity duration-500"
-                  style={{
-                    opacity: hoveredLevel === level.id ? 1 : 0,
-                    background: `radial-gradient(circle at 50% 0%, ${
-                      level.color === 'blue' ? 'rgba(59,130,246,0.15)' :
-                      level.color === 'purple' ? 'rgba(139,92,246,0.15)' :
-                      'rgba(249,115,22,0.15)'
-                    } 0%, transparent 70%)`,
-                  }}
-                />
-              )}
-
-              {/* Content */}
-              <div className="relative p-8">
-                {/* Level Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className={`text-4xl font-black bg-gradient-to-r ${level.gradient} bg-clip-text text-transparent`}>
-                    {level.id}
-                  </div>
-                  {!level.available && (
-                    <span className="px-3 py-1 rounded-full bg-gray-800 text-gray-400 text-xs font-medium">
-                      Coming Soon
-                    </span>
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  onMouseEnter={() => setHoveredCard(item.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`group relative rounded-2xl overflow-hidden ${!item.available && 'opacity-60'}`}
+                >
+                  {/* Card Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-white/[0.02]" />
+                  <div className="absolute inset-0 rounded-2xl border border-white/[0.08]" />
+                  
+                  {/* Top Gradient Accent */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient}`} />
+                  
+                  {/* Hover Glow */}
+                  {item.available && (
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: `radial-gradient(circle at 50% 0%, ${
+                          item.level === '101' ? 'rgba(59,130,246,0.12)' :
+                          item.level === '201' ? 'rgba(139,92,246,0.12)' :
+                          'rgba(249,115,22,0.12)'
+                        } 0%, transparent 70%)`,
+                      }}
+                    />
                   )}
-                </div>
 
-                {/* Title */}
-                <h3 className="text-2xl font-bold text-white mb-1">{level.title}</h3>
-                <p className="text-gray-500 text-sm mb-4">{level.subtitle}</p>
+                  {/* Content */}
+                  <Link href={item.available ? item.href : '#'} className={!item.available ? 'pointer-events-none' : ''}>
+                    <div className="relative p-6">
+                      {/* Header Row */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{formatIcons[item.format]}</span>
+                          <span className={`px-2 py-0.5 rounded-md text-xs font-medium border ${levelColors[item.level]}`}>
+                            {item.level}
+                          </span>
+                        </div>
+                        {!item.available && (
+                          <span className="px-2 py-1 rounded-lg bg-gray-800/80 text-gray-500 text-xs">
+                            Soon
+                          </span>
+                        )}
+                        {item.featured && item.available && (
+                          <span className="px-2 py-1 rounded-lg bg-green-500/20 text-green-400 text-xs font-medium">
+                            Start Here
+                          </span>
+                        )}
+                      </div>
 
-                {/* Description */}
-                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                  {level.description}
-                </p>
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                        {item.title}
+                      </h3>
 
-                {/* Topics */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {level.topics.slice(0, 3).map((topic) => (
-                    <span
-                      key={topic}
-                      className="px-2 py-1 rounded-lg bg-white/5 text-gray-400 text-xs"
-                    >
-                      {topic}
-                    </span>
-                  ))}
-                  {level.topics.length > 3 && (
-                    <span className="px-2 py-1 text-gray-500 text-xs">
-                      +{level.topics.length - 3} more
-                    </span>
-                  )}
-                </div>
+                      {/* Description */}
+                      <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
+                        {item.description}
+                      </p>
 
-                {/* Meta */}
-                <div className="flex items-center gap-4 text-gray-500 text-sm mb-6">
-                  <span className="flex items-center gap-1">
-                    <span>⏱️</span> {level.duration}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span>📑</span> {level.slides} slides
-                  </span>
-                </div>
+                      {/* Meta */}
+                      <div className="flex items-center gap-3 text-xs text-gray-600">
+                        <span className="flex items-center gap-1">
+                          <span>⏱️</span> {item.duration}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <span>📑</span> {item.items} {item.format === 'slides' ? 'slides' : item.format === 'podcast' ? 'episodes' : 'items'}
+                        </span>
+                      </div>
 
-                {/* CTA */}
-                {level.available ? (
-                  <Link href={level.href}>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r ${level.gradient} hover:opacity-90 transition-opacity`}
-                    >
-                      Start Learning →
-                    </motion.button>
+                      {/* Arrow */}
+                      {item.available && (
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ 
+                            opacity: hoveredCard === item.id ? 1 : 0,
+                            x: hoveredCard === item.id ? 0 : -10
+                          }}
+                          className="absolute bottom-6 right-6 text-white"
+                        >
+                          →
+                        </motion.div>
+                      )}
+                    </div>
                   </Link>
-                ) : (
-                  <button
-                    disabled
-                    className="w-full py-3 rounded-xl font-semibold text-gray-500 bg-gray-800/50 cursor-not-allowed"
-                  >
-                    Coming Soon
-                  </button>
-                )}
-              </div>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          {/* Empty State */}
+          {filteredContent.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <p className="text-gray-500">No content in this format yet. Check back soon!</p>
+            </motion.div>
+          )}
         </div>
 
-        {/* Quick Start for 101 */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.5 }}
           className="text-center mt-16"
         >
-          <p className="text-gray-500 text-sm mb-4">New to Agentic AI?</p>
-          <Link href="/presentation">
-            <button className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-              Jump straight into 101 →
-            </button>
-          </Link>
+          <p className="text-gray-600 text-sm">
+            More content coming soon • Podcasts • Videos • Articles
+          </p>
         </motion.div>
       </main>
     </div>
   );
 }
-
