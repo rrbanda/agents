@@ -5,68 +5,87 @@ import { useState, useEffect } from 'react';
 
 const patterns = [
   {
-    id: 'orchestrator',
-    name: 'Orchestrator',
-    icon: '🎭',
-    description: 'Central coordinator delegates to specialized agents',
-    useCase: 'Complex tasks requiring different expertise',
+    id: 'supervisor',
+    name: 'Supervisor',
+    icon: '🎯',
+    description: 'Central supervisor routes tasks to specialized agents based on requirements',
+    useCase: 'Complex tasks requiring different expertise domains',
     pros: ['Clear control flow', 'Easy to debug', 'Centralized decisions'],
-    cons: ['Single point of failure', 'Orchestrator bottleneck'],
+    cons: ['Single point of failure', 'Supervisor bottleneck'],
   },
   {
-    id: 'pipeline',
-    name: 'Pipeline',
+    id: 'sequential',
+    name: 'Sequential',
     icon: '➡️',
-    description: 'Agents pass work sequentially, each transforming output',
-    useCase: 'Multi-stage processing (research → analyze → write → review)',
-    pros: ['Clear data flow', 'Each agent focused', 'Easy to extend'],
+    description: 'Agents process in a predefined linear order, each transforming output',
+    useCase: 'Multi-stage processing (draft → review → polish)',
+    pros: ['Clear data flow', 'Each agent focused', 'Predictable'],
     cons: ['Sequential = slower', 'Error propagation'],
   },
   {
-    id: 'collaborative',
-    name: 'Collaborative',
-    icon: '🤝',
-    description: 'Agents work in parallel on shared context, then merge',
+    id: 'concurrent',
+    name: 'Concurrent',
+    icon: '⚡',
+    description: 'Multiple agents work in parallel, results aggregated by collector',
     useCase: 'Tasks that can be parallelized (research multiple sources)',
-    pros: ['Faster execution', 'True parallelism', 'Redundancy'],
+    pros: ['Faster execution', 'True parallelism', 'Diverse perspectives'],
     cons: ['Merge conflicts', 'Coordination complexity'],
   },
 ];
 
-const orchestratorAgents = [
-  { id: 'research', name: 'Research', icon: '🔍', color: '#3b82f6', angle: -45 },
-  { id: 'analysis', name: 'Analysis', icon: '📊', color: '#10b981', angle: 45 },
-  { id: 'writing', name: 'Writing', icon: '✍️', color: '#f59e0b', angle: 135 },
-  { id: 'review', name: 'Review', icon: '✓', color: '#8b5cf6', angle: 225 },
+// Supervisor pattern agents
+const supervisorAgents = [
+  { id: 'researcher', name: 'Researcher', icon: '🔍', color: '#3b82f6', task: 'Search & gather' },
+  { id: 'analyst', name: 'Analyst', icon: '📊', color: '#10b981', task: 'Analyze data' },
+  { id: 'writer', name: 'Writer', icon: '✍️', color: '#f59e0b', task: 'Generate content' },
+  { id: 'reviewer', name: 'Reviewer', icon: '✓', color: '#8b5cf6', task: 'Quality check' },
 ];
 
+// Sequential pipeline steps
 const pipelineSteps = [
-  { id: 'gather', name: 'Gather', icon: '🔍', color: '#3b82f6', task: 'Collect data from sources' },
-  { id: 'process', name: 'Process', icon: '⚙️', color: '#10b981', task: 'Clean and structure data' },
+  { id: 'gather', name: 'Gather', icon: '🔍', color: '#3b82f6', task: 'Collect data' },
+  { id: 'process', name: 'Process', icon: '⚙️', color: '#10b981', task: 'Transform' },
   { id: 'analyze', name: 'Analyze', icon: '📊', color: '#f59e0b', task: 'Extract insights' },
-  { id: 'output', name: 'Output', icon: '📝', color: '#8b5cf6', task: 'Generate final result' },
+  { id: 'output', name: 'Output', icon: '📝', color: '#8b5cf6', task: 'Generate result' },
 ];
 
-const collaborativeAgents = [
-  { id: 'agent1', name: 'Agent A', icon: '🔵', color: '#3b82f6' },
-  { id: 'agent2', name: 'Agent B', icon: '🟢', color: '#10b981' },
-  { id: 'agent3', name: 'Agent C', icon: '🟡', color: '#f59e0b' },
+// Concurrent agents
+const concurrentAgents = [
+  { id: 'agent1', name: 'Agent A', icon: '🔵', color: '#3b82f6', task: 'Perspective 1' },
+  { id: 'agent2', name: 'Agent B', icon: '🟢', color: '#10b981', task: 'Perspective 2' },
+  { id: 'agent3', name: 'Agent C', icon: '🟡', color: '#f59e0b', task: 'Perspective 3' },
 ];
 
 export default function MultiAgentSlide() {
-  const [activePattern, setActivePattern] = useState('orchestrator');
+  const [activePattern, setActivePattern] = useState('supervisor');
   const [animationStep, setAnimationStep] = useState(0);
+  const [activeAgent, setActiveAgent] = useState<string | null>(null);
 
   const currentPattern = patterns.find(p => p.id === activePattern)!;
 
-  // Animate pipeline flow
+  // Animate sequential flow
   useEffect(() => {
-    if (activePattern === 'pipeline') {
+    if (activePattern === 'sequential') {
       setAnimationStep(0);
       const interval = setInterval(() => {
         setAnimationStep(prev => (prev + 1) % (pipelineSteps.length + 1));
-      }, 1000);
+      }, 1200);
       return () => clearInterval(interval);
+    }
+  }, [activePattern]);
+
+  // Animate supervisor routing
+  useEffect(() => {
+    if (activePattern === 'supervisor') {
+      const agents = ['researcher', 'analyst', 'writer', 'reviewer'];
+      let idx = 0;
+      const interval = setInterval(() => {
+        setActiveAgent(agents[idx]);
+        idx = (idx + 1) % agents.length;
+      }, 1500);
+      return () => clearInterval(interval);
+    } else {
+      setActiveAgent(null);
     }
   }, [activePattern]);
 
@@ -79,10 +98,10 @@ export default function MultiAgentSlide() {
         className="text-center mb-4"
       >
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
-          Multi-Agent <span className="text-purple-400">Systems</span>
+          Multi-Agent <span className="text-purple-400">Orchestration</span>
         </h2>
         <p className="text-gray-400 text-sm">
-          When one agent isn't enough — coordination patterns for complex tasks
+          Coordination patterns for complex, collaborative AI tasks
         </p>
       </motion.div>
 
@@ -97,10 +116,10 @@ export default function MultiAgentSlide() {
           <button
             key={pattern.id}
             onClick={() => setActivePattern(pattern.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 backdrop-blur-sm ${
               activePattern === pattern.id
-                ? 'bg-purple-600 text-white'
-                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                ? 'bg-purple-500/30 text-white border border-purple-400/50 shadow-lg shadow-purple-500/20'
+                : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
             }`}
           >
             <span>{pattern.icon}</span>
@@ -123,23 +142,32 @@ export default function MultiAgentSlide() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="bg-gray-800/60 rounded-xl p-4 border border-gray-700/50"
+              className="relative rounded-2xl p-4 border border-white/10 overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                backdropFilter: 'blur(20px)',
+              }}
             >
+              {/* Glass reflection */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-3xl">{currentPattern.icon}</span>
+                <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+                  <span className="text-2xl">{currentPattern.icon}</span>
+                </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">{currentPattern.name} Pattern</h3>
                   <p className="text-xs text-gray-400">{currentPattern.description}</p>
                 </div>
               </div>
               
-              <div className="bg-purple-900/20 rounded-lg p-3 border border-purple-500/20 mb-3">
+              <div className="bg-purple-900/20 rounded-xl p-3 border border-purple-500/20 mb-3 backdrop-blur-sm">
                 <span className="text-xs text-purple-400 font-medium">Best for:</span>
                 <p className="text-sm text-gray-300 mt-1">{currentPattern.useCase}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-green-900/20 rounded-lg p-2 border border-green-500/20">
+                <div className="bg-green-900/20 rounded-xl p-2 border border-green-500/20 backdrop-blur-sm">
                   <span className="text-xs text-green-400 font-medium">✓ Pros</span>
                   <ul className="mt-1 space-y-1">
                     {currentPattern.pros.map(pro => (
@@ -147,7 +175,7 @@ export default function MultiAgentSlide() {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-red-900/20 rounded-lg p-2 border border-red-500/20">
+                <div className="bg-red-900/20 rounded-xl p-2 border border-red-500/20 backdrop-blur-sm">
                   <span className="text-xs text-red-400 font-medium">✗ Cons</span>
                   <ul className="mt-1 space-y-1">
                     {currentPattern.cons.map(con => (
@@ -160,7 +188,13 @@ export default function MultiAgentSlide() {
           </AnimatePresence>
 
           {/* When to Use Multi-Agent */}
-          <div className="bg-gray-800/40 rounded-xl p-3 border border-gray-700/50">
+          <div 
+            className="rounded-2xl p-3 border border-white/10"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
             <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
               <span>🤔</span> When to Use Multi-Agent?
             </h4>
@@ -178,299 +212,413 @@ export default function MultiAgentSlide() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
-          className="lg:col-span-3 bg-gray-800/40 rounded-xl border border-gray-700/50 p-4 flex items-center justify-center min-h-[280px]"
+          className="lg:col-span-3 rounded-2xl border border-white/10 p-6 flex items-center justify-center min-h-[300px] relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.2) 100%)',
+            backdropFilter: 'blur(20px)',
+          }}
         >
+          {/* Glass effect */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          
           <AnimatePresence mode="wait">
-            {/* Orchestrator Pattern Visualization */}
-            {activePattern === 'orchestrator' && (
+            {/* SUPERVISOR PATTERN */}
+            {activePattern === 'supervisor' && (
               <motion.div
-                key="orchestrator"
+                key="supervisor"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 className="relative w-full h-full flex flex-col items-center justify-center"
               >
-                {/* SVG for connection lines */}
-                <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-                  <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6" />
-                    </marker>
-                    <marker id="arrowhead-back" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
-                      <polygon points="10 0, 0 3.5, 10 7" fill="#8b5cf6" />
-                    </marker>
-                  </defs>
-                  {orchestratorAgents.map((agent, index) => {
-                    const centerX = 200;
-                    const centerY = 120;
-                    const radius = 90;
-                    const angleRad = (agent.angle * Math.PI) / 180;
-                    const endX = centerX + Math.cos(angleRad) * radius;
-                    const endY = centerY + Math.sin(angleRad) * radius;
-                    
-                    return (
-                      <motion.g key={agent.id}>
-                        <motion.line
-                          x1={centerX}
-                          y1={centerY}
-                          x2={endX}
-                          y2={endY}
-                          stroke={agent.color}
-                          strokeWidth="2"
-                          strokeDasharray="6 3"
-                          initial={{ pathLength: 0, opacity: 0 }}
-                          animate={{ pathLength: 1, opacity: 1 }}
-                          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                          markerEnd="url(#arrowhead)"
-                          markerStart="url(#arrowhead-back)"
-                        />
-                        {/* Animated pulse along line */}
-                        <motion.circle
-                          r="4"
-                          fill={agent.color}
-                          initial={{ opacity: 0 }}
-                          animate={{
-                            opacity: [0, 1, 0],
-                            cx: [centerX, endX],
-                            cy: [centerY, endY],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.5,
-                            ease: "easeInOut"
-                          }}
-                        />
-                      </motion.g>
-                    );
-                  })}
+                {/* User Input at Top */}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute top-2 left-1/2 -translate-x-1/2"
+                >
+                  <div className="px-4 py-2 rounded-xl bg-gray-700/50 border border-gray-600/50 backdrop-blur-sm">
+                    <span className="text-xs text-gray-300">👤 User Request</span>
+                  </div>
+                </motion.div>
+
+                {/* Arrow from User to Supervisor */}
+                <svg className="absolute top-12 left-1/2 -translate-x-1/2 w-4 h-8">
+                  <motion.path
+                    d="M8 0 L8 24 M4 20 L8 28 L12 20"
+                    stroke="#6b7280"
+                    strokeWidth="2"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
                 </svg>
 
-                {/* Center Orchestrator */}
+                {/* Center Supervisor */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-                  className="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 flex flex-col items-center justify-center"
-                  style={{ 
-                    boxShadow: '0 0 40px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(255,255,255,0.1)',
-                  }}
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                  className="relative z-10 mt-8"
                 >
-                  <motion.span 
-                    className="text-2xl"
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  <div 
+                    className="w-28 h-20 rounded-2xl flex flex-col items-center justify-center relative"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 100%)',
+                      border: '2px solid rgba(139,92,246,0.5)',
+                      boxShadow: '0 0 40px rgba(139,92,246,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    }}
                   >
-                    🎭
-                  </motion.span>
-                  <span className="text-white text-xs font-bold mt-1">Orchestrator</span>
-                  <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-purple-400/30"
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
+                    <span className="text-xl">🎯</span>
+                    <span className="text-white text-xs font-bold">Supervisor</span>
+                    <span className="text-[9px] text-purple-300">routes tasks</span>
+                    
+                    {/* Pulse effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl border-2 border-purple-400/30"
+                      animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </div>
                 </motion.div>
 
-                {/* Surrounding Agents - Positioned absolutely around center */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {orchestratorAgents.map((agent, index) => {
-                    const radius = 110;
-                    const angleRad = (agent.angle * Math.PI) / 180;
-                    const x = Math.cos(angleRad) * radius;
-                    const y = Math.sin(angleRad) * radius;
-
-                    return (
-                      <motion.div
-                        key={agent.id}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + index * 0.1, type: 'spring', stiffness: 200 }}
-                        className="absolute"
-                        style={{ 
-                          transform: `translate(${x}px, ${y}px)`,
-                        }}
-                      >
-                        <motion.div
-                          whileHover={{ scale: 1.15 }}
-                          className="w-16 h-16 rounded-xl flex flex-col items-center justify-center cursor-pointer relative"
-                          style={{
-                            backgroundColor: `${agent.color}15`,
-                            border: `2px solid ${agent.color}`,
-                            boxShadow: `0 0 20px ${agent.color}30`,
-                          }}
-                        >
-                          <span className="text-xl">{agent.icon}</span>
-                          <span className="text-[10px] text-gray-200 font-medium">{agent.name}</span>
-                          {/* Status indicator */}
-                          <motion.div
-                            className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
-                            style={{ backgroundColor: agent.color }}
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
+                {/* Route lines and Agents */}
+                <div className="relative w-full flex justify-center items-start mt-4" style={{ height: '140px' }}>
+                  {/* SVG for route lines */}
+                  <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
+                    {supervisorAgents.map((agent, index) => {
+                      const totalAgents = supervisorAgents.length;
+                      const spacing = 100;
+                      const startX = 200;
+                      const agentX = startX + (index - (totalAgents - 1) / 2) * spacing;
+                      const isActive = activeAgent === agent.id;
+                      
+                      return (
+                        <g key={agent.id}>
+                          {/* Route line */}
+                          <motion.path
+                            d={`M200 0 Q200 30 ${agentX} 60 L${agentX} 90`}
+                            stroke={isActive ? agent.color : '#4b5563'}
+                            strokeWidth={isActive ? 3 : 2}
+                            strokeDasharray={isActive ? "0" : "6 4"}
+                            fill="none"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                           />
+                          {/* Animated dot when active */}
+                          {isActive && (
+                            <motion.circle
+                              r="4"
+                              fill={agent.color}
+                              initial={{ opacity: 0 }}
+                              animate={{
+                                opacity: [0, 1, 1, 0],
+                                cx: [200, 200, agentX, agentX],
+                                cy: [0, 30, 60, 90],
+                              }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                            />
+                          )}
+                          {/* "route" label */}
+                          <text
+                            x={(200 + agentX) / 2}
+                            y={35}
+                            fill="#6b7280"
+                            fontSize="9"
+                            textAnchor="middle"
+                          >
+                            route
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </svg>
+
+                  {/* Agent boxes */}
+                  <div className="absolute bottom-0 w-full flex justify-center gap-4">
+                    {supervisorAgents.map((agent, index) => {
+                      const isActive = activeAgent === agent.id;
+                      return (
+                        <motion.div
+                          key={agent.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5 + index * 0.1 }}
+                          className={`relative transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+                        >
+                          <div
+                            className="w-16 h-16 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm"
+                            style={{
+                              background: isActive 
+                                ? `linear-gradient(135deg, ${agent.color}30 0%, ${agent.color}10 100%)`
+                                : 'rgba(255,255,255,0.05)',
+                              border: `2px solid ${isActive ? agent.color : 'rgba(255,255,255,0.1)'}`,
+                              boxShadow: isActive ? `0 0 20px ${agent.color}40` : 'none',
+                            }}
+                          >
+                            <span className="text-lg">{agent.icon}</span>
+                            <span className="text-[9px] text-gray-200 font-medium">{agent.name}</span>
+                          </div>
+                          <span className="block text-center text-[8px] text-gray-500 mt-1">{agent.task}</span>
                         </motion.div>
-                      </motion.div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* Legend */}
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="absolute -bottom-2 flex items-center gap-4 text-xs text-gray-400"
+                  className="absolute bottom-2 text-[10px] text-gray-500 flex items-center gap-3"
                 >
-                  <span className="flex items-center gap-1">
-                    <span className="text-purple-400">↔</span> Bidirectional
-                  </span>
+                  <span>↔ Bidirectional</span>
                   <span className="flex items-center gap-1">
                     <motion.span 
                       className="w-2 h-2 rounded-full bg-purple-400"
                       animate={{ opacity: [1, 0.3, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
                     />
-                    Active flow
+                    Active routing
                   </span>
                 </motion.div>
               </motion.div>
             )}
 
-            {/* Pipeline Pattern Visualization */}
-            {activePattern === 'pipeline' && (
+            {/* SEQUENTIAL PATTERN */}
+            {activePattern === 'sequential' && (
               <motion.div
-                key="pipeline"
+                key="sequential"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center gap-2 w-full justify-center"
+                className="flex flex-col items-center w-full"
               >
-                {pipelineSteps.map((step, index) => (
-                  <div key={step.id} className="flex items-center">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * index }}
-                      className="flex flex-col items-center"
-                    >
-                      <div
-                        className={`w-16 h-16 rounded-xl flex flex-col items-center justify-center transition-all ${
-                          animationStep > index ? 'scale-105' : ''
-                        }`}
-                        style={{
-                          backgroundColor: animationStep > index ? `${step.color}30` : `${step.color}15`,
-                          border: `2px solid ${animationStep > index ? step.color : `${step.color}50`}`,
-                          boxShadow: animationStep > index ? `0 0 20px ${step.color}40` : 'none',
-                        }}
-                      >
-                        <span className="text-xl">{step.icon}</span>
-                        <span className="text-[9px] text-gray-300">{step.name}</span>
-                      </div>
-                      <span className="text-[8px] text-gray-500 mt-1 text-center max-w-[60px]">
-                        {step.task}
-                      </span>
-                    </motion.div>
+                {/* Common State bar */}
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="w-full max-w-md mb-4 px-4 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-center"
+                >
+                  <span className="text-xs text-amber-400">📦 Common State (shared across pipeline)</span>
+                </motion.div>
+
+                {/* Pipeline */}
+                <div className="flex items-center gap-1 w-full justify-center">
+                  {/* Input */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="px-3 py-2 rounded-lg bg-gray-700/50 border border-gray-600/50"
+                  >
+                    <span className="text-xs text-gray-300">Input</span>
+                  </motion.div>
+
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-gray-600"
+                  >→</motion.span>
+
+                  {pipelineSteps.map((step, index) => {
+                    const isProcessed = animationStep > index;
+                    const isActive = animationStep === index + 1;
                     
-                    {index < pipelineSteps.length - 1 && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 + 0.1 * index }}
-                        className={`mx-1 text-lg transition-colors ${
-                          animationStep > index ? 'text-green-400' : 'text-gray-600'
-                        }`}
-                      >
-                        →
-                      </motion.div>
-                    )}
-                  </div>
-                ))}
+                    return (
+                      <div key={step.id} className="flex items-center">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 * index }}
+                          className="flex flex-col items-center"
+                        >
+                          <div
+                            className={`w-16 h-20 rounded-xl flex flex-col items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+                              isActive ? 'scale-110' : ''
+                            }`}
+                            style={{
+                              background: isProcessed 
+                                ? `linear-gradient(135deg, ${step.color}25 0%, ${step.color}10 100%)`
+                                : 'rgba(255,255,255,0.03)',
+                              border: `2px solid ${isProcessed ? step.color : 'rgba(255,255,255,0.1)'}`,
+                              boxShadow: isActive ? `0 0 25px ${step.color}40` : 'none',
+                            }}
+                          >
+                            <span className="text-xl">{step.icon}</span>
+                            <span className="text-[9px] text-gray-200 font-medium">{step.name}</span>
+                            <span className="text-[8px] text-gray-500">{step.task}</span>
+                          </div>
+                          {/* Model/tools indicator */}
+                          <div className="mt-1 px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">
+                            <span className="text-[7px] text-blue-400">Model + Tools</span>
+                          </div>
+                        </motion.div>
+                        
+                        {index < pipelineSteps.length - 1 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 + 0.1 * index }}
+                            className={`mx-1 text-lg transition-colors duration-300 ${
+                              isProcessed ? 'text-green-400' : 'text-gray-600'
+                            }`}
+                          >
+                            →
+                          </motion.div>
+                        )}
+                      </div>
+                    );
+                  })}
+
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className={`transition-colors ${animationStep > pipelineSteps.length - 1 ? 'text-green-400' : 'text-gray-600'}`}
+                  >→</motion.span>
+
+                  {/* Output */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className={`px-3 py-2 rounded-lg transition-all ${
+                      animationStep > pipelineSteps.length - 1 
+                        ? 'bg-green-500/20 border border-green-500/50' 
+                        : 'bg-gray-700/50 border border-gray-600/50'
+                    }`}
+                  >
+                    <span className={`text-xs ${animationStep > pipelineSteps.length - 1 ? 'text-green-300' : 'text-gray-300'}`}>
+                      Result
+                    </span>
+                  </motion.div>
+                </div>
               </motion.div>
             )}
 
-            {/* Collaborative Pattern Visualization */}
-            {activePattern === 'collaborative' && (
+            {/* CONCURRENT PATTERN */}
+            {activePattern === 'concurrent' && (
               <motion.div
-                key="collaborative"
+                key="concurrent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col items-center gap-4 w-full"
+                className="flex flex-col items-center gap-3 w-full"
               >
+                {/* Initiator */}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="px-6 py-3 rounded-xl backdrop-blur-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(139,92,246,0.2) 0%, rgba(59,130,246,0.2) 100%)',
+                    border: '2px solid rgba(139,92,246,0.4)',
+                  }}
+                >
+                  <span className="text-sm text-white font-medium">🎯 Initiator & Collector</span>
+                </motion.div>
+
+                {/* Fan-out arrows */}
+                <div className="flex items-center justify-center gap-8 relative">
+                  <svg className="absolute -top-2 w-full h-8" style={{ overflow: 'visible' }}>
+                    {concurrentAgents.map((agent, index) => {
+                      const xOffset = (index - 1) * 100;
+                      return (
+                        <motion.path
+                          key={agent.id}
+                          d={`M150 0 Q150 15 ${150 + xOffset} 30`}
+                          stroke={agent.color}
+                          strokeWidth="2"
+                          strokeDasharray="4 2"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                        />
+                      );
+                    })}
+                  </svg>
+                </div>
+
                 {/* Parallel Agents */}
-                <div className="flex items-center gap-6">
-                  {collaborativeAgents.map((agent, index) => (
+                <div className="flex items-start gap-6 mt-4">
+                  {concurrentAgents.map((agent, index) => (
                     <motion.div
                       key={agent.id}
-                      initial={{ opacity: 0, y: -20 }}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * index }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
                       className="flex flex-col items-center"
                     >
-                      <div
-                        className="w-14 h-14 rounded-xl flex flex-col items-center justify-center"
+                      <motion.div
+                        animate={{ 
+                          boxShadow: [
+                            `0 0 10px ${agent.color}20`,
+                            `0 0 25px ${agent.color}40`,
+                            `0 0 10px ${agent.color}20`,
+                          ]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                        className="w-18 h-18 rounded-xl flex flex-col items-center justify-center p-3 backdrop-blur-sm"
                         style={{
-                          backgroundColor: `${agent.color}20`,
+                          background: `linear-gradient(135deg, ${agent.color}20 0%, ${agent.color}05 100%)`,
                           border: `2px solid ${agent.color}`,
                         }}
                       >
-                        <span className="text-xl">{agent.icon}</span>
-                        <span className="text-[9px] text-gray-300">{agent.name}</span>
-                      </div>
+                        <span className="text-2xl">{agent.icon}</span>
+                        <span className="text-xs text-gray-200 font-medium">{agent.name}</span>
+                        <span className="text-[8px] text-gray-400">{agent.task}</span>
+                      </motion.div>
+                      
+                      {/* Processing indicator */}
+                      <motion.div
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
+                        className="mt-2 text-[9px] text-gray-500"
+                      >
+                        ⚡ Processing...
+                      </motion.div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Parallel arrows down */}
-                <div className="flex items-center gap-6">
-                  {collaborativeAgents.map((agent, index) => (
-                    <motion.div
-                      key={`arrow-${agent.id}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 + 0.1 * index }}
-                      className="text-lg"
-                      style={{ color: agent.color }}
-                    >
-                      ↓
-                    </motion.div>
-                  ))}
+                {/* Fan-in arrows */}
+                <div className="flex items-center justify-center relative h-8">
+                  <svg className="w-full h-full" style={{ overflow: 'visible' }}>
+                    {concurrentAgents.map((agent, index) => {
+                      const xOffset = (index - 1) * 100;
+                      return (
+                        <motion.path
+                          key={agent.id}
+                          d={`M${150 + xOffset} 0 Q${150 + xOffset} 15 150 30`}
+                          stroke={agent.color}
+                          strokeWidth="2"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                        />
+                      );
+                    })}
+                  </svg>
                 </div>
 
-                {/* Shared Context */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="bg-gradient-to-r from-blue-900/30 via-green-900/30 to-yellow-900/30 rounded-xl px-8 py-3 border border-purple-500/30"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">📦</span>
-                    <div>
-                      <span className="text-white text-sm font-bold">Shared Context</span>
-                      <span className="text-gray-400 text-xs ml-2">(merge results)</span>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Arrow down to output */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="text-lg text-purple-400"
-                >
-                  ↓
-                </motion.div>
-
-                {/* Final Output */}
+                {/* Aggregated Results */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
-                  className="bg-purple-600/20 rounded-xl px-6 py-2 border border-purple-500/50"
+                  className="px-6 py-3 rounded-xl backdrop-blur-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(5,150,105,0.2) 100%)',
+                    border: '2px solid rgba(16,185,129,0.5)',
+                    boxShadow: '0 0 30px rgba(16,185,129,0.2)',
+                  }}
                 >
-                  <span className="text-purple-300 text-sm font-medium">✨ Combined Output</span>
+                  <span className="text-sm text-green-300 font-medium">✨ Aggregated Results</span>
+                  <p className="text-[9px] text-green-400/70 mt-1">Combined • Compared • Selected</p>
                 </motion.div>
               </motion.div>
             )}
@@ -486,7 +634,7 @@ export default function MultiAgentSlide() {
         className="mt-3 text-center"
       >
         <p className="text-purple-400 font-semibold text-sm">
-          Multi-agent = Divide and conquer. Choose the pattern that fits your task.
+          Choose the pattern that fits your task's coordination requirements
         </p>
       </motion.div>
     </div>
