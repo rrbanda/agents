@@ -188,74 +188,150 @@ export default function MultiAgentSlide() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="relative w-full h-full flex items-center justify-center"
+                className="relative w-full h-full flex flex-col items-center justify-center"
               >
+                {/* SVG for connection lines */}
+                <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
+                  <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6" />
+                    </marker>
+                    <marker id="arrowhead-back" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+                      <polygon points="10 0, 0 3.5, 10 7" fill="#8b5cf6" />
+                    </marker>
+                  </defs>
+                  {orchestratorAgents.map((agent, index) => {
+                    const centerX = 200;
+                    const centerY = 120;
+                    const radius = 90;
+                    const angleRad = (agent.angle * Math.PI) / 180;
+                    const endX = centerX + Math.cos(angleRad) * radius;
+                    const endY = centerY + Math.sin(angleRad) * radius;
+                    
+                    return (
+                      <motion.g key={agent.id}>
+                        <motion.line
+                          x1={centerX}
+                          y1={centerY}
+                          x2={endX}
+                          y2={endY}
+                          stroke={agent.color}
+                          strokeWidth="2"
+                          strokeDasharray="6 3"
+                          initial={{ pathLength: 0, opacity: 0 }}
+                          animate={{ pathLength: 1, opacity: 1 }}
+                          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                          markerEnd="url(#arrowhead)"
+                          markerStart="url(#arrowhead-back)"
+                        />
+                        {/* Animated pulse along line */}
+                        <motion.circle
+                          r="4"
+                          fill={agent.color}
+                          initial={{ opacity: 0 }}
+                          animate={{
+                            opacity: [0, 1, 0],
+                            cx: [centerX, endX],
+                            cy: [centerY, endY],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.5,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      </motion.g>
+                    );
+                  })}
+                </svg>
+
                 {/* Center Orchestrator */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex flex-col items-center justify-center z-10"
-                  style={{ boxShadow: '0 0 30px rgba(139, 92, 246, 0.4)' }}
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+                  className="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 flex flex-col items-center justify-center"
+                  style={{ 
+                    boxShadow: '0 0 40px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(255,255,255,0.1)',
+                  }}
                 >
-                  <span className="text-xl">🎭</span>
-                  <span className="text-white text-[10px] font-bold">Orchestrator</span>
+                  <motion.span 
+                    className="text-2xl"
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    🎭
+                  </motion.span>
+                  <span className="text-white text-xs font-bold mt-1">Orchestrator</span>
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-purple-400/30"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
                 </motion.div>
 
-                {/* Surrounding Agents */}
-                {orchestratorAgents.map((agent, index) => {
-                  const radius = 100;
-                  const angleRad = (agent.angle * Math.PI) / 180;
-                  const x = Math.cos(angleRad) * radius;
-                  const y = Math.sin(angleRad) * radius;
+                {/* Surrounding Agents - Positioned absolutely around center */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {orchestratorAgents.map((agent, index) => {
+                    const radius = 110;
+                    const angleRad = (agent.angle * Math.PI) / 180;
+                    const x = Math.cos(angleRad) * radius;
+                    const y = Math.sin(angleRad) * radius;
 
-                  return (
-                    <motion.div
-                      key={agent.id}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2 + index * 0.1, type: 'spring' }}
-                      className="absolute"
-                      style={{ transform: `translate(${x}px, ${y}px)` }}
-                    >
-                      {/* Connection Line */}
-                      <svg className="absolute inset-0 -z-10" style={{ overflow: 'visible' }}>
-                        <motion.line
-                          x1="28"
-                          y1="28"
-                          x2={-x + 28}
-                          y2={-y + 28}
-                          stroke={agent.color}
-                          strokeWidth="2"
-                          strokeDasharray="4 4"
-                          initial={{ pathLength: 0 }}
-                          animate={{ pathLength: 1 }}
-                          transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                        />
-                      </svg>
-                      
-                      <div
-                        className="w-14 h-14 rounded-xl flex flex-col items-center justify-center transition-all hover:scale-110"
-                        style={{
-                          backgroundColor: `${agent.color}20`,
-                          border: `2px solid ${agent.color}`,
+                    return (
+                      <motion.div
+                        key={agent.id}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + index * 0.1, type: 'spring', stiffness: 200 }}
+                        className="absolute"
+                        style={{ 
+                          transform: `translate(${x}px, ${y}px)`,
                         }}
                       >
-                        <span className="text-lg">{agent.icon}</span>
-                        <span className="text-[9px] text-gray-300">{agent.name}</span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                        <motion.div
+                          whileHover={{ scale: 1.15 }}
+                          className="w-16 h-16 rounded-xl flex flex-col items-center justify-center cursor-pointer relative"
+                          style={{
+                            backgroundColor: `${agent.color}15`,
+                            border: `2px solid ${agent.color}`,
+                            boxShadow: `0 0 20px ${agent.color}30`,
+                          }}
+                        >
+                          <span className="text-xl">{agent.icon}</span>
+                          <span className="text-[10px] text-gray-200 font-medium">{agent.name}</span>
+                          {/* Status indicator */}
+                          <motion.div
+                            className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
+                            style={{ backgroundColor: agent.color }}
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
+                          />
+                        </motion.div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
 
-                {/* Bidirectional arrows */}
+                {/* Legend */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
-                  className="absolute text-[10px] text-gray-500 -bottom-4"
+                  className="absolute -bottom-2 flex items-center gap-4 text-xs text-gray-400"
                 >
-                  ↔ Bidirectional communication
+                  <span className="flex items-center gap-1">
+                    <span className="text-purple-400">↔</span> Bidirectional
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <motion.span 
+                      className="w-2 h-2 rounded-full bg-purple-400"
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    />
+                    Active flow
+                  </span>
                 </motion.div>
               </motion.div>
             )}
