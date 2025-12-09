@@ -1,4 +1,4 @@
-# Slide 28: Key Takeaways
+# Slide 27: Key Takeaways
 
 ## Slide Content
 

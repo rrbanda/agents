@@ -1,4 +1,4 @@
-# Slide 21: Common Patterns
+# Slide 19: Common Patterns
 
 ## Slide Content
 

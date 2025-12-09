@@ -1,4 +1,4 @@
-# Slide 23: Current Limitations
+# Slide 22: Current Limitations
 
 ## Slide Content
 

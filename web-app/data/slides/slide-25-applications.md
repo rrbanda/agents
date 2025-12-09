@@ -1,4 +1,4 @@
-# Slide 26: Real-World Applications
+# Slide 25: Real-World Applications
 
 ## Slide Content
 

@@ -1,4 +1,4 @@
-# Slide 30: Thank You
+# Slide 29: Thank You
 
 ## Slide Content
 

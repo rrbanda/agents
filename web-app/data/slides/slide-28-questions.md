@@ -1,4 +1,4 @@
-# Slide 29: Questions?
+# Slide 28: Questions?
 
 ## Slide Content
 

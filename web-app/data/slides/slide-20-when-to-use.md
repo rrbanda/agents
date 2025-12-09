@@ -1,4 +1,4 @@
-# Slide 22: When to Use Agents
+# Slide 20: When to Use Agents
 
 ## Slide Content
 

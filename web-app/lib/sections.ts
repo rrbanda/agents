@@ -31,19 +31,19 @@ export const sections: SectionInfo[] = [
     title: 'How They Work',
     subtitle: 'The patterns and principles',
     startSlide: 19,
-    endSlide: 26,  // Now includes Linux MCP demo (22)
+    endSlide: 25,
   },
   {
     title: 'Advanced Topics',
     subtitle: 'Scaling and coordination',
-    startSlide: 27,
-    endSlide: 29,
+    startSlide: 26,
+    endSlide: 28,
   },
   {
     title: 'Your Journey',
     subtitle: 'Where to go from here',
-    startSlide: 30,
-    endSlide: 34,
+    startSlide: 29,
+    endSlide: 29,
   },
 ];
 

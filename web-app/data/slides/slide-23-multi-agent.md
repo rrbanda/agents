@@ -1,4 +1,4 @@
-# Slide 24: Multi-Agent Systems
+# Slide 23: Multi-Agent Systems
 
 ## Slide Content
 

@@ -1,4 +1,4 @@
-# Slide 27: Your Journey Begins
+# Slide 26: Your Journey Begins
 
 ## Slide Content
 

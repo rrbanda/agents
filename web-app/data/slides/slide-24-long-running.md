@@ -1,4 +1,4 @@
-# Slide 25: Long-Running Agents
+# Slide 24: Long-Running Agents
 
 ## Slide Content
 
