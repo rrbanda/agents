@@ -29,13 +29,13 @@ const content = [
   },
   {
     id: 'agent-patterns',
-    title: 'Agent Patterns & Tools',
+    title: 'Building Effective Agents',
     description: 'How to design agents? What tools do they need? Best practices for building.',
     format: 'slides',
     level: '201',
-    duration: '60 min',
-    items: 40,
-    available: false,
+    duration: '50 min',
+    items: 19,
+    available: true,
     href: '/learn/201',
     gradient: 'from-purple-500 to-pink-500',
   },
@@ -201,17 +201,17 @@ export default function LearnPage() {
                   onMouseLeave={() => setHoveredCard(null)}
                   className={`group relative rounded-2xl overflow-hidden ${!item.available && 'opacity-60'}`}
                 >
-                  {/* Card Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-white/[0.02]" />
-                  <div className="absolute inset-0 rounded-2xl border border-white/[0.08]" />
+                  {/* Card Background - pointer-events-none so clicks pass through */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-white/[0.02] pointer-events-none" />
+                  <div className="absolute inset-0 rounded-2xl border border-white/[0.08] pointer-events-none" />
                   
                   {/* Top Gradient Accent */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient}`} />
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient} pointer-events-none`} />
                   
                   {/* Hover Glow */}
                   {item.available && (
                     <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                       style={{
                         background: `radial-gradient(circle at 50% 0%, ${
                           item.level === '101' ? 'rgba(59,130,246,0.12)' :
@@ -222,8 +222,8 @@ export default function LearnPage() {
                     />
                   )}
 
-                  {/* Content */}
-                  <Link href={item.available ? item.href : '#'} className={!item.available ? 'pointer-events-none' : ''}>
+                  {/* Content - Link covers entire card */}
+                  <Link href={item.available ? item.href : '#'} className={`block ${!item.available ? 'pointer-events-none' : ''}`}>
                     <div className="relative p-6">
                       {/* Header Row */}
                       <div className="flex items-start justify-between mb-4">
