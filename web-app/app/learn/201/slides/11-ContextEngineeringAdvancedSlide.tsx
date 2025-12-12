@@ -165,7 +165,7 @@ export default function ContextEngineeringAdvancedSlide() {
           </div>
 
           {/* Content based on technique type */}
-          {current.id === 'progressive' && 'levels' in current && (
+          {current.id === 'progressive' && 'levels' in current && current.levels && (
             <div className="space-y-3">
               {current.levels.map((level, index) => (
                 <motion.div
@@ -197,7 +197,7 @@ export default function ContextEngineeringAdvancedSlide() {
             </div>
           )}
 
-          {current.id === 'compaction' && 'flow' in current && (
+          {current.id === 'compaction' && 'flow' in current && current.flow && (
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2 flex-wrap font-mono text-sm">
                 {current.flow.map((part, i) => {
