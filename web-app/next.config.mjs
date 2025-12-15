@@ -2,9 +2,9 @@
 const nextConfig = {
   output: 'export',
   
-  // Required for GitHub Pages deployment to username.github.io/agents/
-  basePath: '/agents',
-  assetPrefix: '/agents/',
+  // Required for GitHub Pages deployment to username.github.io/ai-hub/
+  basePath: '/ai-hub',
+  assetPrefix: '/ai-hub/',
   
   // Disable image optimization for static export
   images: {

@@ -14,10 +14,10 @@ let cachedData: SlidesData | null = null;
 function getBasePath(): string {
   // In browser, we can detect the base path from the current URL
   if (typeof window !== 'undefined') {
-    // Check if we're on GitHub Pages with /agents/ prefix
+    // Check if we're on GitHub Pages with /ai-hub/ prefix
     const pathname = window.location.pathname;
-    if (pathname.startsWith('/agents')) {
-      return '/agents';
+    if (pathname.startsWith('/ai-hub')) {
+      return '/ai-hub';
     }
   }
   return '';
