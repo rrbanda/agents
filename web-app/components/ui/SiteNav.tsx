@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 // Personal brand navigation - clean, direct sections
 const navItems = [
   { id: 'talks', label: 'Talks', icon: '🎤', href: '/talks' },
+  { id: 'podcasts', label: 'Podcasts', icon: '🎙️', href: '/podcasts' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights' },
   { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments' },
 ];
@@ -19,6 +20,7 @@ export default function SiteNav() {
   // Determine current section based on pathname
   const getCurrentSection = () => {
     if (pathname.startsWith('/talks') || pathname.startsWith('/presentation')) return 'talks';
+    if (pathname.startsWith('/podcasts')) return 'podcasts';
     if (pathname.startsWith('/insights')) return 'insights';
     if (pathname.startsWith('/experiments') || pathname.startsWith('/demos')) return 'experiments';
     return null;

@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const exploreOptions = [
   { id: 'talks', label: 'Talks', icon: '🎤', href: '/talks', desc: 'Presentations & keynotes' },
+  { id: 'podcasts', label: 'Podcasts', icon: '🎙️', href: '/podcasts', desc: 'Audio & conversations' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights', desc: 'Articles & deep dives' },
   { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments', desc: 'Demos & prototypes' },
 ];
