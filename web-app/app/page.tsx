@@ -5,10 +5,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const exploreOptions = [
-  { id: 'learn', label: 'Learn', icon: '📚', href: '/learn', desc: 'Courses from 101 to 301' },
-  { id: 'demos', label: 'Demos', icon: '⚡', href: '/demos', desc: 'Interactive tools & experiences' },
+  { id: 'talks', label: 'Talks', icon: '🎤', href: '/talks', desc: 'Presentations & keynotes' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights', desc: 'Articles & deep dives' },
-  { id: 'slides', label: 'Slides', icon: '🎬', href: '/learn/101', desc: 'Browse the slide catalog' },
+  { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments', desc: 'Demos & prototypes' },
 ];
 
 // Animated team avatars

@@ -79,7 +79,7 @@ function PresentationContent() {
         e.preventDefault();
         setPresenterMode(!presenterMode);
       } else if (e.key === 'Escape') {
-        router.push('/learn/101');
+        router.push('/talks');
       }
     };
 
@@ -152,11 +152,11 @@ function PresentationContent() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Logo - Links back to slides catalog */}
+      {/* Logo - Links back to talks */}
       <Link 
-        href="/learn/101"
+        href="/talks"
         className="fixed top-3 left-3 z-50 group"
-        title="Back to Slides (Esc)"
+        title="Back to Talks (Esc)"
       >
         <motion.div 
           whileHover={{ scale: 1.05 }}

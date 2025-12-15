@@ -5,11 +5,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+// Personal brand navigation - clean, direct sections
 const navItems = [
-  { id: 'learn', label: 'Learn', icon: '📚', href: '/learn' },
-  { id: 'demos', label: 'Demos', icon: '⚡', href: '/demos' },
+  { id: 'talks', label: 'Talks', icon: '🎤', href: '/talks' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights' },
-  { id: 'slides', label: 'Slides', icon: '🎬', href: '/learn/101' },
+  { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments' },
 ];
 
 export default function SiteNav() {
@@ -18,11 +18,9 @@ export default function SiteNav() {
 
   // Determine current section based on pathname
   const getCurrentSection = () => {
-    // Check specific paths first before general ones
-    if (pathname.startsWith('/learn/101') || pathname.startsWith('/presentation')) return 'slides';
-    if (pathname.startsWith('/learn')) return 'learn';
-    if (pathname.startsWith('/demos')) return 'demos';
+    if (pathname.startsWith('/talks') || pathname.startsWith('/presentation')) return 'talks';
     if (pathname.startsWith('/insights')) return 'insights';
+    if (pathname.startsWith('/experiments') || pathname.startsWith('/demos')) return 'experiments';
     return null;
   };
 
@@ -163,4 +161,3 @@ export default function SiteNav() {
     </nav>
   );
 }
-
