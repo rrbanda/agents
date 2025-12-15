@@ -75,7 +75,39 @@ ai-hub/
 | `web-app/lib/slides-client.ts` | Slide data loading (client-side, fetches slides.json) |
 | `web-app/lib/types.ts` | TypeScript type definitions |
 | `web-app/scripts/generate-slides.mjs` | Build-time slide JSON generator |
+| `specs/INDEX.md` | **📍 Start here: Complete specs index** |
 | `specs/roadmap.md` | Product roadmap and priorities |
+
+---
+
+## Comprehensive Documentation
+
+This repository has **complete reverse-engineered specifications** documenting the entire codebase:
+
+### 📋 Specifications & Architecture
+- **[specs/INDEX.md](specs/INDEX.md)** - 📍 **Start here**: Complete navigation for all specs
+- **Architecture Decisions (6 ADRs)** - Why key technical decisions were made
+  - ADR 0001: Static Export for GitHub Pages
+  - ADR 0002: Dual Data Loading Pattern
+  - ADR 0003: Component-Based Slides
+  - ADR 0004: Tailwind CSS v4
+  - ADR 0005: Framer Motion Animations
+  - ADR 0006: Persona-Based Content
+- **[UI/UX Design System](specs/architecture/ui-ux-design-system.md)** - Colors, typography, spacing, animations
+- **[Component Inventory](specs/architecture/component-inventory.md)** - All 50+ components with usage patterns
+- **[Data Flow](specs/architecture/data-flow.md)** - How data moves through the application
+- **[Slides System (As-Built)](specs/features/slides-system-as-built.md)** - Complete feature documentation
+
+### 🎯 For Spec-Driven Development
+- **[Spec Templates](specs/templates/)** - Templates for new features and ADRs
+- **Feature Specs** - [Blog](specs/features/blog.md), [Podcasts](specs/features/podcasts.md) (planned)
+- **Claude Code Skills** - 5 skills in `.claude/skills/` for common tasks
+
+**When building new features**: Follow the spec-driven workflow:
+1. Start with [specs/INDEX.md](specs/INDEX.md) to understand existing patterns
+2. Use [specs/templates/feature-spec-template.md](specs/templates/feature-spec-template.md) for new features
+3. Reference existing ADRs and design system for consistency
+4. Use Claude Code skills for implementation
 
 ---
 
