@@ -3,50 +3,56 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
+// Placeholder contributors - names are fictional examples
 const crew = [
   {
     id: 1,
-    name: 'Alex Chen',
+    name: 'Jane Placeholder',
     role: 'AI Architect',
     focus: 'Agent Systems & MCP',
     color: 'from-blue-500 to-cyan-500',
     emoji: '🧠',
+    isExample: true,
   },
   {
     id: 2,
-    name: 'Sam Rivera',
+    name: 'John Example',
     role: 'Platform Engineer',
     focus: 'Infrastructure & Scaling',
     color: 'from-purple-500 to-pink-500',
     emoji: '☁️',
+    isExample: true,
   },
   {
     id: 3,
-    name: 'Jordan Lee',
+    name: 'Alice Demo',
     role: 'Developer Advocate',
     focus: 'Education & Community',
     color: 'from-green-500 to-emerald-500',
     emoji: '🎯',
+    isExample: true,
   },
   {
     id: 4,
-    name: 'Casey Morgan',
+    name: 'Bob Sample',
     role: 'Research Engineer',
     focus: 'Multi-Agent Systems',
     color: 'from-orange-500 to-yellow-500',
     emoji: '🔬',
+    isExample: true,
   },
   {
     id: 5,
-    name: 'Riley Park',
+    name: 'Carol Test',
     role: 'UX Engineer',
     focus: 'Agent Interfaces',
     color: 'from-red-500 to-rose-500',
     emoji: '✨',
+    isExample: true,
   },
   {
     id: 6,
-    name: 'You?',
+    name: 'Your Name Here',
     role: 'Join the Crew',
     focus: 'We\'re always looking for contributors',
     color: 'from-gray-500 to-gray-600',
@@ -99,13 +105,25 @@ export default function CrewPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Contributors</span>
           </h1>
           <p className="text-gray-400 text-lg">
             The humans behind the AI mission
+          </p>
+        </motion.div>
+
+        {/* Placeholder Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="max-w-4xl mx-auto mb-8 p-3 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-center"
+        >
+          <p className="text-yellow-400/80 text-xs">
+            ⚠️ Placeholder profiles shown below — real contributor spots available!
           </p>
         </motion.div>
 
