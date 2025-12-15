@@ -4,222 +4,242 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SiteNav from '@/components/ui/SiteNav';
 
-// Talks/presentations as thought leadership, not courses
 const talks = [
   {
     id: 'agentic-ai-intro',
     title: 'Agentic AI: An Introduction',
-    subtitle: 'Understanding the next evolution of AI systems',
-    description: 'From automation to autonomy — explore what makes agents different and why they matter for technical professionals.',
+    description: 'From automation to autonomy — what makes agents different and why they matter.',
+    category: 'Foundations',
+    level: '101',
     duration: '~40 min',
     slides: 34,
     href: '/presentation',
-    gradient: 'from-blue-500 to-cyan-500',
     available: true,
     featured: true,
-    tags: ['Fundamentals', 'Agents', 'AI Evolution'],
   },
   {
     id: 'building-agents',
     title: 'Building Effective Agents',
-    subtitle: 'Patterns for production-ready AI systems',
-    description: 'Architecture patterns, tool design, evaluation strategies, and best practices for building agents that work.',
+    description: 'Architecture patterns, tool design, and best practices for production agents.',
+    category: 'Patterns',
+    level: '201',
     duration: '~60 min',
     slides: 27,
     href: '/talks/201',
-    gradient: 'from-purple-500 to-pink-500',
     available: true,
-    tags: ['Architecture', 'Tools', 'Best Practices'],
   },
   {
-    id: 'production-systems',
-    title: 'Production AI Systems',
-    subtitle: 'Scaling agents in the real world',
-    description: 'Multi-agent orchestration, long-running agents, reliability patterns, and production considerations.',
+    id: 'context-engineering',
+    title: 'Context Engineering Deep Dive',
+    description: 'Managing what information agents see and when for optimal performance.',
+    category: 'Architecture',
+    level: '201',
+    duration: '~30 min',
+    slides: 18,
+    href: '#',
+    available: false,
+  },
+  {
+    id: 'mcp-tools',
+    title: 'MCP & Tool Integration',
+    description: 'Model Context Protocol patterns and designing effective tool interfaces.',
+    category: 'Integration',
+    level: '201',
+    duration: '~35 min',
+    slides: 22,
+    href: '#',
+    available: false,
+  },
+  {
+    id: 'multi-agent',
+    title: 'Multi-Agent Systems',
+    description: 'Orchestration, parallel execution, and collective intelligence patterns.',
+    category: 'Advanced',
+    level: '301',
     duration: '~45 min',
     slides: 30,
     href: '#',
-    gradient: 'from-orange-500 to-red-500',
     available: false,
-    tags: ['Multi-Agent', 'Production', 'Scale'],
+  },
+  {
+    id: 'production-agents',
+    title: 'Production AI Systems',
+    description: 'Reliability patterns, monitoring, and scaling agents in production.',
+    category: 'Advanced',
+    level: '301',
+    duration: '~50 min',
+    slides: 28,
+    href: '#',
+    available: false,
   },
 ];
 
+const levelColors: Record<string, string> = {
+  '101': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  '201': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  '301': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+};
+
+const categoryColors: Record<string, string> = {
+  'Foundations': 'bg-gray-800 text-gray-300',
+  'Patterns': 'bg-gray-800 text-gray-300',
+  'Architecture': 'bg-gray-800 text-gray-300',
+  'Integration': 'bg-gray-800 text-gray-300',
+  'Advanced': 'bg-gray-800 text-gray-300',
+};
+
 export default function TalksPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] overflow-hidden relative">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)',
-            top: '-10%',
-            right: '-10%',
-          }}
-          animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)',
-            bottom: '10%',
-            left: '-5%',
-          }}
-          animate={{ x: [0, 20, 0], y: [0, -30, 0] }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
-
+    <div className="min-h-screen bg-[#0a0a0f]">
       {/* Navigation */}
       <SiteNav />
 
       {/* Main Content */}
-      <main className="relative z-10 px-6 md:px-12 pb-20 max-w-5xl mx-auto">
+      <main className="px-6 md:px-12 pb-20 max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Talks & Presentations
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-cyan-400">Talks</span>
+            <span className="text-white"> & Presentations</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Interactive presentations on AI, agents, and building intelligent systems
+            Interactive presentations on agentic AI patterns and practices
           </p>
         </motion.div>
 
+        {/* Featured Banner */}
+        {talks.some(t => t.featured && t.available) && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mb-10 p-6 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20"
+          >
+            <div className="flex items-center justify-center gap-2 text-cyan-400 mb-2">
+              <span>🎤</span>
+              <span className="font-medium">Featured Talk</span>
+            </div>
+            <p className="text-gray-400 text-center text-sm">
+              Start with &ldquo;Agentic AI: An Introduction&rdquo; for the foundational concepts.
+            </p>
+          </motion.div>
+        )}
+
         {/* Talks Grid */}
-        <div className="space-y-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {talks.map((talk, index) => (
             <motion.div
               key={talk.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: 0.1 + index * 0.05 }}
             >
-              <Link 
-                href={talk.available ? talk.href : '#'}
-                className={!talk.available ? 'pointer-events-none' : 'block'}
-              >
-                <motion.div
-                  whileHover={talk.available ? { scale: 1.01, y: -2 } : {}}
-                  whileTap={talk.available ? { scale: 0.99 } : {}}
-                  className={`group relative rounded-2xl overflow-hidden ${
-                    !talk.available && 'opacity-60'
-                  }`}
-                >
-                  {/* Card Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-white/[0.02]" />
-                  <div className={`absolute inset-0 rounded-2xl border transition-colors ${
-                    talk.available 
-                      ? 'border-white/[0.08] group-hover:border-white/[0.15]' 
-                      : 'border-white/[0.05]'
-                  }`} />
-                  
-                  {/* Left Gradient Accent */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${talk.gradient}`} />
-                  
-                  {/* Hover Glow */}
-                  {talk.available && (
-                    <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{
-                        background: `radial-gradient(circle at 0% 50%, rgba(255,255,255,0.04) 0%, transparent 50%)`,
-                      }}
-                    />
-                  )}
-
-                  {/* Content */}
-                  <div className="relative p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
-                    {/* Left: Icon/Visual */}
-                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${talk.gradient} flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-3xl md:text-4xl">🎤</span>
-                    </div>
-
-                    {/* Center: Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        {talk.featured && talk.available && (
-                          <span className="px-2 py-0.5 rounded-md bg-green-500/20 text-green-400 text-xs font-medium">
-                            Featured
-                          </span>
-                        )}
-                        {!talk.available && (
-                          <span className="px-2 py-0.5 rounded-md bg-gray-800 text-gray-500 text-xs">
-                            Coming Soon
-                          </span>
-                        )}
-                      </div>
-                      
-                      <h2 className={`text-xl md:text-2xl font-bold mb-1 transition-colors ${
-                        talk.available 
-                          ? 'text-white group-hover:text-blue-300' 
-                          : 'text-gray-400'
-                      }`}>
-                        {talk.title}
-                      </h2>
-                      
-                      <p className="text-gray-400 text-sm mb-3">
-                        {talk.subtitle}
-                      </p>
-                      
-                      <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
-                        {talk.description}
-                      </p>
-                      
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2">
-                        {talk.tags.map((tag) => (
-                          <span 
-                            key={tag}
-                            className="px-2 py-1 rounded-lg bg-gray-800/50 text-gray-400 text-xs"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right: Meta + Arrow */}
-                    <div className="flex md:flex-col items-center md:items-end gap-4 md:gap-2 flex-shrink-0">
-                      <div className="flex items-center gap-3 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <span>📑</span> {talk.slides}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <span>⏱️</span> {talk.duration}
-                        </span>
-                      </div>
-                      {talk.available && (
-                        <motion.span 
-                          className="text-gray-500 group-hover:text-white transition-colors text-2xl"
-                        >
-                          →
-                        </motion.span>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              </Link>
+              {talk.available ? (
+                <Link href={talk.href} className="block h-full">
+                  <TalkCard talk={talk} />
+                </Link>
+              ) : (
+                <TalkCard talk={talk} />
+              )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Footer */}
-        <motion.div
+        {/* Footer hint */}
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-16"
+          transition={{ delay: 0.6 }}
+          className="text-center text-gray-600 text-sm mt-12"
         >
-          <p className="text-gray-600 text-sm">
-            Use arrow keys or swipe to navigate within presentations
-          </p>
-        </motion.div>
+          Use arrow keys or swipe to navigate within presentations
+        </motion.p>
       </main>
     </div>
+  );
+}
+
+function TalkCard({ talk }: { talk: typeof talks[0] }) {
+  const isAvailable = talk.available;
+  
+  return (
+    <motion.div
+      whileHover={isAvailable ? { y: -4 } : {}}
+      className={`group relative h-full rounded-xl overflow-hidden transition-all duration-300 ${
+        isAvailable 
+          ? 'cursor-pointer' 
+          : 'opacity-60 cursor-default'
+      }`}
+    >
+      {/* Card Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent" />
+      <div className={`absolute inset-0 rounded-xl border transition-colors ${
+        isAvailable
+          ? 'border-white/[0.08] group-hover:border-cyan-500/30'
+          : 'border-white/[0.05]'
+      }`} />
+      
+      {/* Featured indicator */}
+      {talk.featured && isAvailable && (
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500" />
+      )}
+
+      {/* Content */}
+      <div className="relative p-5 h-full flex flex-col">
+        {/* Header: Category + Level */}
+        <div className="flex items-center justify-between mb-4">
+          <span className={`px-2.5 py-1 rounded-md text-xs font-medium ${categoryColors[talk.category] || 'bg-gray-800 text-gray-300'}`}>
+            {talk.category}
+          </span>
+          <span className={`px-2 py-0.5 rounded-md text-xs font-bold border ${levelColors[talk.level]}`}>
+            {talk.level}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className={`text-lg font-semibold mb-2 transition-colors line-clamp-2 ${
+          isAvailable 
+            ? 'text-white group-hover:text-cyan-300' 
+            : 'text-gray-400'
+        }`}>
+          {talk.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
+          {talk.description}
+        </p>
+
+        {/* Footer: Meta */}
+        <div className="flex items-center justify-between text-xs text-gray-600 pt-2 border-t border-white/[0.05]">
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1">
+              <span>📑</span> {talk.slides} slides
+            </span>
+            <span className="flex items-center gap-1">
+              <span>⏱️</span> {talk.duration}
+            </span>
+          </div>
+          {isAvailable ? (
+            <span className="text-cyan-500 group-hover:text-cyan-400 transition-colors">
+              →
+            </span>
+          ) : (
+            <span className="text-gray-600 text-[10px] uppercase tracking-wide">
+              Soon
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 }
