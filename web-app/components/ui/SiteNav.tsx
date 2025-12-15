@@ -11,6 +11,8 @@ const navItems = [
   { id: 'podcasts', label: 'Podcasts', icon: '🎙️', href: '/podcasts' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights' },
   { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments' },
+  { id: 'events', label: 'Events', icon: '📅', href: '/events' },
+  { id: 'newsletter', label: 'Newsletter', icon: '📬', href: '/newsletter' },
 ];
 
 export default function SiteNav() {
@@ -23,6 +25,8 @@ export default function SiteNav() {
     if (pathname.startsWith('/podcasts')) return 'podcasts';
     if (pathname.startsWith('/insights')) return 'insights';
     if (pathname.startsWith('/experiments') || pathname.startsWith('/demos')) return 'experiments';
+    if (pathname.startsWith('/events')) return 'events';
+    if (pathname.startsWith('/newsletter')) return 'newsletter';
     return null;
   };
 

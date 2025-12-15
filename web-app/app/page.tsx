@@ -9,6 +9,8 @@ const exploreOptions = [
   { id: 'podcasts', label: 'Podcasts', icon: '🎙️', href: '/podcasts', desc: 'Audio & conversations' },
   { id: 'insights', label: 'Insights', icon: '💡', href: '/insights', desc: 'Articles & deep dives' },
   { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments', desc: 'Demos & prototypes' },
+  { id: 'events', label: 'Events', icon: '📅', href: '/events', desc: 'Workshops & meetups' },
+  { id: 'newsletter', label: 'Newsletter', icon: '📬', href: '/newsletter', desc: 'Weekly updates' },
 ];
 
 // Animated team avatars
