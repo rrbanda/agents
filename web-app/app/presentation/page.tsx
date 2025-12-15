@@ -152,20 +152,52 @@ function PresentationContent() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Logo - Links back to talks */}
-      <Link 
-        href="/talks"
-        className="fixed top-3 left-3 z-50 group"
-        title="Back to Talks (Esc)"
+      {/* Persistent Back Navigation */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
       >
-        <motion.div 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity"
-        >
-          <span className="text-white font-bold text-xs">AI</span>
-        </motion.div>
-      </Link>
+        <div className="flex items-center justify-between px-4 py-3">
+          {/* Back button + Breadcrumb */}
+          <Link 
+            href="/talks"
+            className="pointer-events-auto group flex items-center gap-2 px-3 py-2 rounded-xl transition-all duration-200"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <motion.div
+              whileHover={{ x: -2 }}
+              className="flex items-center gap-2"
+            >
+              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="text-gray-500 text-sm hidden sm:inline">Talks</span>
+              <span className="text-gray-600 hidden sm:inline">/</span>
+              <span className="text-gray-300 text-sm font-medium">Agentic AI: An Introduction</span>
+            </motion.div>
+          </Link>
+
+          {/* Keyboard hint */}
+          <div 
+            className="pointer-events-none hidden md:flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-gray-500"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%)',
+              backdropFilter: 'blur(12px)',
+            }}
+          >
+            <kbd className="px-1.5 py-0.5 rounded bg-gray-800/50 text-gray-400 text-[10px]">←→</kbd>
+            <span>navigate</span>
+            <span className="text-gray-700 mx-1">·</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-gray-800/50 text-gray-400 text-[10px]">Esc</kbd>
+            <span>exit</span>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Presenter Controls - Only visible when presenterMode is true */}
       {presenterMode && (
