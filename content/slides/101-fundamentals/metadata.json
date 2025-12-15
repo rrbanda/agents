@@ -1,0 +1,16 @@
+{
+  "id": "101-fundamentals",
+  "title": "Agentic AI 101: Fundamentals",
+  "subtitle": "Introduction to AI and Agentic Systems",
+  "level": "101",
+  "status": "published",
+  "version": "1.0.0",
+  "created": "2024-12-01",
+  "updated": "2024-12-14",
+  "authors": ["Raghu Banda"],
+  "duration": "~40 min",
+  "slideCount": 34,
+  "tags": ["fundamentals", "agents", "ai", "introduction"],
+  "prerequisites": []
+}
+

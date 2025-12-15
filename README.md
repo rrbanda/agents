@@ -1,38 +1,120 @@
-# Agentic AI Learning Path
+# AI Hub
 
-A comprehensive educational resource for learning Agentic AI, organized into progressive levels of complexity.
+<div align="center">
 
-## 🎯 Overview
+**Your destination for learning AI and Agentic Systems**
 
-This repository provides structured learning content about Agentic AI, from fundamentals to advanced topics:
+[🌐 Visit Website](https://rrbanda.github.io/ai-hub/) · [📚 View Slides](https://rrbanda.github.io/ai-hub/learn/101/) · [📋 Roadmap](./specs/roadmap.md)
 
-- **[101: Fundamentals](./101-fundamentals/)** - Introduction to agentic AI concepts and basic implementations
-- **[201: Intermediate](./201-intermediate/)** - Building production-ready agents and multi-agent systems
-- **[301: Advanced](./301-advanced/)** - Advanced architectures, research frontiers, and production optimization
+</div>
 
-## 📋 Planning
+---
 
-See [PLAN.md](./PLAN.md) for the detailed organization strategy and content structure.
+## 🎯 About
+
+AI Hub is a comprehensive learning platform featuring interactive slides, in-depth articles, and educational content about AI and Agentic systems.
+
+### Content Types
+
+| Type | Description | Status |
+|------|-------------|--------|
+| 🎬 **Slides** | Interactive presentation decks | ✅ Live |
+| 📝 **Blog** | In-depth articles and tutorials | 🚧 Coming Soon |
+| 🎙️ **Podcasts** | Audio content and discussions | 🚧 Coming Soon |
+
+---
+
+## 📚 Courses
+
+### 101 - AI Fundamentals
+Introduction to generative AI, agents, and foundational concepts.
+- **Duration**: ~40 minutes
+- **Slides**: 29
+
+### 201 - Building Effective Agents
+Architecture patterns, tool design, and production-ready systems.
+- **Duration**: ~60 minutes
+- **Slides**: 27
+
+### 301 - Production AI Systems *(Coming Soon)*
+Multi-agent orchestration and advanced patterns.
+
+---
+
+## 🗂️ Repository Structure
+
+```
+ai-hub/
+├── content/                # 📚 All content sources
+│   ├── blog/              # Blog articles
+│   ├── podcasts/          # Podcast episodes
+│   ├── slides/            # Presentation decks
+│   └── resources/         # Shared resources
+│
+├── specs/                  # 📋 Specifications
+│   ├── features/          # Feature specs
+│   ├── architecture/      # Technical specs
+│   └── roadmap.md         # Product roadmap
+│
+├── docs/                   # 📖 Documentation
+│   ├── CONTRIBUTING.md    # Contribution guidelines
+│   └── ...
+│
+├── web-app/               # 🌐 Next.js website
+│   ├── app/               # Pages and routes
+│   ├── components/        # React components
+│   └── ...
+│
+└── scripts/               # 🔧 Build scripts
+```
+
+---
 
 ## 🚀 Getting Started
 
-_Content is being organized. Check back soon!_
+### View the Website
+Visit [rrbanda.github.io/ai-hub](https://rrbanda.github.io/ai-hub/)
 
-## 📚 Structure
+### Local Development
 
+```bash
+# Clone the repository
+git clone https://github.com/rrbanda/ai-hub.git
+cd ai-hub
+
+# Install dependencies
+cd web-app
+npm install
+
+# Start development server
+npm run dev
 ```
-agents/
-├── 101-fundamentals/    # Beginner level content
-├── 201-intermediate/    # Intermediate level content
-├── 301-advanced/        # Advanced level content
-├── resources/           # Shared resources, glossary, references
-└── PLAN.md             # Organization plan and strategy
-```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
 
 ## 🤝 Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines (coming soon).
+We welcome contributions! See our [Contributing Guide](./docs/CONTRIBUTING.md) for:
+
+- Adding blog posts
+- Creating podcast episodes
+- Improving slides
+- Website development
+
+---
 
 ## 📄 License
 
-Licensed under the Apache License 2.0 - see [LICENSE](./LICENSE) for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Built for the AI-native community**
+
+[LinkedIn](https://linkedin.com/in/rb2021) · [GitHub](https://github.com/rrbanda)
+
+</div>
