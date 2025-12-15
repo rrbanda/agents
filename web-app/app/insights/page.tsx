@@ -196,18 +196,6 @@ export default function InsightsPage() {
             </div>
           </motion.div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-3 p-4 rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20"
-          >
-            <p className="text-gray-400 text-xs mb-2">Want to dive in now?</p>
-            <Link href="/talks" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors">
-              Explore presentations →
-            </Link>
-          </motion.div>
         </aside>
 
         {/* Main Content */}
