@@ -8,9 +8,10 @@ const components = [
     id: 'perception',
     icon: '👁️',
     title: 'Perception',
-    subtitle: 'Gathering Information',
+    subtitle: 'Input Processing',
     description: 'How agents interpret inputs from their environment',
     examples: ['User messages', 'Tool results', 'File contents', 'API responses'],
+    implementation: 'System prompts, context injection, RAG retrieval',
     color: '#3b82f6',
     position: { row: 0, col: 0 },
   },
@@ -21,6 +22,7 @@ const components = [
     subtitle: 'Decision Making',
     description: 'Processing information to make informed choices',
     examples: ['Planning steps', 'Evaluating options', 'Chain-of-thought', 'Self-reflection'],
+    implementation: 'CoT prompting, ReAct pattern, Tree of Thoughts',
     color: '#8b5cf6',
     position: { row: 0, col: 1 },
   },
@@ -31,6 +33,7 @@ const components = [
     subtitle: 'Execution',
     description: 'Performing tasks through tools and interactions',
     examples: ['Tool calls', 'Code execution', 'API requests', 'File operations'],
+    implementation: 'Function calling, MCP servers, sandboxed execution',
     color: '#10b981',
     position: { row: 1, col: 0 },
   },
@@ -41,16 +44,18 @@ const components = [
     subtitle: 'State Persistence',
     description: 'Maintaining context across interactions',
     examples: ['Conversation history', 'Working memory', 'Long-term storage', 'Learned patterns'],
+    implementation: 'Context window, vector DBs, file-based notes',
     color: '#f59e0b',
     position: { row: 1, col: 1 },
   },
   {
-    id: 'learning',
-    icon: '📈',
-    title: 'Learning',
-    subtitle: 'Adaptation',
-    description: 'Improving performance over time through feedback',
-    examples: ['Error correction', 'Strategy refinement', 'Pattern recognition', 'Self-improvement'],
+    id: 'verification',
+    icon: '✓',
+    title: 'Verification',
+    subtitle: 'Quality Control',
+    description: 'Checking outputs and ensuring correctness',
+    examples: ['Self-verification', 'Test execution', 'LLM-as-judge', 'Human review'],
+    implementation: 'Evaluation loops, guardrails, assertion checks',
     color: '#ec4899',
     position: { row: 2, col: 0.5 },
   },
@@ -144,7 +149,7 @@ export default function CoreComponentsSlide() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="mt-6 max-w-2xl w-full"
+        className="mt-4 max-w-3xl w-full"
       >
         {activeComponent ? (
           <motion.div
@@ -152,7 +157,11 @@ export default function CoreComponentsSlide() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="bg-gray-800/50 rounded-xl p-4 border border-gray-700/50"
+            className="rounded-xl p-4 border"
+            style={{
+              backgroundColor: `${components.find(c => c.id === activeComponent)?.color}08`,
+              borderColor: `${components.find(c => c.id === activeComponent)?.color}30`,
+            }}
           >
             {(() => {
               const comp = components.find(c => c.id === activeComponent);
@@ -166,21 +175,37 @@ export default function CoreComponentsSlide() {
                     <span className="text-2xl">{comp.icon}</span>
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-white mb-1">{comp.title}</h4>
-                    <p className="text-gray-400 text-sm mb-2">{comp.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {comp.examples.map((example) => (
-                        <span
-                          key={example}
-                          className="px-2 py-1 rounded-md text-xs"
-                          style={{ 
-                            backgroundColor: `${comp.color}15`,
-                            color: comp.color,
-                          }}
-                        >
-                          {example}
-                        </span>
-                      ))}
+                    <div className="flex items-center gap-3 mb-2">
+                      <h4 className="font-bold text-white">{comp.title}</h4>
+                      <span className="text-xs text-gray-500">— {comp.subtitle}</span>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">{comp.description}</p>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Examples */}
+                      <div>
+                        <span className="text-xs text-gray-500 uppercase tracking-wider">Examples</span>
+                        <div className="flex flex-wrap gap-1.5 mt-1">
+                          {comp.examples.map((example) => (
+                            <span
+                              key={example}
+                              className="px-2 py-0.5 rounded text-xs"
+                              style={{ 
+                                backgroundColor: `${comp.color}15`,
+                                color: comp.color,
+                              }}
+                            >
+                              {example}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Implementation */}
+                      <div>
+                        <span className="text-xs text-gray-500 uppercase tracking-wider">Implementation</span>
+                        <p className="text-sm text-gray-300 mt-1">{comp.implementation}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -190,7 +215,7 @@ export default function CoreComponentsSlide() {
         ) : (
           <div className="bg-gray-800/30 rounded-xl p-4 border border-gray-700/30 text-center">
             <p className="text-gray-500 text-sm">
-              Hover over a component to see details
+              Hover over a component to see 201-level implementation details
             </p>
           </div>
         )}

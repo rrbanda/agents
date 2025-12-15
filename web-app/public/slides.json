@@ -1,0 +1,523 @@
+{
+  "slides": [
+    {
+      "id": "slide-01-title",
+      "number": 1,
+      "title": "Agentic AI 101",
+      "content": {
+        "title": "Agentic AI 101",
+        "content": "# Agentic AI",
+        "speakerNotes": "### Detailed Opening\n\n**Welcome**: \"Thank you for joining. Today we're going to explore something that's changing how we work with AI.\"\n\n**Introduction**:\n- \"This is about Agentic AI - the next evolution\"\n- \"From automation - where AI does what we tell it\"\n- \"To autonomy - where AI works toward goals\"\n- \"And what this means for technical professionals like you\"\n\n**Set Expectations**:\n- \"We'll cover how we got here - the evolution\"\n- \"What agents are - understanding the breakthrough\"\n- \"How they work - the patterns and principles\"\n- \"How to use them - practical applications\"\n- \"Where we're heading - the future\"\n\n**Audience Connection**:\n- \"Whether you're a sysadmin, DevOps engineer, or developer\"\n- \"This will show you what's possible\"\n- \"And how agents can help in your work\"\n\n**Timing**: 1-2 minutes\n\n**Tone**: Welcoming, setting the stage, building anticipation",
+        "visualDescription": "**Layout**: Clean title slide with:\n- Large title: \"Agentic AI\" (48pt+, bold)\n- Subtitle: \"From Automation to Autonomy\" (32pt)\n- Tagline at bottom: \"What it means for technical professionals\" (18pt)\n- Minimal, professional design\n- Generous whitespace\n\n**Design Specifications**:\n- **Background**: Dark (#1F2937) or professional gradient\n- **Text Color**: Light (#F9FAFB) for contrast\n- **Typography**: Sans-serif, professional\n- **Layout**: Centered, vertical hierarchy\n- **Optional**: Subtle tech-themed background image (low opacity)\n\n**Colors**: Professional palette, high contrast for readability",
+        "references": "**Source**: Content 1 - Agentic AI Introduction\n- Concept: Evolution from automation to autonomy\n- Audience: Technical professionals\n- Approach: Multi-persona framework\n\n**Presentation Framework**: See `PRESENTATION_FRAMEWORK.md` for design rationale"
+      },
+      "part": "Opening",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-02-frustration",
+      "number": 2,
+      "title": "The Daily Reality",
+      "content": {
+        "title": "The Daily Reality",
+        "content": "**System Administrator:**\n\nEvery morning. 2 hours analyzing logs across 50 servers.\n\n1 hour documenting incidents.\n\nRepetitive troubleshooting tasks.\n\n*\"There has to be a better way...\"*",
+        "speakerNotes": "**Narrative Approach**:\n- Set the scene for each persona\n- Build the frustration\n- Use the quotes as emotional hooks\n- Create connection with audience\n\n**For SysAdmins:**\n\"Imagine Sarah, a RHEL sysadmin. Every morning - same routine. 2 hours analyzing logs from 50 servers. She's looking for anomalies, but most of it is noise. Then another hour documenting incidents. This is repetitive, time-consuming work. What if an agent could do the initial triage?\"\n\n**For DevOps:**\n\"Marcus, a DevOps engineer. 2am page. Deployment failed. He needs to trace through 15 microservices, check logs, metrics, and configs. There's no clear starting point. What if an agent could do the initial investigation?\"\n\n**For Developers:**\n\"Alex, a developer. Joins a new team. 200K line codebase. They need to understand how authentication works, but it's spread across 20 files. Where do you even start? What if an agent could guide them through it?\"\n\n**Delivery**:\n- Read with pacing, build the frustration\n- Pause before quotes\n- Let quotes land emotionally\n- \"What if\" creates anticipation\n\n**Timing**: 2-3 minutes\n\n**Interaction**: Ask audience to identify with one persona (raise hands)\n\n**Tone**: Relatable, building frustration, creating anticipation",
+        "visualDescription": "**Layout**: Cinematic persona introduction:\n- Each persona gets its own visual space\n- Short lines with visual rhythm\n- Quotes in italics, emphasized\n- Visual separation between personas\n\n**Design**: \n- Dark background\n- Each persona section visually distinct\n- Quotes stand out (larger, italicized)\n- Professional but emotionally engaging\n- Visual rhythm matches the frustration"
+      },
+      "part": "Opening",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-03-promise",
+      "number": 3,
+      "title": "What If...",
+      "content": {
+        "title": "What If...",
+        "content": "**What if you had a teammate that could...**\n\n**For SysAdmins:**\n\nAnalyze logs across all servers automatically.\n\nDocument incidents as they happen.\n\nRemember what worked last time.",
+        "speakerNotes": "**Narrative Approach**:\n- Answer the frustration from previous slide\n- Show the possibilities\n- Build anticipation\n- End with the hook question\n\n**Transition**: \"This is what Agentic AI enables - not just tools, but teammates that learn and remember.\"\n\n**Key Points**:\n- Agents can do repetitive work automatically\n- They remember past work\n- They learn from experience\n- They work autonomously toward goals\n\n**Delivery**:\n- \"What If\" - create intrigue\n- Read capabilities with energy\n- Build to the final question\n- Let the question hang\n\n**Timing**: 2 minutes\n\n**Tone**: Promising, forward-looking, building anticipation",
+        "visualDescription": "**Layout**: Cinematic promise reveal:\n- \"What If\" - hook at top\n- Each persona gets visual space\n- Capabilities listed with rhythm\n- Final question emphasized\n\n**Design**: \n- Dark background\n- Visual connection to Slide 2 (same structure)\n- But positive, forward-looking\n- Final question visually distinct\n- Professional but engaging"
+      },
+      "part": "Opening",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-04-journey",
+      "number": 4,
+      "title": "What We'll Cover",
+      "content": {
+        "title": "What We'll Cover",
+        "content": "1. **How We Got Here** - The evolution of AI\n2. **What Agents Are** - Understanding the breakthrough\n3. **How They Work** - The patterns and principles\n4. **How to Use Them** - Practical applications\n5. **Where We're Heading** - The future\n\n**Goal**: By the end, you'll understand what agents are and how they can help in your work.",
+        "speakerNotes": "**Purpose**: Set roadmap for the presentation\n\n**Key Points**:\n- We'll start with evolution (how we got here)\n- Then understand what agents are\n- Learn how they work\n- See practical applications\n- Look at the future\n\n**Timing**: 1-2 minutes",
+        "visualDescription": "**Layout**: Numbered list (1-5) with:\n- Clear numbering\n- Bold section titles\n- Brief descriptions\n- Goal statement at bottom\n\n**Design**: Roadmap/timeline feel, clear progression"
+      },
+      "part": "Opening",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-05-generative-ai",
+      "number": 5,
+      "title": "What is Generative AI?",
+      "content": {
+        "title": "What is Generative AI?",
+        "content": ""
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-06-cold-open",
+      "number": 6,
+      "title": "The AI Evolution",
+      "content": {
+        "title": "The AI Evolution",
+        "content": "**Ten years ago**, machines learned to see.\n\n**Five years ago**, they learned to speak.\n\n**In the past two years** — they learned to *reason in language*.\n\nWe used them to finish our sentences, refactor our code, and summarize the internet.\n\n**But so far, they've only ever *reacted*.**\n\nThey wait for a prompt — and then respond.",
+        "speakerNotes": "**Purpose**: Set up the narrative arc using cinematic storytelling\n\n**Delivery**: \n- Build the timeline with pacing\n- Create suspense with the pause before the questions\n- Use the questions as the hook that draws audience in\n\n**Key Points**:\n- We're telling a story of evolution\n- Each milestone builds on the last\n- The questions create intrigue\n- This sets up everything that follows\n\n**Timing**: 2-3 minutes\n\n**Tone**: Cinematic, engaging, but professional",
+        "visualDescription": "**Layout**: Cinematic timeline style:\n- Large, readable text (not quotes)\n- Progressive timeline visualization\n- Dramatic pause/break before questions\n- Questions in larger, bold text\n\n**Design**: \n- Dark background with text overlay (cinematic feel)\n- Timeline visualization (years floating)\n- Builds tension to the questions\n- Professional but visually striking"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-07-language-models",
+      "number": 7,
+      "title": "The First Breakthrough",
+      "content": {
+        "title": "The First Breakthrough",
+        "content": "**2017-2020: Language Models Emerge**\n\nGiven \"Dogs are …,\" they predict the next token.\n\nThrough trillions of examples, they gain *fluency*.\n\nBut not *understanding*.",
+        "speakerNotes": "**Narrative Approach**: \n- Tell the story of discovery\n- Show the excitement of what was possible\n- Reveal the limitation\n\n**Key Points**:\n- This was revolutionary at the time\n- But we quickly saw the limits\n- They could talk, but not think\n- This created the need for what came next\n\n**Example**: \"If I say 'Dogs are', the model predicts what comes next based on patterns it's seen, not because it understands dogs.\"\n\n**Timing**: 2 minutes\n\n**Tone**: Reflective, building toward the next revelation",
+        "visualDescription": "**Visual**: Cinematic reveal style:\n- Timeline: \"2017-2020\" subtly shown\n- Large text: \"Language Models Emerge\"\n- Discovery points listed\n- The limitation revealed at bottom\n\n**Design**: \n- Dark, cinematic background\n- Text appears progressively (if animated)\n- \"The Limit\" section visually distinct\n- Professional but visually engaging"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-08-assistants",
+      "number": 8,
+      "title": "The Next Step Forward",
+      "content": {
+        "title": "The Next Step Forward",
+        "content": "**2020-2022: Assistants Enter the Scene**\n\nThey draft emails, refactor code, summarize documents.\n\nThey maintain context across conversations.\n\nThey become our copilots.",
+        "speakerNotes": "**Narrative Approach**:\n- Build on previous slide's limitation\n- Show the progress made\n- But reveal the new limitation\n\n**Key Points**:\n- This was a real improvement\n- Context management was huge\n- But they still wait for us\n- Still reactive, not proactive\n\n**The Hook**: \"But here's what we learned...\" - creates curiosity\n\n**Timing**: 2 minutes\n\n**Tone**: Building tension, showing progress but revealing limits",
+        "visualDescription": "**Visual**: Cinematic comparison:\n- Timeline: \"2020-2022\" subtly shown\n- Large text: \"Assistants Enter the Scene\"\n- Capabilities shown positively\n- \"But Here's What We Learned\" as dramatic reveal\n- Table shows the reality\n\n**Design**: \n- Builds on previous slide visually\n- \"But\" section creates visual contrast\n- Table is clear but not overwhelming\n- Professional with cinematic pacing"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-09-reasoning",
+      "number": 9,
+      "title": "The Moment Everything Changed",
+      "content": {
+        "title": "The Moment Everything Changed",
+        "content": "**2022-2023: A Discovery**\n\nWe asked models to \"think step by step.\"\n\nSomething unexpected happened.",
+        "speakerNotes": "**Narrative Approach**:\n- Build suspense: \"Something unexpected happened\"\n- Reveal the breakthrough dramatically\n- Show the significance\n\n**Key Points**:\n- This was a genuine discovery\n- Not planned, but emerged\n- Changed everything\n- Foundation for what comes next\n\n**Delivery**: \n- Pause after \"Something unexpected happened\"\n- Let the reveal land\n- Build to \"This was the spark\"\n\n**Timing**: 2-3 minutes\n\n**Tone**: Dramatic reveal, but professional",
+        "visualDescription": "**Visual**: Cinematic reveal:\n- Timeline: \"2022-2023\" subtly shown\n- Large text: \"A Discovery\"\n- \"Something unexpected happened\" - dramatic pause\n- \"Chain-of-thought reasoning emerged\" - the reveal\n- \"This was the spark\" - emphasized\n\n**Design**: \n- Dark background\n- Text appears progressively\n- Dramatic spacing\n- \"The spark\" visually emphasized (maybe glow effect)\n- Professional but cinematic"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-10-convergence",
+      "number": 10,
+      "title": "The Convergence",
+      "content": {
+        "title": "The Convergence",
+        "content": "**2023-Present: Three Capabilities Combine**\n\n**Memory** - remembers past interactions\n\n**Tools** - can take actions in the world\n\n**Goals** - pursues outcomes, not just answers",
+        "speakerNotes": "**Narrative Approach**:\n- This is the culmination\n- Three capabilities converge\n- Show the transformation\n- End with the statement of arrival\n\n**Key Points**:\n- This is the breakthrough\n- Three capabilities working together\n- Creates something new\n- We're here now\n\n**Delivery**:\n- Build to \"What This Means\"\n- Emphasize the transformation\n- \"The Age of Agents has begun\" - powerful closing\n\n**Timing**: 2-3 minutes\n\n**Tone**: Arrival, culmination, but professional",
+        "visualDescription": "**Visual**: Cinematic convergence:\n- Timeline: \"2023-Present\" subtly shown\n- Large text: \"Three Capabilities Combine\"\n- Three capabilities shown separately, then converging\n- \"What This Means\" - the transformation\n- \"The Age of Agents has begun\" - final statement\n\n**Design**: \n- Visual convergence (three elements coming together)\n- Dark, cinematic background\n- \"The Age of Agents\" - large, impactful text\n- Professional but dramatic"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-11-evolution",
+      "number": 11,
+      "title": "The Complete Picture",
+      "content": {
+        "title": "The Complete Picture",
+        "content": "**2017-2020: Language Models**\n- Statistical prediction\n- Single-turn responses\n- *Machines that talk*\n\n**2020-2022: Assistants**\n- Reactive helpers\n- Multi-turn conversations\n- *Machines that remember*\n\n**2022-2023: Reasoning**\n- Chain-of-thought\n- Self-reflection\n- *Machines that think*\n\n**2023-Present: Agents**\n- Memory + Tools + Goals\n- Autonomous action\n- *Machines that act*",
+        "speakerNotes": "### Detailed Explanation\n\n**Opening**: \"Let's see the complete picture. Here's how we got here.\"\n\n**Stage-by-Stage** (point to each on timeline):\n\n**2017-2020: Language Models**\n- \"This is where it started\"\n- \"Statistical prediction - given text, predict next token\"\n- \"Single-turn responses - ask a question, get an answer\"\n- \"Machines that talk - but they don't understand\"\n\n**2020-2022: Assistants**\n- \"Next step: context management\"\n- \"Reactive helpers - they wait for prompts\"\n- \"Multi-turn conversations - they remember the conversation\"\n- \"Machines that remember - but still reactive\"\n\n**2022-2023: Reasoning**\n- \"The breakthrough: chain-of-thought\"\n- \"Models could reason step-by-step\"\n- \"Self-reflection - they could improve their answers\"\n- \"Machines that think - actual reasoning emerged\"\n\n**2023-Present: Agents**\n- \"The convergence: memory + tools + goals\"\n- \"Autonomous action - they pursue outcomes\"\n- \"Machines that act - this is where we are now\"\n\n**The Progression**:\n- \"Each stage builds on the previous\"\n- \"From reactive to proactive\"\n- \"From answering to acting\"\n- \"The journey: from answering questions to achieving goals\"\n\n**Key Insight**:\n- \"This wasn't planned - it emerged\"\n- \"Each breakthrough opened new possibilities\"\n- \"We're at the beginning of the agent era\"\n\n**Transition**: \"Now let's understand what agents actually are.\"\n\n**Timing**: 2 minutes\n\n**References**: See Content 1, Sections \"Season 1\" through \"Season 4\"",
+        "visualDescription": "### Evolution Timeline Diagram\n\n**Layout**: Horizontal timeline showing progression\n\n```\n2017-2020          2020-2022          2022-2023          2023-Present\n    │                  │                  │                  │\n    │                  │                  │                  │\n┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐\n│   LLMs  │ ───→ │Assistants│ ───→ │Reasoning│ ───→ │ Agents  │\n└─────────┘      └─────────┘      └─────────┘      └─────────┘\n    │                  │                  │                  │\n    │                  │                  │                  │\nStatistical      Reactive         Chain-of-      Memory +\nprediction        helpers          thought        Tools +\nSingle-turn      Multi-turn        Self-          Goals\nresponses        conversations     reflection     Autonomous\n    │                  │                  │                  │\n    │                  │                  │                  │\nMachines         Machines          Machines        Machines\nthat talk        that remember     that think      that act\n```\n\n**Visual Elements**:\n- Four stages in horizontal progression\n- Arrows showing evolution\n- Key characteristics under each stage\n- Summary statement (italicized) below\n- Years shown at top\n\n**Design Specifications**:\n- **Size**: Timeline spans ~90% of slide width\n- **Colors**: \n  - LLMs (2017-2020): Gray (foundation)\n  - Assistants (2020-2022): Blue (improvement)\n  - Reasoning (2022-2023): Green (breakthrough)\n  - Agents (2023-Present): Gold (current state)\n- **Shape**: Horizontal boxes with connecting arrows\n- **Typography**: \n  - Stage names: Large, bold (24pt+)\n  - Characteristics: Medium (16pt)\n  - Summaries: Italicized, emphasized (18pt)\n- **Spacing**: Even distribution, clear separation\n\n**Alternative View**: Can show as vertical timeline:\n```\n2023-Present ──→ Agents (Machines that act)\n     ↑\n2022-2023 ──→ Reasoning (Machines that think)\n     ↑\n2020-2022 ──→ Assistants (Machines that remember)\n     ↑\n2017-2020 ──→ LLMs (Machines that talk)\n```\n\n**Visual Metaphor**: Evolution from simple to complex, reactive to proactive",
+        "references": "**Source**: Content 1 - Agentic AI Introduction (Version A)\n- Sections: \"Season 1\" through \"Season 4\"\n- Concept: Evolution from LLMs to Agents\n- Narrative: \"Previously on Artificial Intelligence\" through \"Enter the Agents\"\n\n**Additional Context**: Content 13 - Understanding Generative AI\n- Section: \"How it works\"\n- Concept: Pre-training → Fine-tuning → Deployment progression\n- Context: Foundation for understanding the evolution"
+      },
+      "part": "Foundation & Evolution",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-12-what-is-agent",
+      "number": 12,
+      "title": "The Definition",
+      "content": {
+        "title": "The Definition",
+        "content": "**An AI agent is a system that can:**\n\nUnderstand natural-language objectives.\n\nPlan multi-step actions toward a goal.\n\nInteract with external tools and data.\n\nMonitor progress and self-evaluate.\n\nAdapt to feedback and changing conditions.",
+        "speakerNotes": "**Narrative Approach**:\n- Build the definition progressively\n- Each capability is important\n- End with the simple definition\n- The final statement creates clarity\n\n**Key Points**:\n- Not just a chatbot\n- Not just automation\n- It's an LLM that can remember, use tools, and work toward goals\n- Think of it as a teammate, not a tool\n\n**Delivery**:\n- Read each capability with emphasis\n- Pause before \"In Simple Terms\"\n- \"Something new\" - emphasize the novelty\n\n**Timing**: 2-3 minutes\n\n**Tone**: Definitive, clear, building understanding",
+        "visualDescription": "**Layout**: Cinematic definition:\n- Capabilities listed with visual rhythm\n- Each on its own line for emphasis\n- \"In Simple Terms\" - visual break\n- Final statement emphasized\n\n**Design**: \n- Dark background\n- Text appears progressively (if animated)\n- \"Something new\" - visually distinct\n- Professional but engaging"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-13-anatomy",
+      "number": 13,
+      "title": "The 7 Components",
+      "content": {
+        "title": "The 7 Components",
+        "content": "1. **Goal & Constraints** - Defines mission and boundaries\n2. **LLM Brain** - Understands, reasons, plans\n3. **Memory** - Short-term context and long-term history\n4. **Tools/APIs** - Acts in the real world\n5. **Planner/Scheduler** - Sequences steps\n6. **Reflection Loop** - Evaluates its own work\n7. **Human Oversight** - Ensures alignment and safety\n\n**The Living Loop**: Perceive → Reason → Act → Reflect → Learn",
+        "speakerNotes": "### Detailed Explanation\n\n**Opening**: \"Let's break down what makes an agent work. There are 7 key components, and they all work together.\"\n\n**Component-by-Component** (point to each on diagram):\n\n1. **Goal & Constraints** (top-left)\n   - \"This defines what the agent is trying to achieve\"\n   - \"And what boundaries it must respect\"\n   - \"Without this, the agent has no direction\"\n\n2. **LLM Brain** (center-top)\n   - \"This is the intelligence - the language model\"\n   - \"It understands, reasons, and plans\"\n   - \"This is what makes it 'smart'\"\n\n3. **Memory** (top-right)\n   - \"Two types: short-term and long-term\"\n   - \"Short-term: what's happening right now\"\n   - \"Long-term: what it learned before\"\n   - \"This is what makes it remember\"\n\n4. **Tools/APIs** (right)\n   - \"This is how it acts in the world\"\n   - \"Can call APIs, run commands, interact with systems\"\n   - \"This is what makes it capable\"\n\n5. **Planner/Scheduler** (bottom-right)\n   - \"Breaks goals into steps\"\n   - \"Decides what to do first, second, third\"\n   - \"This is what makes it organized\"\n\n6. **Reflection Loop** (bottom)\n   - \"Evaluates its own work\"\n   - \"Did it succeed? Can it improve?\"\n   - \"This is what makes it learn\"\n\n7. **Human Oversight** (top)\n   - \"Ensures alignment and safety\"\n   - \"Human in the loop when needed\"\n   - \"This is what makes it trustworthy\"\n\n**The Living Loop** (point to circular flow):\n- \"This is how they all work together\"\n- \"Perceive: gather information\"\n- \"Reason: think about it\"\n- \"Act: do something\"\n- \"Reflect: evaluate\"\n- \"Learn: improve\"\n- \"And it repeats\"\n\n**Key Insight**: \"None of these work alone. They're all connected. That's what makes an agent powerful.\"\n\n**Transition**: \"Now let's see this in action with a real example.\"\n\n**Timing**: 3-4 minutes\n\n**References**: See Content 1, Section \"Core Architecture\"",
+        "visualDescription": "### Architecture Diagram\n\n**Layout**: Central hub-and-spoke design\n\n```\n                    [Human Oversight]\n                           ↓\n                    ┌─────────────┐\n                    │    AGENT    │\n                    │    CORE     │\n                    └─────────────┘\n                           │\n        ┌──────────────────┼──────────────────┐\n        │                  │                  │\n   [Goal &        [LLM Brain]        [Memory]\n Constraints]         │              │\n        │              │              │\n        │         ┌────┴────┐        │\n        │         │         │        │\n   [Planner/  [Tools/APIs] [Reflection]\n  Scheduler]         │         │\n        │              │         │\n        └──────────────┴─────────┘\n                      │\n            [Living Loop Flow]\n        Perceive → Reason → Act → Reflect → Learn\n```\n\n**Visual Elements**:\n- Central \"Agent Core\" circle/hexagon\n- 7 components arranged around it\n- Arrows showing data flow\n- \"Living Loop\" shown as circular flow at bottom\n- Human Oversight at top (different color/style)\n- Color coding: Core (center), Components (around), Loop (bottom)\n\n**Design Specifications**:\n- **Size**: Central core ~30% of slide, components ~15% each\n- **Colors**: Core (blue), Components (gray), Loop (green), Human Oversight (orange)\n- **Arrows**: Show bidirectional flow where applicable\n- **Labels**: Clear, readable font (minimum 18pt)\n- **Spacing**: Even distribution around core\n\n**Alternative View**: Can also show as layered architecture:\n- Layer 1: Human Oversight (top)\n- Layer 2: Goal & Constraints, Planner/Scheduler\n- Layer 3: LLM Brain (center)\n- Layer 4: Memory, Tools/APIs\n- Layer 5: Reflection Loop (bottom)\n- Living Loop: Circular flow connecting all layers",
+        "references": "**Source**: Content 1 - Agentic AI Introduction (Version B)\n- Section: \"Core Architecture (Anatomy of an Agent)\"\n- Table: Component definitions\n- Concept: \"The control cycle: Perceive → Reason → Act → Reflect → Learn\"\n\n**Additional Context**: Content 9 - Building Effective Agents\n- Section: \"Building Blocks (Augmented LLM)\"\n- Concept: Components working together"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-14-problem",
+      "number": 14,
+      "title": "The Challenge",
+      "content": {
+        "title": "The Challenge",
+        "content": "**A renewable-energy firm.**\n\nEvery morning, the same routine.\n\nHours spent reading industry news.\n\nSummarizing for different teams.\n\nDrafting updates.\n\nPosting to Slack.",
+        "speakerNotes": "**Narrative Approach**: \n- Set the scene like a story\n- Build the routine (repetitive, daily)\n- Show the cost\n- End with the hook question\n\n**Key Points**:\n- Real-world problem many companies face\n- Time-consuming, repetitive work\n- Different teams need different information\n- The question creates anticipation\n\n**Delivery**:\n- Read the routine with pacing (each line a beat)\n- Pause before \"The Cost\"\n- \"The Question\" - create suspense\n\n**Timing**: 1-2 minutes\n\n**Tone**: Storytelling, building to reveal",
+        "visualDescription": "**Layout**: Cinematic problem setup:\n- \"A renewable-energy firm\" - scene setting\n- Routine listed with visual rhythm\n- \"The Cost\" - emphasized\n- \"The Question\" - hook, larger text\n\n**Design**: \n- Dark, cinematic background\n- Text appears progressively (if animated)\n- Visual rhythm matches the routine\n- Question creates visual tension\n- Professional but engaging"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-15-solution",
+      "number": 15,
+      "title": "The Solution",
+      "content": {
+        "title": "The Solution",
+        "content": "**Meet Solar Scout.**\n\nAn agent that works while you sleep.",
+        "speakerNotes": "### Detailed Explanation\n\n**Opening**: \"Let me show you a real example. Meet Solar Scout.\"\n\n**Character Introduction**:\n- \"Solar Scout is an agent deployed by a renewable-energy firm\"\n- \"It works while you sleep - that's the key\"\n- \"This is what autonomous agents can do\"\n\n**The Workflow** (point to each step on timeline):\n\n**7:00 AM - Wake Up**\n- \"The agent starts automatically\"\n- \"No human needed to trigger it\"\n- \"It knows when to begin\"\n\n**7:05 AM - Research News**\n- \"Gathers context from industry sources\"\n- \"Reads news, reports, updates\"\n- \"This is the 'Gather Context' phase\"\n\n**7:15 AM - Summarize Teams**\n- \"Creates tailored summaries\"\n- \"Different information for different teams\"\n- \"This is intelligent processing\"\n\n**7:20 AM - Draft Emails**\n- \"Writes personalized emails\"\n- \"Tailored to each recipient\"\n- \"This is the 'Take Action' phase\"\n\n**7:25 AM - Post Slack**\n- \"Posts updates to Slack channels\"\n- \"Right team, right channel\"\n- \"This is integration\"\n\n**7:30 AM - Report Complete**\n- \"Verifies everything was done\"\n- \"Reports completion\"\n- \"This is the 'Verify Work' phase\"\n\n**The Transformation**:\n- \"Before: Hours of manual work\"\n- \"Someone had to read news, summarize, write emails, post\"\n- \"After: 30 minutes, fully automated\"\n- \"The agent does it all\"\n- \"The result: Language turned into autonomous labor\"\n\n**Key Insights**:\n- \"This is the Agent Loop in action\"\n- \"Gather Context → Take Action → Verify Work\"\n- \"It repeats daily, autonomously\"\n- \"This is what agents enable\"\n\n**Real-World Impact**:\n- \"Think about your daily routine\"\n- \"What repetitive tasks could be automated?\"\n- \"Solar Scout shows what's possible\"\n\n**Transition**: \"Now let's see the impact this had.\"\n\n**Timing**: 2-3 minutes\n\n**References**: See Content 1, Section \"Example Use Case: Solar Scout\"",
+        "visualDescription": "### Solar Scout Workflow Diagram\n\n**Layout**: Timeline flowchart showing agent workflow\n\n```\n    ┌─────────────────────────────────────────────────────┐\n    │           Solar Scout Agent Workflow               │\n    └─────────────────────────────────────────────────────┘\n\n    7:00 AM                   7:05 AM                   7:15 AM\n    ┌──────┐                  ┌──────┐                  ┌──────┐\n    │ Wake │ ───────────────→ │Research│ ──────────────→ │Summarize│\n    │  Up  │                  │  News  │                  │  Teams  │\n    └──────┘                  └──────┘                  └──────┘\n       │                          │                          │\n       │                          │                          │\n       ↓                          ↓                          ↓\n    \n    7:20 AM                   7:25 AM                   7:30 AM\n    ┌──────┐                  ┌──────┐                  ┌──────┐\n    │Draft │ ───────────────→ │  Post │ ──────────────→ │Report │\n    │Emails│                  │ Slack │                  │Complete│\n    └──────┘                  └──────┘                  └──────┘\n\n    ┌─────────────────────────────────────────────────────┐\n    │  Before: Hours of manual work                      │\n    │  After:  30 minutes, fully automated                │\n    │  Result: Language turned into autonomous labor      │\n    └─────────────────────────────────────────────────────┘\n```\n\n**Visual Elements**:\n- Timeline from 7:00 AM to 7:30 AM\n- Six workflow steps in sequence\n- Arrows showing progression\n- Before/After comparison at bottom\n- Time stamps clearly visible\n\n**Design Specifications**:\n- **Size**: Timeline ~70% of slide, comparison ~20%\n- **Colors**: \n  - Each step: Different color (blue gradient)\n  - Arrows: Green (progression)\n  - Time stamps: White/bold\n  - Comparison box: Yellow highlight\n- **Shape**: Horizontal timeline with boxes\n- **Arrows**: Clear directional flow\n- **Typography**: Time stamps large (24pt+), steps clear (18pt+)\n\n**Alternative View**: Can show as vertical timeline:\n```\n7:00 AM ──→ Wake Up\n   ↓\n7:05 AM ──→ Research News\n   ↓\n7:15 AM ──→ Summarize Teams\n   ↓\n7:20 AM ──→ Draft Emails\n   ↓\n7:25 AM ──→ Post Slack\n   ↓\n7:30 AM ──→ Report Complete\n```\n\n**Cinematic Elements**:\n- \"Meet Solar Scout\" - character card style\n- Timeline animates left to right\n- Each step reveals progressively\n- Transformation statement emphasized",
+        "references": "**Source**: Content 1 - Agentic AI Introduction (Version B)\n- Section: \"Example Use Case: Solar Scout\"\n- Description: \"A renewable-energy company deploys Solar Scout to automate daily research\"\n- Outcome: \"Consistent, up-to-date intelligence with minimal human effort\"\n\n**Additional Context**: Content 1 - Agentic AI Introduction (Version A)\n- Section: \"Season 8 — Tell → Show → Tell: The Solar Scout\"\n- Format: Tell-Show-Tell narrative structure\n- Impact: \"What was once hours of manual effort becomes autonomous, contextualized updates\""
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-16-impact",
+      "number": 16,
+      "title": "The Transformation",
+      "content": {
+        "title": "The Transformation",
+        "content": "**Before:**\n\nHours of manual research.\n\nInconsistent updates.\n\nDelayed information.",
+        "speakerNotes": "**Narrative Approach**:\n- Complete the story arc\n- Show the transformation\n- Emphasize what matters\n\n**Key Points**:\n- Clear before/after comparison\n- Shows real value: consistency, timeliness, personalization\n- Frees humans for higher-value work\n- The three \"What\" statements tie it together\n\n**Delivery**:\n- Read \"Before\" with weight (the problem)\n- Read \"After\" with energy (the solution)\n- \"What Changed/Stayed/Freed\" - powerful summary\n\n**Timing**: 2 minutes\n\n**Tone**: Completion, transformation, professional",
+        "visualDescription": "**Layout**: Cinematic transformation:\n- \"Before\" section - darker, problem-focused\n- \"After\" section - lighter, solution-focused\n- Visual contrast between sections\n- Three \"What\" statements at bottom - summary\n\n**Design**: \n- Visual transformation (dark to light)\n- Before/After clearly separated\n- Three summary statements emphasized\n- Professional but visually striking"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-17-agent-loop",
+      "number": 17,
+      "title": "How Agents Work",
+      "content": {
+        "title": "How Agents Work",
+        "content": "**The Fundamental Pattern:**\n\n**Gather Context**\n\n↓\n\n**Take Action**\n\n↓\n\n**Verify Work**\n\n↓\n\n**Repeat**",
+        "speakerNotes": "### Detailed Explanation\n\n**Opening**: \"Here's the fundamental pattern that all agents follow. It's simple, but powerful.\"\n\n**The Pattern** (point to each phase):\n\n1. **Gather Context**\n   - \"First, the agent needs information\"\n   - \"What's the current state? What do I need to know?\"\n   - \"This is the foundation for everything else\"\n\n2. **Take Action**\n   - \"Based on what it gathered, it takes action\"\n   - \"Makes a change, calls a tool, writes code\"\n   - \"This is where it actually does something\"\n\n3. **Verify Work**\n   - \"Did it work? Did it succeed?\"\n   - \"Checks the result, tests the output\"\n   - \"This is how it knows if it's on track\"\n\n4. **Repeat**\n   - \"And it does it again\"\n   - \"Gathers more context, takes next action, verifies\"\n   - \"This is how it makes progress\"\n\n**The Universal Application** (point to examples):\n- \"This isn't just for agents - this is how ALL technical work happens\"\n- \"SysAdmins: Gather logs, analyze, verify fixes\"\n- \"DevOps: Gather metrics, deploy, verify deployment\"\n- \"Developers: Gather code context, write code, verify tests\"\n- \"Same pattern. Different tools. Universal principle.\"\n\n**Key Insight**: \n- \"This is how humans work too\"\n- \"We gather info, take action, verify results\"\n- \"Agents just do it faster and more consistently\"\n\n**Real-World Connection**:\n- \"Think about debugging a problem\"\n- \"You gather logs (Gather Context)\"\n- \"You try a fix (Take Action)\"\n- \"You check if it worked (Verify Work)\"\n- \"And you repeat until it's fixed\"\n- \"Agents do the same thing\"\n\n**Transition**: \"Now let's see how this applies to your specific work.\"\n\n**Timing**: 3-4 minutes\n\n**References**: See Content 4, Section \"The Agent Loop Pattern\"",
+        "visualDescription": "### Agent Loop Diagram\n\n**Layout**: Circular flow with persona examples\n\n```\n                    ┌─────────────────┐\n                    │  Gather Context │\n                    └────────┬────────┘\n                             │\n                             ↓\n                    ┌─────────────────┐\n                    │   Take Action   │\n                    └────────┬────────┘\n                             │\n                             ↓\n                    ┌─────────────────┐\n                    │   Verify Work   │\n                    └────────┬────────┘\n                             │\n                             ↓\n                         [Repeat]\n                             │\n                             ↑\n                             │\n                    ┌────────┴────────┐\n                    │   (Loop Back)   │\n                    └─────────────────┘\n\n    ┌─────────────────────────────────────────────┐\n    │         Persona-Specific Examples           │\n    ├─────────────────────────────────────────────┤\n    │ SysAdmin: Logs → Analyze → Verify fixes    │\n    │ DevOps:   Metrics → Deploy → Verify deploy  │\n    │ Developer: Code → Write → Verify tests      │\n    └─────────────────────────────────────────────┘\n```\n\n**Visual Elements**:\n- Three main phases in circular flow\n- \"Repeat\" creates the loop\n- Persona examples shown below\n- Arrows show direction of flow\n- Visual emphasis on \"Repeat\" to show continuity\n\n**Design Specifications**:\n- **Size**: Main loop ~60% of slide, examples ~30%\n- **Colors**: \n  - Gather Context (blue)\n  - Take Action (green)\n  - Verify Work (orange)\n  - Repeat (red, emphasized)\n- **Shape**: Circular/rounded rectangles for phases\n- **Arrows**: Clear directional flow\n- **Persona Examples**: Boxed, easy to read\n\n**Alternative View**: Can show as linear with loop-back:\n```\n[Gather] → [Act] → [Verify] → [Repeat] → [Gather]...\n```\n\n**Cinematic Reveal**: \n- Start with pattern only\n- Then reveal persona examples\n- Finally emphasize \"Universal principle\"",
+        "references": "**Source**: Content 4 - Agent Architecture Patterns\n- Section: \"The Agent Loop Pattern\"\n- Concept: \"Gather Context → Take Action → Verify Work → Repeat\"\n- Explanation: \"This loop offers a useful way to think about how agents should be structured\"\n\n**Additional Context**: Content 9 - Building Effective Agents\n- Section: \"Common Workflows\"\n- Concept: Pattern applies to all technical work"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-18-persona-examples",
+      "number": 18,
+      "title": "How Agents Help in Your Work",
+      "content": {
+        "title": "How Agents Help in Your Work",
+        "content": "**System Administrator:**\n- **Gather**: Logs from 50 servers\n- **Action**: Identify anomalies, suggest fixes\n- **Verify**: Check if suggestions work\n- **Result**: 2 hours → 15 minutes\n\n**DevOps Engineer:**\n- **Gather**: Pipeline logs, service metrics\n- **Action**: Debug failures, suggest fixes\n- **Verify**: Test deployment\n- **Result**: 30 minutes → 5 minutes\n\n**Software Developer:**\n- **Gather**: Codebase structure, documentation\n- **Action**: Answer questions, explain code\n- **Verify**: Check understanding\n- **Result**: Days → Hours",
+        "speakerNotes": "**Purpose**: Show how the agent loop applies to each persona\n\n**Key Points**:\n- Same pattern for all\n- Different tools and contexts\n- Real time savings\n- Practical applications\n\n**Timing**: 3-4 minutes",
+        "visualDescription": "**Layout**: Three columns, one per persona, showing:\n- Gather → Action → Verify flow\n- Time savings highlighted\n- Clear visual separation\n\n**Design**: Three-column layout, shows pattern application"
+      },
+      "part": "Understanding Agents",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-19-prompt-engineering",
+      "number": 19,
+      "title": "The Challenge",
+      "content": {
+        "title": "The Challenge",
+        "content": "**Problem**: Agents need context, but context is expensive.\n\n**Solution**: Progressive Disclosure\n\n```\nLevel 1: Metadata (name, description)\n    ↓ Loaded at startup\nLevel 2: Full content (instructions)\n    ↓ Loaded when relevant\nLevel 3: Deep dive (specific files)\n    ↓ Loaded only when needed\n```\n\n**Key Insight**: Load only what's needed, when it's needed.",
+        "speakerNotes": "### Detailed Explanation\n\n**Opening**: \"Here's a critical challenge: agents need context, but context is expensive.\"\n\n**The Problem**:\n- \"Context windows are limited\"\n- \"Every token costs money and time\"\n- \"Loading everything upfront wastes resources\"\n- \"You might load 100K tokens but only need 5K\"\n\n**The Solution - Progressive Disclosure** (point to pyramid):\n\n**Level 1: Metadata** (top)\n- \"Start with just names and descriptions\"\n- \"Like a table of contents\"\n- \"Loaded at startup, always available\"\n- \"Small, fast, efficient\"\n\n**Level 2: Content** (middle)\n- \"When relevant, load full instructions\"\n- \"Like reading a chapter\"\n- \"Only loaded when needed\"\n- \"Medium size, loaded on demand\"\n\n**Level 3: Deep Dive** (bottom)\n- \"When specific, load detailed files\"\n- \"Like reading the fine print\"\n- \"Only loaded when absolutely necessary\"\n- \"Large, loaded only when needed\"\n\n**The Benefits**:\n- \"Saves tokens - only load what you need\"\n- \"Faster - less to process\"\n- \"More efficient - better use of context window\"\n- \"Scalable - works with thousands of tools\"\n\n**Real-World Example**:\n- \"Imagine you have 1000 tools available\"\n- \"Loading all definitions: 150K tokens\"\n- \"With progressive disclosure: 5K tokens initially\"\n- \"Only load specific tools when needed\"\n- \"Result: 97% token savings\"\n\n**Key Insight**: \"Load only what's needed, when it's needed. This is context engineering.\"\n\n**Transition**: \"Now let's talk about the tools themselves.\"\n\n**Timing**: 2-3 minutes\n\n**References**: See Content 5, Section \"Effective Context Anatomy\"",
+        "visualDescription": "### Progressive Disclosure Diagram\n\n**Layout**: Pyramid/Triangle showing three levels\n\n```\n                    ┌─────────────────────┐\n                    │   Level 1: Metadata │\n                    │  (Name, Description)│\n                    │   Loaded at startup │\n                    └──────────┬──────────┘\n                               │\n                               ↓\n                    ┌─────────────────────┐\n                    │  Level 2: Content   │\n                    │   (Instructions)    │\n                    │  Loaded when relevant│\n                    └──────────┬──────────┘\n                               │\n                               ↓\n                    ┌─────────────────────┐\n                    │ Level 3: Deep Dive   │\n                    │  (Specific Files)    │\n                    │ Loaded only when needed│\n                    └─────────────────────┘\n\n         Token Usage: High → Medium → Low\n         Detail Level: Low → Medium → High\n```\n\n**Visual Elements**:\n- Pyramid shape showing hierarchy\n- Three distinct levels\n- Arrows showing progression\n- Token usage indicator\n- Detail level indicator\n\n**Design Specifications**:\n- **Size**: Pyramid ~70% of slide\n- **Colors**: \n  - Level 1 (top): Light blue (small, loaded first)\n  - Level 2 (middle): Medium blue (medium size)\n  - Level 3 (bottom): Dark blue (large, loaded last)\n- **Shape**: Inverted pyramid (smallest at top)\n- **Arrows**: Downward flow\n- **Metrics**: Token usage and detail level shown\n\n**Alternative View**: Can show as layers:\n```\n┌─────────────────────────────────────┐\n│  Level 1: Metadata (Always Loaded)  │\n├─────────────────────────────────────┤\n│  Level 2: Content (When Relevant)   │\n├─────────────────────────────────────┤\n│  Level 3: Deep Dive (When Needed)  │\n└─────────────────────────────────────┘\n```\n\n**Visual Metaphor**: Like an iceberg - small visible part (metadata), larger hidden parts (content, deep dive)",
+        "references": "**Source**: Content 5 - Context Engineering\n- Section: \"Effective Context Anatomy\"\n- Concept: \"Progressive disclosure - loading information only as needed\"\n- Principle: \"Load only what's needed, when it's needed\"\n\n**Additional Context**: Content 4 - Agent Architecture Patterns\n- Section: \"Phase 1: Gather Context\"\n- Concept: \"Agentic Search and the File System\"\n- Strategy: \"Progressive disclosure allows models to read tool definitions on-demand\""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-20-context-engineering",
+      "number": 20,
+      "title": "Context Engineering",
+      "content": {
+        "title": "Context Engineering",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-21-tool-design",
+      "number": 21,
+      "title": "Tool Design & MCP",
+      "content": {
+        "title": "Tool Design & MCP",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-22-linux-mcp",
+      "number": 22,
+      "title": "Using RHEL MCP: Talk to Your Linux System",
+      "content": {
+        "title": "Using RHEL MCP: Talk to Your Linux System",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-23-agent-loop-practice",
+      "number": 23,
+      "title": "Agent Loop in Practice",
+      "content": {
+        "title": "Agent Loop in Practice",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-24-common-patterns",
+      "number": 24,
+      "title": "Best Practices",
+      "content": {
+        "title": "Best Practices",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-25-when-to-use",
+      "number": 25,
+      "title": "When to Use Agents",
+      "content": {
+        "title": "When to Use Agents",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-26-limitations",
+      "number": 26,
+      "title": "Current Limitations",
+      "content": {
+        "title": "Current Limitations",
+        "content": ""
+      },
+      "part": "Building Effectively",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-27-multi-agent",
+      "number": 27,
+      "title": "Multi-Agent Systems",
+      "content": {
+        "title": "Multi-Agent Systems",
+        "content": ""
+      },
+      "part": "Advanced Topics",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-28-long-running",
+      "number": 28,
+      "title": "Long-Running Agents",
+      "content": {
+        "title": "Long-Running Agents",
+        "content": ""
+      },
+      "part": "Advanced Topics",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-29-applications",
+      "number": 29,
+      "title": "Real-World Applications",
+      "content": {
+        "title": "Real-World Applications",
+        "content": ""
+      },
+      "part": "Advanced Topics",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-30-ai-fluency",
+      "number": 30,
+      "title": "AI Fluency: The 4Ds",
+      "content": {
+        "title": "AI Fluency: The 4Ds",
+        "content": ""
+      },
+      "part": "Closing",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-31-journey-begins",
+      "number": 31,
+      "title": "Your Journey Begins",
+      "content": {
+        "title": "Your Journey Begins",
+        "content": ""
+      },
+      "part": "Closing",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-32-takeaways",
+      "number": 32,
+      "title": "Key Takeaways",
+      "content": {
+        "title": "Key Takeaways",
+        "content": ""
+      },
+      "part": "Closing",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-33-questions",
+      "number": 33,
+      "title": "Questions?",
+      "content": {
+        "title": "Questions?",
+        "content": ""
+      },
+      "part": "Closing",
+      "persona": [
+        "all"
+      ]
+    },
+    {
+      "id": "slide-34-thank-you",
+      "number": 34,
+      "title": "Thank You",
+      "content": {
+        "title": "Thank You",
+        "content": ""
+      },
+      "part": "Closing",
+      "persona": [
+        "all"
+      ]
+    }
+  ],
+  "metadata": {
+    "totalSlides": 34,
+    "parts": [
+      {
+        "name": "Opening",
+        "start": 1,
+        "end": 4
+      },
+      {
+        "name": "Foundation & Evolution",
+        "start": 5,
+        "end": 11
+      },
+      {
+        "name": "Understanding Agents",
+        "start": 12,
+        "end": 18
+      },
+      {
+        "name": "Building Effectively",
+        "start": 19,
+        "end": 26
+      },
+      {
+        "name": "Advanced Topics",
+        "start": 27,
+        "end": 29
+      },
+      {
+        "name": "Closing",
+        "start": 30,
+        "end": 34
+      }
+    ]
+  }
+}
