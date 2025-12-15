@@ -10,6 +10,19 @@ interface SlidesData {
 
 let cachedData: SlidesData | null = null;
 
+// Get the base path from Next.js config (works at runtime)
+function getBasePath(): string {
+  // In browser, we can detect the base path from the current URL
+  if (typeof window !== 'undefined') {
+    // Check if we're on GitHub Pages with /agents/ prefix
+    const pathname = window.location.pathname;
+    if (pathname.startsWith('/agents')) {
+      return '/agents';
+    }
+  }
+  return '';
+}
+
 async function fetchSlidesData(): Promise<SlidesData | null> {
   // Return cached data if available
   if (cachedData) {
@@ -17,8 +30,9 @@ async function fetchSlidesData(): Promise<SlidesData | null> {
   }
 
   try {
+    const basePath = getBasePath();
     // Fetch from static JSON file (works on GitHub Pages)
-    const response = await fetch('/slides.json');
+    const response = await fetch(`${basePath}/slides.json`);
     if (!response.ok) {
       throw new Error(`Failed to fetch slides: ${response.status}`);
     }
