@@ -90,7 +90,7 @@ export default function ReasoningSlide() {
         transition={{ delay: 0.6 }}
         className="w-full max-w-4xl"
       >
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           {[
             { icon: '🔍', title: 'Planning', desc: 'Break complex tasks into steps' },
             { icon: '✓', title: 'Verification', desc: 'Check its own work' },

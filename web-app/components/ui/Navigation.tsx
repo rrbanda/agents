@@ -34,38 +34,64 @@ export default function Navigation({
 
       {/* Navigation Controls - Only show if presenterMode or always show minimal */}
       {showControls ? (
-        <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-3 sm:py-4 flex items-center justify-between">
+          {/* Previous Button - Icon only on mobile, with text on desktop */}
           <button
             onClick={onPrevious}
             disabled={currentSlide === 1}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            aria-label="Previous slide"
           >
             <ChevronLeftIcon className="w-5 h-5" />
-            <span>Previous</span>
+            <span className="hidden sm:inline">Previous</span>
           </button>
 
-        <div className="text-sm text-gray-500">
-          {currentSlide} / {totalSlides}
-        </div>
+          {/* Slide Counter */}
+          <div className="text-sm text-gray-500">
+            <span className="font-medium text-gray-300">{currentSlide}</span>
+            <span className="mx-1">/</span>
+            <span>{totalSlides}</span>
+          </div>
 
+          {/* Next Button - Icon only on mobile, with text on desktop */}
           <button
             onClick={onNext}
             disabled={currentSlide === totalSlides}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            aria-label="Next slide"
           >
-            <span>Next</span>
+            <span className="hidden sm:inline">Next</span>
             <ChevronRightIcon className="w-5 h-5" />
           </button>
         </div>
       ) : (
-        // Minimal navigation for audience view - just slide number
-        <div className="max-w-6xl mx-auto px-8 py-2 flex justify-center">
+        // Minimal navigation for audience view - just slide number and tap zones
+        <div className="flex items-center justify-between px-4 py-2">
+          {/* Invisible tap zone for previous */}
+          <button
+            onClick={onPrevious}
+            disabled={currentSlide === 1}
+            className="w-12 h-8 flex items-center justify-center text-gray-600 hover:text-gray-400 disabled:opacity-30 transition-colors"
+            aria-label="Previous slide"
+          >
+            <ChevronLeftIcon className="w-4 h-4" />
+          </button>
+          
           <div className="text-xs text-gray-500">
             {currentSlide} / {totalSlides}
           </div>
+          
+          {/* Invisible tap zone for next */}
+          <button
+            onClick={onNext}
+            disabled={currentSlide === totalSlides}
+            className="w-12 h-8 flex items-center justify-center text-gray-600 hover:text-gray-400 disabled:opacity-30 transition-colors"
+            aria-label="Next slide"
+          >
+            <ChevronRightIcon className="w-4 h-4" />
+          </button>
         </div>
       )}
     </div>
   );
 }
-

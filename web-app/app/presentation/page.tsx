@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getAllSlidesClient } from '@/lib/slides-client';
@@ -19,6 +19,11 @@ function PresentationContent() {
   const [presenterMode, setPresenterMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [initialSlideSet, setInitialSlideSet] = useState(false);
+  
+  // Touch/swipe gesture tracking
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     const loadSlides = async () => {
@@ -49,6 +54,19 @@ function PresentationContent() {
     }
   }, [slides.length, searchParams, initialSlideSet]);
 
+  const handleNext = useCallback(() => {
+    if (currentSlideIndex < slides.length - 1) {
+      setCurrentSlideIndex(currentSlideIndex + 1);
+    }
+  }, [currentSlideIndex, slides.length]);
+
+  const handlePrevious = useCallback(() => {
+    if (currentSlideIndex > 0) {
+      setCurrentSlideIndex(currentSlideIndex - 1);
+    }
+  }, [currentSlideIndex]);
+
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
@@ -67,19 +85,39 @@ function PresentationContent() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentSlideIndex, presenterMode, slides.length, router]);
+  }, [handleNext, handlePrevious, presenterMode, router]);
 
-  const handleNext = () => {
-    if (currentSlideIndex < slides.length - 1) {
-      setCurrentSlideIndex(currentSlideIndex + 1);
-    }
-  };
+  // Touch/swipe gesture handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
 
-  const handlePrevious = () => {
-    if (currentSlideIndex > 0) {
-      setCurrentSlideIndex(currentSlideIndex - 1);
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) {
+      return;
     }
-  };
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const deltaX = touchEndX - touchStartX.current;
+    const deltaY = touchEndY - touchStartY.current;
+    
+    // Only register horizontal swipes (ignore vertical scrolling)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+      if (deltaX > 0) {
+        // Swipe right → previous slide
+        handlePrevious();
+      } else {
+        // Swipe left → next slide
+        handleNext();
+      }
+    }
+    
+    touchStartX.current = null;
+    touchStartY.current = null;
+  }, [handleNext, handlePrevious]);
 
   useEffect(() => {
     if (slides.length > 0 && currentSlideIndex >= 0) {
@@ -109,7 +147,11 @@ function PresentationContent() {
   }
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div 
+      className="relative h-screen overflow-hidden touch-pan-y"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Logo - Links back to slides catalog */}
       <Link 
         href="/learn/101"
@@ -150,6 +192,20 @@ function PresentationContent() {
           />
         </AnimatePresence>
       </div>
+
+      {/* Swipe hint for mobile - shows briefly on first load */}
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ delay: 3, duration: 1 }}
+        className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 md:hidden pointer-events-none"
+      >
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/80 text-gray-400 text-sm">
+          <span>←</span>
+          <span>Swipe to navigate</span>
+          <span>→</span>
+        </div>
+      </motion.div>
 
       <Navigation
         currentSlide={currentSlideIndex + 1}

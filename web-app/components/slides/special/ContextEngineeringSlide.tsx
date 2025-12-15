@@ -175,7 +175,7 @@ export default function ContextEngineeringSlide() {
         transition={{ delay: 1 }}
         className="w-full max-w-3xl bg-gray-800/50 rounded-xl p-5 border border-gray-700/50"
       >
-        <div className="grid grid-cols-3 gap-6 text-center">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
           <div>
             <div className="text-3xl font-bold text-green-400">97%</div>
             <div className="text-sm text-gray-400">Token Savings</div>

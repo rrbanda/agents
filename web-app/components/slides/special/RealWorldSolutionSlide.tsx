@@ -137,13 +137,13 @@ export default function RealWorldSolutionSlide() {
         transition={{ duration: 0.3 }}
         className="w-full max-w-6xl flex-1"
       >
-        <div className="grid grid-cols-5 gap-3 h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 h-full overflow-y-auto lg:overflow-visible">
           {/* Left: Agent Card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="col-span-2 rounded-xl overflow-hidden flex flex-col"
+            className="lg:col-span-2 rounded-xl overflow-hidden flex flex-col"
             style={{
               background: `linear-gradient(135deg, ${activePersona.color}15 0%, rgba(31, 41, 55, 0.9) 100%)`,
               border: `2px solid ${activePersona.color}40`,
@@ -215,7 +215,7 @@ export default function RealWorldSolutionSlide() {
           </motion.div>
 
           {/* Right: Workflow Timeline */}
-          <div className="col-span-3 bg-gray-800/50 rounded-xl p-3 border border-gray-700/50 flex flex-col">
+          <div className="lg:col-span-3 bg-gray-800/50 rounded-xl p-3 border border-gray-700/50 flex flex-col">
             <h4 className="text-white font-bold text-sm mb-2 flex items-center gap-2 flex-shrink-0">
               <span className="text-base">📋</span>
               How {activePersona.agentName} Helps
