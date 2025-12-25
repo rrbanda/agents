@@ -70,7 +70,7 @@ const levelColors: Record<string, string> = {
   '301': 'bg-orange-500/20 text-orange-400',
 };
 
-export default function InsightsPage() {
+export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLevel, setSelectedLevel] = useState('All');
 
@@ -86,17 +86,17 @@ export default function InsightsPage() {
     <div className="h-screen flex flex-col bg-[#0a0a0f] overflow-hidden">
       {/* Custom scrollbar styles */}
       <style jsx global>{`
-        .insights-scroll::-webkit-scrollbar {
+        .blogs-scroll::-webkit-scrollbar {
           width: 6px;
         }
-        .insights-scroll::-webkit-scrollbar-track {
+        .blogs-scroll::-webkit-scrollbar-track {
           background: transparent;
         }
-        .insights-scroll::-webkit-scrollbar-thumb {
+        .blogs-scroll::-webkit-scrollbar-thumb {
           background: rgba(255, 255, 255, 0.1);
           border-radius: 3px;
         }
-        .insights-scroll::-webkit-scrollbar-thumb:hover {
+        .blogs-scroll::-webkit-scrollbar-thumb:hover {
           background: rgba(255, 255, 255, 0.2);
         }
       `}</style>
@@ -119,7 +119,7 @@ export default function InsightsPage() {
               border: '1px solid rgba(255,255,255,0.06)',
             }}
           >
-            <div className="p-5 flex-1 overflow-y-auto insights-scroll">
+            <div className="p-5 flex-1 overflow-y-auto blogs-scroll">
               {/* Category Section */}
               <div className="mb-6">
                 <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
@@ -145,7 +145,7 @@ export default function InsightsPage() {
                         }`}
                       >
                         <span>{cat}</span>
-                        <span className={`text-xs ${isActive ? 'text-yellow-400' : 'text-gray-600'}`}>
+                        <span className={`text-xs ${isActive ? 'text-emerald-400' : 'text-gray-600'}`}>
                           {count}
                         </span>
                       </motion.button>
@@ -189,9 +189,9 @@ export default function InsightsPage() {
 
             {/* Status - Fixed at bottom */}
             <div className="p-4 border-t border-white/5 bg-black/20">
-              <div className="flex items-center gap-2 text-xs text-yellow-500">
-                <span>🚧</span>
-                <span>Content in preparation</span>
+              <div className="flex items-center gap-2 text-xs text-emerald-500">
+                <span>✍️</span>
+                <span>14 articles in preparation</span>
               </div>
             </div>
           </motion.div>
@@ -207,11 +207,11 @@ export default function InsightsPage() {
             className="flex-shrink-0 mb-4"
           >
             <h1 className="text-2xl md:text-3xl font-bold mb-1">
-              <span className="text-yellow-400">Insights</span>
-              <span className="text-white"> & Guides</span>
+              <span className="text-emerald-400">Blogs</span>
+              <span className="text-white"> & Deep Dives</span>
             </h1>
             <p className="text-gray-500 text-sm">
-              Deep dives into agentic AI patterns and practices
+              In-depth articles on agentic AI patterns and practices
             </p>
           </motion.div>
 
@@ -220,7 +220,7 @@ export default function InsightsPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="lg:hidden flex-shrink-0 mb-4 overflow-x-auto insights-scroll pb-2"
+            className="lg:hidden flex-shrink-0 mb-4 overflow-x-auto blogs-scroll pb-2"
           >
             <div className="flex gap-2 min-w-max">
               {categories.map((cat) => (
@@ -229,7 +229,7 @@ export default function InsightsPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-all ${
                     selectedCategory === cat
-                      ? 'bg-yellow-500/20 text-yellow-400 font-medium'
+                      ? 'bg-emerald-500/20 text-emerald-400 font-medium'
                       : 'bg-white/5 text-gray-400 hover:bg-white/10'
                   }`}
                 >
@@ -239,22 +239,91 @@ export default function InsightsPage() {
             </div>
           </motion.div>
 
-          {/* Coming Soon Banner - Fixed */}
+          {/* Featured: 2025 Year in Review */}
+          <Link href="/blogs/2025-review">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              whileHover={{ scale: 1.005, y: -2 }}
+              className="flex-shrink-0 mb-6 group cursor-pointer relative rounded-2xl overflow-hidden"
+            >
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/15 to-amber-500/20" />
+              <div className="absolute inset-0 bg-[#0a0a0f]/60" />
+              
+              {/* Animated shimmer effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+              />
+              
+              {/* Border with gradient */}
+              <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-violet-500/30 transition-colors" />
+              
+              {/* Content */}
+              <div className="relative p-6 flex flex-col md:flex-row md:items-center gap-4">
+                {/* Icon/Year badge */}
+                <div className="flex-shrink-0">
+                  <motion.div 
+                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-500/25"
+                    whileHover={{ rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <span className="text-2xl">✨</span>
+                  </motion.div>
+                </div>
+                
+                {/* Text content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-violet-500/20 text-violet-300 uppercase tracking-wide">
+                      Featured
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/20 text-amber-300">
+                      2025
+                    </span>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-violet-200 transition-colors">
+                    2025 Year in Review
+                  </h2>
+                  <p className="text-gray-400 text-sm line-clamp-2">
+                    A look back at our journey through the AI landscape — projects shipped, lessons learned, and the community we built together.
+                  </p>
+                </div>
+                
+                {/* Arrow */}
+                <div className="flex-shrink-0 hidden md:flex items-center">
+                  <motion.div
+                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-500 group-hover:bg-violet-500/20 group-hover:text-violet-300 transition-all"
+                    whileHover={{ x: 4 }}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
+
+          {/* Coming Soon Banner */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            className="flex-shrink-0 mb-4 p-3 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20"
+            transition={{ delay: 0.2 }}
+            className="flex-shrink-0 mb-4 p-3 rounded-xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20"
           >
-            <div className="flex items-center gap-2 text-yellow-400 text-xs">
-              <span>🚧</span>
-              <span className="font-medium">Content Hub Coming Soon</span>
+            <div className="flex items-center gap-2 text-emerald-400 text-xs">
+              <span>✍️</span>
+              <span className="font-medium">More articles coming soon</span>
               <span className="text-gray-500">— 14 deep-dive articles in preparation</span>
             </div>
           </motion.div>
 
           {/* Scrollable Articles Grid */}
-          <div className="flex-1 overflow-y-auto insights-scroll pr-2 min-h-0">
+          <div className="flex-1 overflow-y-auto blogs-scroll pr-2 min-h-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <AnimatePresence mode="popLayout">
                 {filteredArticles.map((article, index) => (
@@ -283,7 +352,7 @@ export default function InsightsPage() {
                       setSelectedCategory('All');
                       setSelectedLevel('All');
                     }}
-                    className="mt-3 text-yellow-400 hover:text-yellow-300 text-sm"
+                    className="mt-3 text-emerald-400 hover:text-emerald-300 text-sm"
                   >
                     Clear filters
                   </button>
@@ -347,3 +416,4 @@ function ArticleCard({ article }: { article: typeof articles[0] }) {
     </motion.div>
   );
 }
+

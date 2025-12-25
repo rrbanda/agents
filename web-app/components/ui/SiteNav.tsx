@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { id: 'talks', label: 'Talks', icon: '🎤', href: '/talks' },
   { id: 'podcasts', label: 'Podcasts', icon: '🎙️', href: '/podcasts' },
-  { id: 'insights', label: 'Insights', icon: '💡', href: '/insights' },
+  { id: 'blogs', label: 'Blogs', icon: '✍️', href: '/blogs' },
   { id: 'experiments', label: 'Experiments', icon: '⚡', href: '/experiments' },
   { id: 'events', label: 'Events', icon: '📅', href: '/events' },
   { id: 'newsletter', label: 'Newsletter', icon: '📬', href: '/newsletter' },
@@ -23,7 +23,7 @@ export default function SiteNav() {
   const getCurrentSection = () => {
     if (pathname.startsWith('/talks') || pathname.startsWith('/presentation')) return 'talks';
     if (pathname.startsWith('/podcasts')) return 'podcasts';
-    if (pathname.startsWith('/insights')) return 'insights';
+    if (pathname.startsWith('/blogs')) return 'blogs';
     if (pathname.startsWith('/experiments') || pathname.startsWith('/demos')) return 'experiments';
     if (pathname.startsWith('/events')) return 'events';
     if (pathname.startsWith('/newsletter')) return 'newsletter';
@@ -35,14 +35,15 @@ export default function SiteNav() {
 
   return (
     <nav className="relative z-50 flex items-center justify-between px-6 md:px-12 py-5">
-      {/* Left: Logo + Back to Home */}
-      <Link href="/" className="flex items-center gap-3 group">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+      {/* Left: Logo - Click to go home */}
+      <Link href="/" className="group">
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center cursor-pointer"
+        >
           <span className="text-white font-bold text-sm">AI</span>
-        </div>
-        <span className="text-gray-500 font-medium text-sm group-hover:text-white transition-colors hidden sm:inline">
-          Home
-        </span>
+        </motion.div>
       </Link>
 
       {/* Center: Navigation Links (Desktop) */}
