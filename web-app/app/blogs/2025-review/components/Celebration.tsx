@@ -52,8 +52,7 @@ export function Celebration({ stats, isVisible, onDismiss }: CelebrationProps) {
             transition={{ 
               duration: 0.4, 
               type: 'spring', 
-              bounce: 0.4,
-              exit: { duration: 0.3 }
+              bounce: 0.4
             }}
             className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
           >
